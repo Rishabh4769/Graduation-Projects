@@ -72,10 +72,10 @@ public class Main {
                                 user.bookTicket(buses, busCount);
                                 break;
                             case 5:
-                                user.makePayment();
+                                // user.makePayment();
                                 break;
                             case 6:
-                                user.cancelTicket(buses, busCount);
+                                // user.cancelTicket(buses, busCount);
                                 break;
                             case 7:
                                 user.viewMyBookings();
