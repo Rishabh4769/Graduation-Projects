@@ -1,15 +1,14 @@
 package BusTicketBooking;
 
-public class CashPayment implements Payment {
-    private double amount;
-
+// CashPayment overrides abstract pay() method
+public class CashPayment extends Payment {
     public CashPayment(double amount) {
-        this.amount = amount;
+        super(amount);
     }
 
     @Override
     public boolean pay() {
         System.out.println("Paying ₹" + amount + " in cash.");
-        return true; // Simulate success
+        return true;
     }
 }

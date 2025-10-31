@@ -9,6 +9,8 @@ public class Bus {
     protected double distance;
     protected int totalSeats;
     protected int availableSeats;
+    // seat occupancy: false = empty, true = occupied
+    protected boolean[] seats;
 
     // ✅ Parameterized constructor with 7 arguments
     public Bus(String busId, String source, String destination, String busType,
@@ -21,6 +23,7 @@ public class Bus {
         this.distance = distance;
         this.totalSeats = totalSeats;
         this.availableSeats = totalSeats;
+        this.seats = new boolean[totalSeats]; // all false == empty
     }
 
     // Default constructor (optional but good to have)
@@ -38,6 +41,44 @@ public class Bus {
                 " | Distance: " + distance + " km" +
                 " | ₹/Km: " + chargePerKm +
                 " | Seats: " + availableSeats + "/" + totalSeats);
+    }
+
+    // Display seat map: O = empty, ✓ = occupied (green)
+    public void displaySeatMap() {
+        final String GREEN = "\u001B[32m";
+        final String RESET = "\u001B[0m";
+        final String TICK = "\u2713"; // ✓
+
+        System.out.println("\nSeat map (O = empty, " + GREEN + TICK + RESET + " = occupied):");
+        int perRow = 4;
+        for (int i = 0; i < totalSeats; i++) {
+            int seatNo = i + 1;
+            String symbol = seats[i] ? (GREEN + TICK + RESET) : "O";
+            System.out.printf("%02d(%s) ", seatNo, symbol);
+            if ((seatNo) % perRow == 0) System.out.println();
+        }
+        System.out.println("\n");
+    }
+
+    // Check if a single seat number (1-based) is available
+    public boolean isSeatAvailable(int seatNo) {
+        if (seatNo < 1 || seatNo > totalSeats) return false;
+        return !seats[seatNo - 1];
+    }
+
+    // Reserve given seats (1-based). Returns true if all seats reserved successfully.
+    public boolean reserveSeats(int[] seatNos) {
+        // validate
+        for (int n : seatNos) {
+            if (n < 1 || n > totalSeats) return false;
+            if (seats[n - 1]) return false; // already occupied
+        }
+        // reserve
+        for (int n : seatNos) {
+            seats[n - 1] = true;
+            availableSeats = Math.max(0, availableSeats - 1);
+        }
+        return true;
     }
 
 
