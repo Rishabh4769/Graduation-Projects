@@ -8,7 +8,7 @@ public class Main {
         User user = new User();
 
         // === Shared Bus Array ===
-        Bus[] buses = new Bus[10];  // up to 10 buses can be stored
+        Bus[] buses = new Bus[100];  // up to 10 buses can be stored
         int busCount = 0;
 
         // === Preloaded sample buses (optional for testing) ===
@@ -17,6 +17,8 @@ public class Main {
         buses[busCount++] = new NON_AC_BUS("B003", "Rajkot", "Surat", 400, 45);
         buses[busCount++] = new EXPRESS_BUS("B004", "Rajkot", "Bhavnagar", 200, 30);
         System.out.println();
+
+        Dashboard.showLoadingScreen();
 
         while (true) {
             int mainChoice = dash.showMainMenu();
