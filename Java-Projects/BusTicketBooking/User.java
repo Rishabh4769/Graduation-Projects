@@ -1,7 +1,8 @@
 package BusTicketBooking;
+
 import java.util.Scanner;
 
-public class User extends Person {
+public class User extends Person  {
     private String userId;
     private Booking[] myBookings = new Booking[50];
     private int bookingCount = 0;
@@ -14,6 +15,10 @@ public class User extends Person {
     public String getGender() { return gender; }
     public int getAge() { return age; }
     public String getPhone() { return phone; }
+
+   public void run(){
+        
+    }
 
     // Bus data will be passed from Admin or Main
     public void viewAvailableBuses(Bus[] buses, int busCount) {
@@ -71,8 +76,20 @@ public class User extends Person {
             return;
         }
 
+
+
         System.out.print("Enter number of seats: ");
         int seats = sc.nextInt(); sc.nextLine();
+
+        try {
+            if (seats > 6) {
+                throw new MaximumSeatsBookingException("Sorry as per Regulations Cannot book more than 6 seats at once.");
+            }
+        } 
+        catch (MaximumSeatsBookingException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
         if (chosen.getAvailableSeats() < seats) {
             System.out.println("Not enough seats available!");

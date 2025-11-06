@@ -45,15 +45,17 @@ public class Bus {
 
     // Display seat map: O = empty, ✓ = occupied (green)
     public void displaySeatMap() {
+        final String RED = "\u001B[31m";
+        final String CROSS = "\u2717";
         final String GREEN = "\u001B[32m";
         final String RESET = "\u001B[0m";
-        final String TICK = "\u2713"; // ✓
+        final String STAR = "\u2605"; // ✓
 
-        System.out.println("\nSeat map (O = empty, " + GREEN + TICK + RESET + " = occupied):");
+        System.out.println("\nSeat map ("+GREEN+STAR+RESET+" = empty, " + RED + CROSS + RESET + " = occupied):");
         int perRow = 4;
         for (int i = 0; i < totalSeats; i++) {
             int seatNo = i + 1;
-            String symbol = seats[i] ? (GREEN + TICK + RESET) : "O";
+            String symbol = seats[i] ? (RED + CROSS + RESET) : (GREEN + STAR + RESET);
             System.out.printf("%02d(%s) ", seatNo, symbol);
             if ((seatNo) % perRow == 0) System.out.println();
         }

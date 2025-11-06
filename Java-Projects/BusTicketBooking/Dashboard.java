@@ -1,8 +1,9 @@
 package BusTicketBooking;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Dashboard {
+public class Dashboard implements Runnable {
 
     Scanner sc = new Scanner(System.in);
     final String ADMIN_USER = "Admin";
@@ -12,6 +13,18 @@ public class Dashboard {
     private static int steps = 20;
     private static int delay = duration / steps;
 
+    // colors
+    final static String RED = "\u001B[31m";
+    final static String GREEN = "\u001B[32m";
+    final static String CYAN = "\u001B[36m";
+    final static String YELLOW = "\u001B[33m";
+    final static String RESET = "\u001B[0m";
+
+
+    public void run(){
+        
+    }
+
 
     // ======Loading Animation Module======
 
@@ -20,10 +33,11 @@ public class Dashboard {
         for (int i = 0; i < steps; i++) {
 
             int percent = ((i + 1) * 100) / steps;
-            System.out.printf("\rLoading Online Bus Ticket Booking System... %d%% %s", percent, loadingChars[i % loadingChars.length]);
-        try {
+            System.out.printf( GREEN +"\rLoading Online Bus Ticket Booking System... %d%% %s", percent, loadingChars[i % loadingChars.length]);
+            try {
                 Thread.sleep(delay);
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
@@ -43,19 +57,24 @@ public class Dashboard {
         System.out.println("|                                        |");
         System.out.println("==========================================");
         System.out.println("|                                        |");
-        System.out.println("|  1. Admin Login                        |");
+        System.out.println("|  "+YELLOW+"1. Admin Login"+GREEN+"                        |");
         System.out.println("|                                        |");
-        System.out.println("|  2. User Menu                          |");
+        System.out.println("|  "+CYAN+"2. User Menu"+GREEN+"                          |");
         System.out.println("|                                        |");
-        System.out.println("|  3. Exit                               |");
+        System.out.println("|  "+RED+"3. Exit"+GREEN+"                               |");
         System.out.println("|                                        |");
-        System.out.println("==========================================");
-        System.out.print("Enter your choice: ");
-        int choice = sc.nextInt();
-        System.out.println("------------------------------------------\n");
-
-        sc.nextLine();
-        return choice;
+        System.out.println("=========================================="+RESET);
+        try{
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine();
+            System.out.println("------------------------------------------");
+            return choice;
+        }
+        catch(InputMismatchException e){
+            System.out.println("Invalid choice! Please enter a valid choice.\n");
+            return showMainMenu();
+        }
     }
 
     // ======Admin Login Module======
@@ -68,11 +87,11 @@ public class Dashboard {
         String pwd = sc.nextLine();
         System.out.println("------------------------------------------");
 
-        if (uname.equals(ADMIN_USER) && pwd.equals(ADMIN_PASS)) {
-            System.out.println("\n✅ Admin Login Successful!");
+        if (uname.toLowerCase().equals(ADMIN_USER) && pwd.equals(ADMIN_PASS)) {
+            System.out.println("\n Admin Login Successful!");
             return true;
         } else {
-            System.out.println("\n❌ Invalid Username or Password!");
+            System.out.println("\n Invalid Username or Password!");
             return false;
         }
     }
@@ -89,10 +108,16 @@ public class Dashboard {
         System.out.println("|  5. Logout                             |");
         System.out.println("==========================================");
         System.out.print("Enter your choice: ");
-        int choice = sc.nextInt();
-        sc.nextLine();
-        System.out.println("------------------------------------------\n");
-        return choice;
+        try{
+            int choice = sc.nextInt();
+            sc.nextLine();
+            System.out.println("------------------------------------------\n");
+            return choice;
+        }
+        catch(InputMismatchException e){
+            System.out.println("Invalid choice! Please enter a valid choice.");
+            return showAdminMenu();
+        }
     }
 
     public int showUserMenu() {
