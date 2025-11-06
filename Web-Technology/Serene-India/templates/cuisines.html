@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuisines of India - Serene Indian Journeys</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/Project/styles/home.css">
+  <link rel="stylesheet" href="/Project/styles/cuisines.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="header" id="header">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between py-2">
+      <div class="brand">
+        <h1 class="site-title">Serene Indian Journeys</h1>
+        <p class="tagline">Experience India's beauty</p>
+      </div>
+      <nav class="nav">
+        <button class="hamburger d-md-none" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu d-none d-md-flex list-unstyled m-0 gap-3" id="navMenu">
+          <li><a href="/Project/templates/Home.html">Home</a></li>
+          <li><a href="/Project/templates/destinations.html">Destinations</a></li>
+          <li><a href="/Project/templates/cuisines.html" aria-current="page">Cuisines</a></li>
+          <li><a href="/Project/templates/gallery.html">Gallery</a></li>
+          <li><a href="/Project/templates/about.html">About Us</a></li>
+          <li><a href="/Project/templates/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Welcome Banner -->
+  <section class="welcome-banner">
+    <span class="emoji">🍲</span>
+    <span class="banner-text">Discover the diverse tastes of India—from North to South, East to West!</span>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="main-frame cuisines">
+      <h2>Cuisines of India</h2>
+      <p class="intro">
+        Dive into India's culinary diversity! Each region offers unique flavors, aromas, and traditions—find your next favorite dish.
+      </p>
+      <section class="cuisine-grid">
+        <article class="cuisine-card">
+          <img src="/Project/static/images/north-indian.jpg" alt="North Indian Cuisine">
+          <h3>North Indian</h3>
+          <p>
+            Rich, robust, and creamy—explore butter chicken, paneer dishes, naan, and famous street snacks of Punjab and Delhi.
+          </p>
+        </article>
+        <article class="cuisine-card">
+          <img src="/Project/static/images/south-indian.jpg" alt="South Indian Cuisine">
+          <h3>South Indian</h3>
+          <p>
+            Flavorful and aromatic—taste dosas, idlis, spicy sambar, and coconut-based curries from Tamil Nadu, Kerala, and beyond.
+          </p>
+        </article>
+        <article class="cuisine-card">
+          <img src="/Project/static/images/east-indian.jpg" alt="East Indian Cuisine">
+          <h3>East Indian</h3>
+          <p>
+            Delicate and subtly sweet—enjoy fish curries, momos, sweets like rasgulla from Bengal and Assam.
+          </p>
+        </article>
+        <article class="cuisine-card">
+          <img src="/Project/static/images/west-indian.jpg" alt="West Indian Cuisine">
+          <h3>West Indian</h3>
+          <p>
+            Colorful, bold, and spicy—try dhokla, pav bhaji, Goan curries, and fusion dishes from Gujarat, Maharashtra, and Goa.
+          </p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p class="copyright">&copy; 2025 Serene Indian Journeys. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="social-link">Facebook</a>
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="social-link">Twitter</a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="social-link">Instagram</a>
+      </div>
+    </div>
+  </footer>
+  <script src="/Project/scripts/app.js"></script>
+</body>
+</html>

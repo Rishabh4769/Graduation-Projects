@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Serene Indian Journeys</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/Project/styles/home.css">
+  <link rel="stylesheet" href="/Project/styles/contact.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="header" id="header">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between py-2">
+      <div class="brand">
+        <h1 class="site-title">Serene Indian Journeys</h1>
+        <p class="tagline">Experience India's beauty</p>
+      </div>
+      <nav class="nav">
+        <button class="hamburger d-md-none" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu d-none d-md-flex list-unstyled m-0 gap-3" id="navMenu">
+          <li><a href="/Project/templates/Home.html">Home</a></li>
+          <li><a href="/Project/templates/destinations.html">Destinations</a></li>
+          <li><a href="/Project/templates/cuisines.html">Cuisines</a></li>
+          <li><a href="/Project/templates/gallery.html">Gallery</a></li>
+          <li><a href="/Project/templates/about.html">About Us</a></li>
+          <li><a href="/Project/templates/contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Welcome Banner -->
+  <section class="welcome-banner">
+    <span class="emoji">🤗</span>
+    <span class="banner-text">Have questions? Reach out to us – we’re here to help!</span>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <div class="main-frame contact">
+      <section>
+        <h2>Get in Touch</h2>
+        <p>We’d love to hear from you! Fill out the form below or use our contact details.</p>
+      </section>
+
+      <section class="contact-wrapper">
+        <article>
+          <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </article>
+
+        <article class="contact-info">
+          <h3>📍 Address</h3>
+          <p>Serene Indian Journeys,<br>Gujarat, India</p>
+          <h3>📞 Phone</h3>
+          <p>+91 98765 43210</p>
+          <h3>📧 Email</h3>
+          <p>support@sereneindia.com</p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p class="copyright">&copy; 2025 Serene Indian Journeys. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="social-link">Facebook</a>
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="social-link">Twitter</a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="social-link">Instagram</a>
+      </div>
+    </div>
+  </footer>
+  <script src="/Project/scripts/app.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+  // Attach validation to the contact form
+  const form = document.querySelector('.contact-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Remove previous error highlights
+      [...form.querySelectorAll('input, textarea')].forEach(f => f.classList.remove('invalid'));
+
+      let valid = true;
+
+      // Name must not be empty and at least 2 characters
+      const nameField = form.querySelector('input[type="text"]');
+      if (!nameField.value.trim() || nameField.value.trim().length < 2) {
+        valid = false;
+        nameField.classList.add('invalid');
+        nameField.focus();
+      }
+
+      // Email must be valid format
+      const emailField = form.querySelector('input[type="email"]');
+      const emailValue = emailField.value.trim();
+      // Simple regex for email validation
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+        valid = false;
+        emailField.classList.add('invalid');
+        emailField.focus();
+      }
+
+      // Message must not be empty
+      const messageField = form.querySelector('textarea');
+      if (!messageField.value.trim()) {
+        valid = false;
+        messageField.classList.add('invalid');
+        messageField.focus();
+      }
+
+      if (valid) {
+        // Show message on successful validation - you can replace this with actual submission logic
+        form.innerHTML = '<div style="color:#207ea0;font-weight:650;font-size:1.21rem;padding:18px;"><span style="font-size:2rem;">✅</span><br>Thank you! Your message was sent.</div>';
+      } else {
+        alert('Please correct the highlighted fields before submitting the form.');
+      }
+    });
+  }
+});
+
+  </script>
+</body>
+</html>

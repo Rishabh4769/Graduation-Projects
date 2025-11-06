@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serene Indian Journeys - Discover India's Heritage, Nature &amp; Culture</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../styles/destinations.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+  <header class="header" id="header">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between py-2">
+      <div class="brand">
+        <h1 class="site-title">Serene Indian Journeys</h1>
+        <p class="tagline">Experience India's beauty</p>
+      </div>
+      <nav class="nav">
+        <button class="hamburger d-md-none" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu d-none d-md-flex list-unstyled m-0 gap-3" id="navMenu">
+          <li><a href="/Project/templates/Home.html">Home</a></li>
+          <li><a href="/Project/templates/destinations.html" aria-current="page">Destinations</a></li>
+          <li><a href="/Project/templates/cuisines.html">Cuisines</a></li>
+          <li><a href="/Project/templates/gallery.html">Gallery</a></li>
+          <li><a href="/Project/templates/about.html">About Us</a></li>
+          <li><a href="/Project/templates/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">Top Destinations of India</h2>
+            <p class="hero-subtitle">
+                Explore the most beautiful places in India. 
+                <a href="/Project/templates/Quiz.html" class="quiz-link" target="_blank">Take our Quiz</a> to find your perfect destination!
+            </p>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Destinations Section -->
+    <!-- Snippet for Destinations Section portion only, to fit old structure -->
+
+    <main class="main-content">
+      <div class="container">
+        <div class="search-container" style="margin-bottom: 24px; text-align: center;">
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Search destinations..." 
+            aria-label="Search destinations"
+            style="padding: 12px 20px; font-size: 1.1rem; width: 100%; max-width: 400px; border-radius: 12px; border: 1px solid #ccc;"
+          />
+        </div>
+
+        <div class="destinations-grid">
+
+          <!-- North India (5 places) -->
+          <article class="destination-card fade-in" data-index="0">
+            <div class="card-image-wrapper">
+              <img src="/Project/static/images/leh-ladakh.jpg" alt="Leh Ladakh Himalayas" class="card-image" loading="lazy">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Leh–Ladakh</h3>
+              <p class="card-description">High-altitude desert with alpine lakes and monasteries.</p>
+              <button class="places-toggle" data-target="places-0">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-0">
+                <ul class="places-list">
+                  <li><strong>Pangong Lake</strong> – Stunning turquoise lake <a href="/Project/templates/placeDetails.html?id=pangong-lake">Read More</a></li>
+                  <li><strong>Nubra Valley</strong> – Sand dunes & camels <a href="/Project/templates/placeDetails.html?id=nubra-valley">Read More</a></li>
+                  <li><strong>Khardung La</strong> – One of world's highest passes <a href="/Project/templates/placeDetails.html?id=khardung-la">Read More</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="destination-card fade-in" data-index="1">
+            <div class="card-image-wrapper">
+              <img src="/Project/static/images/amritsar.jpg" alt="Golden Temple Amritsar" class="card-image" loading="lazy">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Amritsar</h3>
+              <p class="card-description">Spiritual city known for the Golden Temple.</p>
+              <button class="places-toggle" data-target="places-1">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-1">
+                <ul class="places-list">
+                  <li><strong>Golden Temple</strong> – Sikhism's holiest shrine <a href="/Project/templates/placeDetails.html?id=golden-temple">Read More</a></li>
+                  <li><strong>Wagah Border</strong> – Daily border ceremony <a href="/Project/templates/placeDetails.html?id=wagah-border">Read More</a></li>
+                  <li><strong>Jallianwala Bagh</strong> – Historic massacre site <a href="/Project/templates/placeDetails.html?id=jallianwala-bagh">Read More</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="destination-card fade-in" data-index="2">
+            <div class="card-image-wrapper">
+              <img src="/Project/static/images/shimla.jpg" alt="Shimla Hill Station" class="card-image" loading="lazy">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Shimla</h3>
+              <p class="card-description">Famous hill station with colonial charm and mountain views.</p>
+              <button class="places-toggle" data-target="places-2">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-2">
+                <ul class="places-list">
+                  <li><strong>Mall Road</strong> – Shopping and dining hub <a href="/Project/templates/placeDetails.html?id=mall-road-shimla">Read More</a></li>
+                  <li><strong>Jakhoo Temple</strong> – Famous Hanuman shrine <a href="/Project/templates/placeDetails.html?id=jakhoo-temple">Read More</a></li>
+                  <li><strong>The Ridge</strong> – Programmes and mountain views <a href="/Project/templates/placeDetails.html?id=the-ridge-shimla">Read More</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="destination-card fade-in" data-index="3">
+            <div class="card-image-wrapper">
+              <img src="/Project/static/images/manali.jpg" alt="Manali Adventure" class="card-image" loading="lazy">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Manali</h3>
+              <p class="card-description">Popular for adventure sports and serene valleys.</p>
+              <button class="places-toggle" data-target="places-3">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-3">
+                <ul class="places-list">
+                  <li><strong>Solang Valley</strong> – Skiing and paragliding <a href="/Project/templates/placeDetails.html?id=solang-valley">Read More</a></li>
+                  <li><strong>Hadimba Temple</strong> – Unique forest temple <a href="/Project/templates/placeDetails.html?id=hadimba-temple">Read More</a></li>
+                  <li><strong>Rohtang Pass</strong> – Snowy mountain pass <a href="/Project/templates/placeDetails.html?id=rohtang-pass">Read More</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="destination-card fade-in" data-index="4">
+            <div class="card-image-wrapper">
+              <img src="/Project/static/images/rishikesh.jpg" alt="Rishikesh Spirituality" class="card-image" loading="lazy">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Rishikesh</h3>
+              <p class="card-description">World yoga capital and river rafting hub.</p>
+              <button class="places-toggle" data-target="places-4">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-4">
+                <ul class="places-list">
+                  <li><strong>Laxman Jhula</strong> – Iconic suspension bridge <a href="/Project/templates/placeDetails.html?id=laxman-jhula">Read More</a></li>
+                  <li><strong>Parmarth Niketan</strong> – Spiritual ashram <a href="/Project/templates/placeDetails.html?id=parmarth-niketan">Read More</a></li>
+                  <li><strong>Triveni Ghat</strong> – Evening Ganga Aarti <a href="/Project/templates/placeDetails.html?id=triveni-ghat">Read More</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Add remaining 15 places for South, East, West with similar pattern -->
+
+          <!-- South India Example -->
+          <article class="destination-card fade-in" data-index="5">
+            <div class="card-image-wrapper">
+              <img src="/Project/static/images/alleppey.jpg" alt="Alleppey Backwaters" class="card-image" loading="lazy">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Alleppey</h3>
+              <p class="card-description">Serene backwaters and houseboats.</p>
+              <button class="places-toggle" data-target="places-5">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-5">
+                <ul class="places-list">
+                  <li><strong>Houseboat Cruise</strong> – Tranquil water tours <a href="/Project/templates/placeDetails.html?id=houseboat-cruise">Read More</a></li>
+                  <li><strong>Kumarakom Bird Sanctuary</strong> – Nature lovers’ haven <a href="/Project/templates/placeDetails.html?id=kumarakom-bird-sanctuary">Read More</a></li>
+                  <li><strong>Marari Beach</strong> – Quiet sandy shores <a href="/Project/templates/placeDetails.html?id=marari-beach">Read More</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Continue the rest similarly for 20 places total -->
+
+        </div>
+      </div>
+    </main>
+
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="copyright">&copy; 2025 Serene Indian Journeys. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="social-link">
+                    </a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="social-link">
+                    </a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="social-link">
+                    </a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="social-link">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../static/js/app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const destinationCards = document.querySelectorAll('.destination-card');
+
+        searchInput.addEventListener('input', function() {
+          const query = this.value.toLowerCase().trim();
+
+          destinationCards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            if (title.includes(query)) {
+              card.style.display = '';  // Show matched card
+            } else {
+              card.style.display = 'none';  // Hide unmatched card
+            }
+          });
+        });
+      });
+    </script>
+</body>
+</html>
