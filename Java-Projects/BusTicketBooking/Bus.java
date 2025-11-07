@@ -9,10 +9,9 @@ public class Bus {
     protected double distance;
     protected int totalSeats;
     protected int availableSeats;
-    // seat occupancy: false = empty, true = occupied
     protected boolean[] seats;
 
-    // ✅ Parameterized constructor with 7 arguments
+    // Parameterized constructor with 7 arguments
     public Bus(String busId, String source, String destination, String busType,
                float chargePerKm, double distance, int totalSeats) {
         this.busId = busId;
@@ -23,33 +22,31 @@ public class Bus {
         this.distance = distance;
         this.totalSeats = totalSeats;
         this.availableSeats = totalSeats;
-        this.seats = new boolean[totalSeats]; // all false == empty
+        this.seats = new boolean[totalSeats];
     }
 
-    // Default constructor (optional but good to have)
+
     public Bus() {}
 
-    // Simple methods
+
     public double calculateFare() { 
         return distance * chargePerKm; 
     }
 
     public void displayInfo() {
-        System.out.println("Bus ID: " + busId +
-                " | Route: " + source + " → " + destination +
-                " | Type: " + busType +
-                " | Distance: " + distance + " km" +
-                " | ₹/Km: " + chargePerKm +
-                " | Seats: " + availableSeats + "/" + totalSeats);
+        System.out.printf(
+            "Bus ID: %-6s | Route: %-8s → %-12s | Type: %-8s | Distance: %6.2f km | ₹/Km: %5.2f | Seats: %2d/%-2d\n",
+            busId, source, destination, busType, distance, chargePerKm, availableSeats, totalSeats
+        );
     }
 
-    // Display seat map: O = empty, ✓ = occupied (green)
+
     public void displaySeatMap() {
         final String RED = "\u001B[31m";
         final String CROSS = "\u2717";
         final String GREEN = "\u001B[32m";
         final String RESET = "\u001B[0m";
-        final String STAR = "\u2605"; // ✓
+        final String STAR = "\u2605";
 
         System.out.println("\nSeat map ("+GREEN+STAR+RESET+" = empty, " + RED + CROSS + RESET + " = occupied):");
         int perRow = 4;
@@ -105,4 +102,3 @@ public class Bus {
     public String getDestination() { return destination; }
     public int getAvailableSeats() { return availableSeats; }
 }
-
