@@ -62,20 +62,18 @@ public class Bus {
         System.out.println("\n");
     }
 
-    // Check if a single seat number (1-based) is available
     public boolean isSeatAvailable(int seatNo) {
         if (seatNo < 1 || seatNo > totalSeats) return false;
         return !seats[seatNo - 1];
     }
 
-    // Reserve given seats (1-based). Returns true if all seats reserved successfully.
+
     public boolean reserveSeats(int[] seatNos) {
-        // validate
         for (int n : seatNos) {
             if (n < 1 || n > totalSeats) return false;
-            if (seats[n - 1]) return false; // already occupied
+            if (seats[n - 1]) return false;
         }
-        // reserve
+
         for (int n : seatNos) {
             seats[n - 1] = true;
             availableSeats = Math.max(0, availableSeats - 1);

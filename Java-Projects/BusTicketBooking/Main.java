@@ -91,10 +91,9 @@ public class Main {
 
                 // ---------------- Exit ----------------
                 case 3:
-                    System.out.println("Thank you for using the Online Bus Booking System!");
-                    System.exit(0);
-                    break;
-
+                    Dashboard.showExitAnimation();
+                    return;
+                    
                 default:
                     System.out.println("Invalid Choice! Try again.");
             }

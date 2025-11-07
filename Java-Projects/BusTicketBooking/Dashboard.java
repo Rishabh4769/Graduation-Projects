@@ -3,7 +3,7 @@ package BusTicketBooking;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Dashboard implements Runnable {
+public class Dashboard {
 
     Scanner sc = new Scanner(System.in);
     final String ADMIN_USER = "Admin";
@@ -21,10 +21,6 @@ public class Dashboard implements Runnable {
     final static String RESET = "\u001B[0m";
 
 
-    public void run(){
-        
-    }
-
 
     // ======Loading Animation Module======
 
@@ -33,9 +29,12 @@ public class Dashboard implements Runnable {
         for (int i = 0; i < steps; i++) {
 
             int percent = ((i + 1) * 100) / steps;
-            System.out.printf( GREEN +"\rLoading Online Bus Ticket Booking System... %d%% %s", percent, loadingChars[i % loadingChars.length]);
+            System.out.printf( GREEN +"\rLoading Online Bus Ticket Booking System... "+CYAN+"%d%% %s"+RESET+GREEN, percent, loadingChars[i % loadingChars.length]);
             try {
-                Thread.sleep(delay);
+                Thread.sleep(delay); // Thread used
+                if (percent == 50 || percent == 95) {
+                    Thread.sleep(1000); // Thread used
+                }
             }
             catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -43,6 +42,22 @@ public class Dashboard implements Runnable {
         }
         System.out.println("\rLoading Online Bus Ticket Booking System... 100% Done");
     }
+
+    // ======Exit Animation Module======
+    public static void showExitAnimation() {
+        System.out.print(YELLOW + "Exiting the system" + RESET);
+        for (int i = 0; i < 3; i++) {
+            try {
+                Thread.sleep(700);
+                System.out.print(" .");
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        System.out.println();  // Move to next line after dots
+    }
+
+
 
     // ======Main Menu Module======
     public int showMainMenu() {

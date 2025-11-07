@@ -177,10 +177,10 @@ public class User extends Person  {
 
         Payment payment;
         double amount = booking.getTotalFare();
-        if (booking == null) {
-            System.out.println("No booking provided for payment.");
-            return;
-        }
+        // if (booking == null) {
+        //     System.out.println("No booking provided for payment.");
+        //     return;
+        // }
 
         if (amount <= 0) {
             System.out.println("Invalid booking amount (₹" + amount + "). Cannot process payment.");
