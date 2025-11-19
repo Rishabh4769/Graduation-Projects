@@ -7,11 +7,9 @@ public class Main {
         Admin admin = new Admin();
         User user = new User();
 
-        // === Shared Bus Array ===
-        Bus[] buses = new Bus[100];  // up to 10 buses can be stored
+        Bus[] buses = new Bus[100];
         int busCount = 0;
 
-        // === Preloaded sample buses (optional for testing) ===
         buses[busCount++] = new AC_BUS("B001", "Rajkot", "Ahmedabad", 250, 40);
         buses[busCount++] = new SLEEPER_BUS("B002", "Rajkot", "Mumbai", 700, 45);
         buses[busCount++] = new NON_AC_BUS("B003", "Rajkot", "Surat", 400, 45);
@@ -24,7 +22,6 @@ public class Main {
             int mainChoice = dash.showMainMenu();
 
             switch (mainChoice) {
-                // ---------------- Admin Section ----------------
                 case 1:
                     if (dash.checkAdminLogin()) {
                         int adminChoice;
@@ -53,7 +50,6 @@ public class Main {
                     }
                     break;
 
-                // ---------------- User Section ----------------
                 case 2:
                     int userChoice;
                     do {
@@ -89,7 +85,6 @@ public class Main {
                     } while (userChoice != 8);
                     break;
 
-                // ---------------- Exit ----------------
                 case 3:
                     Dashboard.showExitAnimation();
                     return;

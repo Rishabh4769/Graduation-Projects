@@ -4,115 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serene Indian Journeys - Discover India's Heritage, Nature &amp; Culture</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../styles/home.css">
     <link rel="stylesheet" href="../styles/destinations.css">
 </head>
 <body>
 
     <!-- Header & Navigation -->
-  <header class="header" id="header">
-    <div class="container d-flex flex-wrap align-items-center justify-content-between py-2">
-      <div class="brand">
+<header class="header" id="header">
+  <div class="container d-flex flex-wrap align-items-center justify-content-between py-2">
+    <div class="brand d-flex align-items-center gap-3">
+      <img src="../static/images/site.png" alt="Site Logo" class="brand-logo" />
+      <div class="brand-text">
         <h1 class="site-title">Serene Indian Journeys</h1>
         <p class="tagline">Experience India's beauty</p>
       </div>
-      <nav class="nav">
-        <button class="hamburger d-md-none" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
-          <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-menu d-none d-md-flex list-unstyled m-0 gap-3" id="navMenu">
-          <li><a href="/Project/templates/Home.html">Home</a></li>
-          <li><a href="/Project/templates/destinations.html" aria-current="page">Destinations</a></li>
-          <li><a href="/Project/templates/cuisines.html">Cuisines</a></li>
-          <li><a href="/Project/templates/gallery.html">Gallery</a></li>
-          <li><a href="/Project/templates/about.html">About Us</a></li>
-          <li><a href="/Project/templates/contact.html">Contact</a></li>
-        </ul>
-      </nav>
     </div>
-  </header>
+    <nav class="nav d-flex align-items-center gap-3">
+      <button class="hamburger d-md-none" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu d-none d-md-flex list-unstyled m-0 gap-3" id="navMenu">
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="destinations.html" aria-current="page">Destinations</a></li>
+        <li><a href="cuisines.html">Cuisines</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <h2 class="hero-title">Top Destinations of India</h2>
-            <p class="hero-subtitle">
-                Explore the most beautiful places in India. 
-                <a href="/Project/templates/Quiz.html" class="quiz-link" target="_blank">Take our Quiz</a> to find your perfect destination!
-            </p>
-        </div>
-        <div class="hero-overlay"></div>
-    </section>
+<main class="flex-grow-1">
+<section class="hero home-hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content text-center">
+    <h2 class="hero-title">Top Destinations of India</h2>
+    <p class="hero-subtitle">
+      Explore the most beautiful places in India.
+    </p>
+  </div>
+  <div class="hero-scroll-indicator d-flex align-items-center justify-content-center mt-4">
+    <span class="me-2">Scroll to explore</span>
+    <svg width="28" height="28" viewBox="0 0 24 24" stroke="#217a91" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+    </svg>
+  </div>
+</section>
 
     <!-- Destinations Section -->
-    <!-- Snippet for Destinations Section portion only, to fit old structure -->
 
-    <main class="main-content">
+
       <div class="container">
         <div class="search-container" style="margin-bottom: 24px; text-align: center;">
           <input 
             type="text" 
             id="searchInput" 
-            placeholder="Search destinations..." 
+            placeholder="Search destinations..."
             aria-label="Search destinations"
-            style="padding: 12px 20px; font-size: 1.1rem; width: 100%; max-width: 400px; border-radius: 12px; border: 1px solid #ccc;"
-          />
+            style="padding: 12px 20px; font-size: 1.1rem; width: 100%; max-width: 400px; border-radius: 12px; border: 1px solid #ccc;"/>
+        </div>
+        <div class="container mb-4 filters">
+          <div class="row justify-content-center g-3">
+            <div class="col-auto">
+              <select id="filterDirection" class="form-select" aria-label="Filter by direction" style="min-width: 160px;">
+                <option value="all">All Directions</option>
+                <option value="North">North</option>
+                <option value="East">East</option>
+                <option value="West">West</option>
+                <option value="South">South</option>
+              </select>
+            </div>
+            <div class="col-auto">
+              <select id="filterCategory" class="form-select" aria-label="Filter by category" style="min-width: 160px;">
+                <option value="all">All Categories</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Spiritual">Spiritual</option>
+                <option value="Nature">Nature</option>
+                <option value="Cultural">Cultural</option>
+              </select>
+            </div>
+            <div class="col-auto align-self-center">
+              <button id="clearFiltersBtn" class="btn btn-secondary">Clear Filters</button>
+            </div>
+
+          </div>
         </div>
 
         <div class="destinations-grid">
-
-          <!-- North India (5 places) -->
-          <article class="destination-card fade-in" data-index="0">
+          <!-- 1. Leh-Ladakh -->
+          <article class="destination-card fade-in" data-index="0" data-direction="North" data-category="Adventure Nature Spiritual">
             <div class="card-image-wrapper">
-              <img src="/Project/static/images/leh-ladakh.jpg" alt="Leh Ladakh Himalayas" class="card-image" loading="lazy">
+              <img src="../static/images/leh-ladakh.jpg" alt="Leh Ladakh Himalayas" class="card-image" loading="lazy" />
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-              <h3 class="card-title">Leh–Ladakh</h3>
-              <p class="card-description">High-altitude desert with alpine lakes and monasteries.</p>
+              <h3 class="card-title">Leh - Ladakh</h3>
+              <p class="card-description">High-altitude alpine lakes, rugged landscapes, and historic monasteries.</p>
               <button class="places-toggle" data-target="places-0">
                 <span class="toggle-icon">+</span>
                 <span class="toggle-text">Special Places to Visit</span>
               </button>
               <div class="special-places" id="places-0">
                 <ul class="places-list">
-                  <li><strong>Pangong Lake</strong> – Stunning turquoise lake <a href="/Project/templates/placeDetails.html?id=pangong-lake">Read More</a></li>
-                  <li><strong>Nubra Valley</strong> – Sand dunes & camels <a href="/Project/templates/placeDetails.html?id=nubra-valley">Read More</a></li>
-                  <li><strong>Khardung La</strong> – One of world's highest passes <a href="/Project/templates/placeDetails.html?id=khardung-la">Read More</a></li>
+                  <li><strong>Pangong Lake</strong> – Stunning turquoise high-altitude lake <a href="../templates/placeDetails.html?id=pangong-lake">See</a></li>
+                  <li><strong>Nubra Valley</strong> – Scenic valley known for sand dunes and Bactrian camels <a href="../templates/placeDetails.html?id=nubra-valley">See</a></li>
+                  <li><strong>Leh Town</strong> – Historic town and one of world's highest motorable passes <a href="../templates/placeDetails.html?id=khardung-la">See</a></li>
                 </ul>
               </div>
             </div>
           </article>
 
-          <article class="destination-card fade-in" data-index="1">
+          <!-- 2. Uttarakhand -->
+          <article class="destination-card fade-in" data-index="1" data-direction="North" data-category="Spiritual Nature Adventure">
             <div class="card-image-wrapper">
-              <img src="/Project/static/images/amritsar.jpg" alt="Golden Temple Amritsar" class="card-image" loading="lazy">
+              <img src="https://imgs.search.brave.com/BfEUs5vOdUZXpk6rZYZniCMYoqSvTe9oeOqB6fKlsfg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNDgz/MjkyMjMwL3Bob3Rv/L3RyZWtraW5nLWlu/LWhpbWFsYXlhcy5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/VGpQb0pXSHpvX3BJ/a28zZFh5Ty01aU55/U2M4RS1lcjRaZWI0/WVFJZFlWUT0" alt="Golden Temple Amritsar" class="card-image" loading="lazy" />
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-              <h3 class="card-title">Amritsar</h3>
-              <p class="card-description">Spiritual city known for the Golden Temple.</p>
+              <h3 class="card-title">Uttarakhand</h3>
+              <p class="card-description">Explore Land of Gods with spiritual sites, hill stations, serene nature escapes.</p>
               <button class="places-toggle" data-target="places-1">
                 <span class="toggle-icon">+</span>
                 <span class="toggle-text">Special Places to Visit</span>
               </button>
               <div class="special-places" id="places-1">
                 <ul class="places-list">
-                  <li><strong>Golden Temple</strong> – Sikhism's holiest shrine <a href="/Project/templates/placeDetails.html?id=golden-temple">Read More</a></li>
-                  <li><strong>Wagah Border</strong> – Daily border ceremony <a href="/Project/templates/placeDetails.html?id=wagah-border">Read More</a></li>
-                  <li><strong>Jallianwala Bagh</strong> – Historic massacre site <a href="/Project/templates/placeDetails.html?id=jallianwala-bagh">Read More</a></li>
+                  <li><strong>Rishikesh</strong> – Renowned spiritual town known for yoga and meditation <a href="../templates/placeDetails.html?id=rishikesh">See</a></li>
+                  <li><strong>Nainital</strong> – Popular hill station famous for scenic Naini Lake <a href="../templates/placeDetails.html?id=nainital">See</a></li>
+                  <li><strong>Haridwar</strong> – Sacred city known for Ganga Aarti and Kumbh Mela <a href="../templates/placeDetails.html?id=haridwar">See</a></li>
                 </ul>
               </div>
             </div>
           </article>
 
-          <article class="destination-card fade-in" data-index="2">
+          <!-- 3. Himachal Pradesh -->
+          <article class="destination-card fade-in" data-index="2" data-direction="North" data-category="Adventure Hill Station Nature">
             <div class="card-image-wrapper">
-              <img src="/Project/static/images/shimla.jpg" alt="Shimla Hill Station" class="card-image" loading="lazy">
+              <img src="https://imgs.search.brave.com/W8FaPWh6NLkHzD7WfMN5XQvfMn3KcIvqNFn6T0kdFkM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTMx/MjEwODk3NS9waG90/by9rYWxwYS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UUpu/cHJGbURsMWZCUlN5/ZDY4b0Zjb1NXY0tm/OVY1RERmWkU0YjNi/Ql84QT0" alt="Shimla Hill Station" class="card-image" loading="lazy" />
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-              <h3 class="card-title">Shimla</h3>
+              <h3 class="card-title">Himachal Pradesh</h3>
               <p class="card-description">Famous hill station with colonial charm and mountain views.</p>
               <button class="places-toggle" data-target="places-2">
                 <span class="toggle-icon">+</span>
@@ -120,84 +154,289 @@
               </button>
               <div class="special-places" id="places-2">
                 <ul class="places-list">
-                  <li><strong>Mall Road</strong> – Shopping and dining hub <a href="/Project/templates/placeDetails.html?id=mall-road-shimla">Read More</a></li>
-                  <li><strong>Jakhoo Temple</strong> – Famous Hanuman shrine <a href="/Project/templates/placeDetails.html?id=jakhoo-temple">Read More</a></li>
-                  <li><strong>The Ridge</strong> – Programmes and mountain views <a href="/Project/templates/placeDetails.html?id=the-ridge-shimla">Read More</a></li>
+                  <li><strong>Manali</strong> – Shopping and dining hub <a href="../templates/placeDetails.html?id=mall-road-shimla">See</a></li>
+                  <li><strong>Shimla</strong> – Famous Hanuman shrine <a href="../templates/placeDetails.html?id=jakhoo-temple">See</a></li>
+                  <li><strong>Kullu</strong> – Programmes and mountain views <a href="../templates/placeDetails.html?id=the-ridge-shimla">See</a></li>
                 </ul>
               </div>
             </div>
           </article>
 
-          <article class="destination-card fade-in" data-index="3">
+          <!-- 4. Rajasthan -->
+          <article class="destination-card fade-in" data-index="3" data-direction="West" data-category="Cultural Historical Desert">
             <div class="card-image-wrapper">
-              <img src="/Project/static/images/manali.jpg" alt="Manali Adventure" class="card-image" loading="lazy">
+              <img src="https://imgs.search.brave.com/55IDlhlFpjmQer_4xVak_p-4N432oCUbz01rKgsnBwo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvODE0/NjI5NTAyL3Bob3Rv/L2J1bmRpLXJhamFz/dGhhbi1pbmRpYS5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/cW9kMldueFVjUkZM/WS00aGVzSTRnd2hl/N3p3Uy1ZSjBjbnZF/SVhzN2VaTT0" alt="Rajasthan Fort" class="card-image" loading="lazy" />
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-              <h3 class="card-title">Manali</h3>
-              <p class="card-description">Popular for adventure sports and serene valleys.</p>
+              <h3 class="card-title">Rajasthan</h3>
+              <p class="card-description">Land of majestic forts, royal palaces, deserts, and vibrant culture.</p>
               <button class="places-toggle" data-target="places-3">
                 <span class="toggle-icon">+</span>
                 <span class="toggle-text">Special Places to Visit</span>
               </button>
               <div class="special-places" id="places-3">
                 <ul class="places-list">
-                  <li><strong>Solang Valley</strong> – Skiing and paragliding <a href="/Project/templates/placeDetails.html?id=solang-valley">Read More</a></li>
-                  <li><strong>Hadimba Temple</strong> – Unique forest temple <a href="/Project/templates/placeDetails.html?id=hadimba-temple">Read More</a></li>
-                  <li><strong>Rohtang Pass</strong> – Snowy mountain pass <a href="/Project/templates/placeDetails.html?id=rohtang-pass">Read More</a></li>
+                  <li><strong>Jaipur</strong> - Pink City famous for Amber Fort, City Palace, and Hawa Mahal <a href="../templates/placeDetails.html?id=jaipur">See</a></li>
+                  <li><strong>Udaipur</strong> - City of Lakes known for Lake Pichola and City Palace <a href="../templates/placeDetails.html?id=udaipur">See</a></li>
+                  <li><strong>Jaisalmer</strong> - Golden City with desert forts and Sam Sand Dunes <a href="../templates/placeDetails.html?id=jaisalmer">See</a></li>
                 </ul>
               </div>
             </div>
           </article>
 
-          <article class="destination-card fade-in" data-index="4">
+          <!-- 5. Uttar Pradesh -->
+          <article class="destination-card fade-in" data-index="4" data-direction="North" data-category="Spiritual Cultural Historical">
             <div class="card-image-wrapper">
-              <img src="/Project/static/images/rishikesh.jpg" alt="Rishikesh Spirituality" class="card-image" loading="lazy">
+              <img src="https://imgs.search.brave.com/iJBnmSQPgi0ENL8OuAwN59-Y9RBvUbCL-kIcPLM6lWQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzE0LzgxLzU2LzI1/LzM2MF9GXzE0ODE1/NjI1NDlfTGZ4cENQ/bTJnTUpLTTdydXd4/cjc0d214QVhCcklq/VHUuanBn" alt="Uttar Pradesh Spirituality" class="card-image" loading="lazy" />
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-              <h3 class="card-title">Rishikesh</h3>
-              <p class="card-description">World yoga capital and river rafting hub.</p>
+              <h3 class="card-title">Uttar Pradesh</h3>
+              <p class="card-description">Land of spiritual heritage, historic ghats, and cultural richness.</p>
               <button class="places-toggle" data-target="places-4">
                 <span class="toggle-icon">+</span>
                 <span class="toggle-text">Special Places to Visit</span>
               </button>
               <div class="special-places" id="places-4">
                 <ul class="places-list">
-                  <li><strong>Laxman Jhula</strong> – Iconic suspension bridge <a href="/Project/templates/placeDetails.html?id=laxman-jhula">Read More</a></li>
-                  <li><strong>Parmarth Niketan</strong> – Spiritual ashram <a href="/Project/templates/placeDetails.html?id=parmarth-niketan">Read More</a></li>
-                  <li><strong>Triveni Ghat</strong> – Evening Ganga Aarti <a href="/Project/templates/placeDetails.html?id=triveni-ghat">Read More</a></li>
+                  <li><strong>Varanasi</strong> – Ancient city famous for ghats and Ganga Aarti <a href="../templates/placeDetails.html?id=varanasi">See</a></li>
+                  <li><strong>Agra</strong> – Home to the Taj Mahal, a UNESCO World Heritage site <a href="../templates/placeDetails.html?id=agra">See</a></li>
+                  <li><strong>Lucknow</strong> – Cultural capital known for Nawabi heritage and cuisine <a href="../templates/placeDetails.html?id=lucknow">See</a></li>
                 </ul>
               </div>
             </div>
           </article>
 
-          <!-- Add remaining 15 places for South, East, West with similar pattern -->
-
-          <!-- South India Example -->
-          <article class="destination-card fade-in" data-index="5">
+          <!-- 6. West Bengal -->
+          <article class="destination-card fade-in" data-index="5" data-direction="East" data-category="Nature Cultural Heritage">
             <div class="card-image-wrapper">
-              <img src="/Project/static/images/alleppey.jpg" alt="Alleppey Backwaters" class="card-image" loading="lazy">
+              <img src="https://imgs.search.brave.com/4-9rNrFs7kUCHlFMhSOjwHIikfoT4v5zkINLz8mfIP0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTU3/MzEwMTUwL3Bob3Rv/L3ZpY3RvcmlhLW1l/bW9yaWFsLWtvbGth/dGEuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPUpVcXBySi1L/SFRPZkpTa3RJejRr/ZHNNeUFiUEdMY1lX/VGRodVJsTDR2aEE9" alt="Darjeeling Hill Station" class="card-image" loading="lazy" />
               <div class="card-overlay"></div>
             </div>
             <div class="card-content">
-              <h3 class="card-title">Alleppey</h3>
-              <p class="card-description">Serene backwaters and houseboats.</p>
+              <h3 class="card-title">West Bengal</h3>
+              <p class="card-description">Diverse landscapes from Himalayan hills to cultural heritage and mangroves.</p>
               <button class="places-toggle" data-target="places-5">
                 <span class="toggle-icon">+</span>
                 <span class="toggle-text">Special Places to Visit</span>
               </button>
               <div class="special-places" id="places-5">
                 <ul class="places-list">
-                  <li><strong>Houseboat Cruise</strong> – Tranquil water tours <a href="/Project/templates/placeDetails.html?id=houseboat-cruise">Read More</a></li>
-                  <li><strong>Kumarakom Bird Sanctuary</strong> – Nature lovers’ haven <a href="/Project/templates/placeDetails.html?id=kumarakom-bird-sanctuary">Read More</a></li>
-                  <li><strong>Marari Beach</strong> – Quiet sandy shores <a href="/Project/templates/placeDetails.html?id=marari-beach">Read More</a></li>
+                  <li><strong>Darjeeling</strong> – Tea gardens and panoramic Himalayan views <a href="../templates/placeDetails.html?id=darjeeling">Read More</a></li>
+                  <li><strong>Sundarbans</strong> – Largest mangrove forest and tiger reserve <a href="../templates/placeDetails.html?id=sundarbans">Read More</a></li>
+                  <li><strong>Shantiniketan</strong> – Cultural hub and home of Rabindranath Tagore <a href="../templates/placeDetails.html?id=shantiniketan">Read More</a></li>
                 </ul>
               </div>
             </div>
           </article>
 
-          <!-- Continue the rest similarly for 20 places total -->
+          <!-- 7. Madhya Pradesh -->
+          <article class="destination-card fade-in" data-index="7" data-direction="Central" data-category="Historical Wildlife Cultural">
+            <div class="card-image-wrapper">
+              <img src="https://imgs.search.brave.com/6PFv2OL6PFJ4q5Iyl5EoNdj36WdC4Chs7zSKIoqWi-4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzcyLzg1LzUy/LzM2MF9GXzE3Mjg1/NTIzOF9vMUhrVVVM/UGZ0bXZEU1lZZUU0/bzBJR1NGMTF6TXY4/MS5qcGc" alt="Khajuraho Temples" class="card-image" loading="lazy" />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Madhya Pradesh</h3>
+              <p class="card-description">Rich in historic temples, national parks, and cultural heritage.</p>
+              <button class="places-toggle" data-target="places-7">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-7">
+                <ul class="places-list">
+                  <li><strong>Khajuraho</strong> – UNESCO heritage temples renowned for intricate carvings. <a href="../templates/placeDetails.html?id=khajuraho">See</a></li>
+                  <li><strong>Bandhavgarh National Park</strong> – Famous for tiger safaris and rich wildlife. <a href="../templates/placeDetails.html?id=bandhavgarh">See</a></li>
+                  <li><strong>Kanha National Park</strong> – India's largest national park with diverse fauna. <a href="../templates/placeDetails.html?id=kanha">See</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. Gujarat -->
+          <article class="destination-card fade-in" data-index="8" data-direction="West" data-category="Cultural Wildlife Nature">
+            <div class="card-image-wrapper">
+              <img src="https://www.gujarattourism.com/content/dam/gujrattourism/images/weekend-get-aways/great-rann-of-kutch/Great-Rann-Of-Kutch-Banner.jpg" alt="Rann of Kutch, Gujarat" class="card-image" loading="lazy" />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Gujarat</h3>
+              <p class="card-description">Explore the desert salt marshes, rich culture, and wildlife sanctuaries.</p>
+              <button class="places-toggle" data-target="places-8">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-8">
+                <ul class="places-list">
+                  <li><strong>Rann of Kutch</strong> – World's largest salt desert <a href="../templates/placeDetails.html?id=rann-kutch">See</a></li>
+                  <li><strong>Kutch Desert Wildlife Sanctuary</strong> – Diverse migratory birds sanctuary <a href="../templates/placeDetails.html?id=kutch-wildlife">See</a></li>
+                  <li><strong>Vadodara</strong> – Rich heritage and royal palaces <a href="../templates/placeDetails.html?id=vadodara">See</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 9. Andhra Pradesh -->
+          <article class="destination-card fade-in" data-index="9" data-direction="South" data-category="Cultural Beach Historical">
+            <div class="card-image-wrapper">
+              <img src="https://imgs.search.brave.com/xsVNs8jtWMZ3aOYXdHrjJ5wr471gA3mRtZ0pbUFgo4k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vdHJhdmVs/ZHJlYW1zLmxpdmUv/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDIvMzkuanBnP3Jl/c2l6ZT04NjQsNDg2/JnNzbD0x" alt="Tirupati Temple" class="card-image" loading="lazy" />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Andhra Pradesh</h3>
+              <p class="card-description">Famous for its historic temples, beaches, and vibrant cultural festivals.</p>
+              <button class="places-toggle" data-target="places-9">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-9">
+                <ul class="places-list">
+                  <li><strong>Tirupati</strong> – Renowned hill temple <a href="../templates/placeDetails.html?id=tirupati">See</a></li>
+                  <li><strong>Araku Valley</strong> – Scenic hill station <a href="../templates/placeDetails.html?id=araku">See</a></li>
+                  <li><strong>Visakhapatnam Beaches</strong> – Popular beach destinations <a href="../templates/placeDetails.html?id=visakhapatnam">See</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 10. Goa -->
+          <article class="destination-card fade-in" data-index="10" data-direction="West" data-category="Beach Nightlife Adventure">
+            <div class="card-image-wrapper">
+              <img src="https://imgs.search.brave.com/A1rfIm7FFZ8x_NUjOyRAIupZKHsyo3l0yu8iDZo2GsY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jLm15/aG9saWRheXMuY29t/L2Jsb2cvMjAyMy83/LzE4MTQzMF9OaWdo/dGxpZmUlMjBpbiUy/MEdvYS4ud2VicA" alt="Goa Beaches" class="card-image" loading="lazy" />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Goa</h3>
+              <p class="card-description">Renowned for its beautiful beaches, nightlife, and vibrant culture.</p>
+              <button class="places-toggle" data-target="places-10">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-10">
+                <ul class="places-list">
+                  <li><strong>Baga Beach</strong> – Popular for water sports and parties <a href="../templates/placeDetails.html?id=baga-beach">See</a></li>
+                  <li><strong>Calangute Beach</strong> – Largest beach in Goa <a href="../templates/placeDetails.html?id=calangute">See</a></li>
+                  <li><strong>Old Goa</strong> – Historic churches and basilicas <a href="../templates/placeDetails.html?id=old-goa">See</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 11. Tamil Nadu -->
+          <article class="destination-card fade-in" data-index="11" data-direction="South" data-category="Cultural Spiritual Historical">
+            <div class="card-image-wrapper">
+              <img src="https://imgs.search.brave.com/NGc6y_wPh6Tt__-6ck7YWUuHzAlyuBC_QuO_P3FSwa0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c3JlZXN0b3Vycy5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjUvMDgvTWVlbmFr/c2hpLUFtbWFuLVRl/bXBsZS10aWNrZXRz/LmpwZw" alt="Meenakshi Temple" class="card-image" loading="lazy" />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Tamil Nadu</h3>
+              <p class="card-description">Rich in temple architecture, classical arts, and spiritual retreats.</p>
+              <button class="places-toggle" data-target="places-11">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-11">
+                <ul class="places-list">
+                  <li><strong>Madurai</strong> – Famous Meenakshi Temple <a href="../templates/placeDetails.html?id=madurai">See</a></li>
+                  <li><strong>Thanjavur</strong> – Brihadeeswarar Temple, UNESCO site <a href="../templates/placeDetails.html?id=thanjavur">See</a></li>
+                  <li><strong>Coimbatore</strong> – Hill stations and temples <a href="../templates/placeDetails.html?id=coimbatore">See</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 12. Kerala -->
+          <article class="destination-card fade-in" data-index="12" data-direction="South" data-category="Nature Relaxation Ayurveda Backwaters">
+            <div class="card-image-wrapper">
+              <img src="https://imgs.search.brave.com/lWQsD0RXvdmRV4_mx22HMUZw9ajX2z6T8HeHfiTPUkc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzExLzc1LzQyLzQz/LzM2MF9GXzExNzU0/MjQzNTRfMm0xSHBG/a1pYeEtNUTZ5eVFL/c04xWTdrTjRSTTJW/ZnQuanBn" alt="Kerala Backwaters" class="card-image" loading="lazy" />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Kerala</h3>
+              <p class="card-description">Experience serene backwaters, Ayurveda, and lush greenery.</p>
+              <button class="places-toggle" data-target="places-12">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-12">
+                <ul class="places-list">
+                  <li><strong>Alleppey</strong> – Houseboat cruises and backwaters <a href="../templates/placeDetails.html?id=alleppey">See</a></li>
+                  <li><strong>Munnar</strong> – Tea plantations and hill stations <a href="../templates/placeDetails.html?id=munnar">See</a></li>
+                  <li><strong>Kodagu</strong> – Nature trails and waterfalls <a href="../templates/placeDetails.html?id=kodagu">See</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 13. Meghalaya -->
+          <article class="destination-card fade-in" data-index="13" data-direction="East" data-category="Nature Waterfall Adventure">
+            <div class="card-image-wrapper">
+              <img src="https://imgs.search.brave.com/FcyrFvvsDGe3TY2RZKNGZPXUeSlIdRZgOlbbQ67GbA0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMyLnRyaXBvdG8u/Y29tL21lZGlhL2Zp/bHRlci9ubC9pbWcv/MTg3NjEzL1RyaXBE/b2N1bWVudC8xNjI3/NDg4MjMwX2RzYzAw/Njk0LmpwZw" alt="Meghalaya Root Bridges" class="card-image" loading="lazy" />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Meghalaya</h3>
+              <p class="card-description">Known for living root bridges, stunning waterfalls, and lush green hills.</p>
+              <button class="places-toggle" data-target="places-13">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-13">
+                <ul class="places-list">
+                  <li><strong>Living Root Bridges</strong> – Natural root-formed bridges <a href="../templates/placeDetails.html?id=root-bridges">See</a></li>
+                  <li><strong>Cherrapunji</strong> – Famous for heavy rainfall and waterfalls <a href="../templates/placeDetails.html?id=cherrapunji">See</a></li>
+                  <li><strong>Mawsmai Caves</strong> – Limestone cave exploration <a href="../templates/placeDetails.html?id=mawsmai-caves">See</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 14. Punjab -->
+          <article class="destination-card fade-in" data-index="14" data-direction="North" data-category="Spiritual Cultural Heritage">
+            <div class="card-image-wrapper">
+              <img src="https://imgs.search.brave.com/yJirfwLkxDh8F8AvifQ0RDKWBzolQqtymKedRzgFnLg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9nb2xk/ZW4tdGVtcGxlLTI0/MjM4MDEyLmpwZw" alt="Golden Temple Amritsar" class="card-image" loading="lazy" />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Punjab</h3>
+              <p class="card-description">Famous for the Golden Temple, cultural festivals, and rich heritage.</p>
+              <button class="places-toggle" data-target="places-14">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-14">
+                <ul class="places-list">
+                  <li><strong>Golden Temple</strong> – Sacred Sikh shrine <a href="../templates/placeDetails.html?id=golden-temple">See</a></li>
+                  <li><strong>Jallianwala Bagh</strong> – Historical memorial <a href="../templates/placeDetails.html?id=jallianwala-bagh">See</a></li>
+                  <li><strong>Wagah Border</strong> – Daily flag-lowering ceremony <a href="../templates/placeDetails.html?id=wagah-border">See</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 15. Bihar -->
+          <article class="destination-card fade-in" data-index="15" data-direction="East" data-category="Spiritual Cultural Historical">
+            <div class="card-image-wrapper">
+              <img src="https://imgs.search.brave.com/Y5-KiwKDyWT3VmkGwXsjS2mMUYqOnMQhjkeeXQQvriE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMubGFuZ2ltZy5j/b20vbmJ0L3RodW1i/LzEyNDUxODEzNy9i/b2RoLWdheWEtYXNz/ZW1ibHkuanBnP2lt/Z3NpemU9MTQ2MTU0/JndpZHRoPTcwMCZo/ZWlnaHQ9Mzk0JnJl/c2l6ZW1vZGU9NzU" alt="Bodh Gaya" class="card-image" loading="lazy" />
+              <div class="card-overlay"></div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Bihar</h3>
+              <p class="card-description">An important spiritual and historical region, famous for Bodh Gaya and Nalanda.</p>
+              <button class="places-toggle" data-target="places-15">
+                <span class="toggle-icon">+</span>
+                <span class="toggle-text">Special Places to Visit</span>
+              </button>
+              <div class="special-places" id="places-15">
+                <ul class="places-list">
+                  <li><strong>Bodh Gaya</strong> – The place of Buddha’s enlightenment <a href="../templates/placeDetails.html?id=bodh-gaya">See</a></li>
+                  <li><strong>Nalanda</strong> – Ancient university ruins <a href="../templates/placeDetails.html?id=nalanda">See</a></li>
+                  <li><strong>Rajgir</strong> – Historic city with hot springs and temples <a href="../templates/placeDetails.html?id=rajgir">See</a></li>
+                </ul>
+              </div>
+            </div>
+          </article>
 
         </div>
       </div>
@@ -249,6 +488,62 @@
           });
         });
       });
+      document.addEventListener('DOMContentLoaded', function() {
+        const filterDirection = document.getElementById('filterDirection');
+        const filterCategory = document.getElementById('filterCategory');
+        const searchInput = document.getElementById('searchInput');
+        const destinationCards = document.querySelectorAll('.destination-card');
+        const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+
+        clearFiltersBtn.addEventListener('click', () => {
+          // Reset select elements to default 'all'
+          filterDirection.value = 'all';
+          filterCategory.value = 'all';
+          searchInput.value = '';
+
+          // Show all the destination cards
+          destinationCards.forEach(card => {
+            card.style.display = '';
+          });
+        });
+
+        function applyFilters() {
+          const selectedDirection = filterDirection.value;
+          const selectedCategory = filterCategory.value;
+          const searchQuery = searchInput.value.toLowerCase().trim();
+
+          destinationCards.forEach(card => {
+            const cardDirection = card.getAttribute('data-direction') || '';
+            const cardCategory = card.getAttribute('data-category') || '';
+            const titleText = card.querySelector('.card-title').textContent.toLowerCase();
+
+            // Check direction match or 'all'
+            const directionMatches = selectedDirection === 'all' || cardDirection === selectedDirection;
+
+            // Check category match: split categories and check inclusion
+            const categoryList = cardCategory.split(' ');
+            const categoryMatches = selectedCategory === 'all' || categoryList.includes(selectedCategory);
+
+            // Check search query matching title text
+            const searchMatches = titleText.includes(searchQuery);
+
+            if (directionMatches && categoryMatches && searchMatches) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
+
+        // Event listeners for filters and search input
+        filterDirection.addEventListener('change', applyFilters);
+        filterCategory.addEventListener('change', applyFilters);
+        searchInput.addEventListener('input', applyFilters);
+
+        // Initial filter application if needed on load
+        applyFilters();
+      });
+
     </script>
 </body>
 </html>

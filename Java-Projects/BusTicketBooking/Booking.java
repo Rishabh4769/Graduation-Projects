@@ -15,6 +15,9 @@ public class Booking {
     private boolean paid;
     private LocalDateTime bookingTime;
     private LocalDateTime journeyDateTime;
+    public boolean isPaid;
+
+
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy , HH:mm:ss"); 
 
@@ -22,19 +25,17 @@ public class Booking {
 
     public void markPaid() { this.paid = true; }
 
+    public boolean isPaid() { return paid; }
+
     public double getTotalFare() { return totalFare; }
 
     public String getBusId() { return busId; }
 
-    public String getFormattedBookingTime()
-    {
-        return bookingTime.format(formatter);
-    }
+    public String getFormattedBookingTime() { return bookingTime.format(formatter); }
 
-    public String getFormattedJourneyDateTime()
-    {
-        return journeyDateTime.format(formatter);
-    }
+    public int[] getSeatNumbers() { return seatNumbers; }
+
+    public String getFormattedJourneyDateTime() { return journeyDateTime.format(formatter); }
     
     public Booking() {
         // Default constructor to create empty Booking object
@@ -63,26 +64,31 @@ public class Booking {
     // getters and markPaid() remain unchanged
 
     public void display() {
-        System.out.println("\n---------------------------------------------");
-        System.out.println("Ticket Details:");
-        System.out.println("---------------------------------------------");
-        System.out.println("| Booking ID: " + bookingId +
-            "\n| Passenger: " + passenger.getName() +
-            "\n| Age: " + passenger.getAge() +
-            "\n| Gender: " + passenger.getGender() +
-            "\n| Phone: " + passenger.getPhone() +
-            "\n| Date & Time of Booking: " + getFormattedBookingTime() +
-            "\n| Date & Time of Journey: " + getFormattedJourneyDateTime() +
-            "\n| Bus ID: " + busId +
-            "\n| Bus From: " + busFrom +
-            "\n| Bus To: " + busTo +
-            "\n| Seats: " + seatCount +
-            (seatNumbers != null ? " | Seat Nos: " + java.util.Arrays.toString(seatNumbers) : "") +
-            "\n| Total Fare: ₹" + totalFare +
-            "\n| Paid: " + (paid ? "Yes" : "No"));
-        System.out.println("---------------------------------------------");
+        final String RESET = "\u001B[0m";
+        final String CYAN = "\u001B[36m";
+        final String YELLOW = "\u001B[33m";
+        final String GREEN = "\u001B[32m";
+        final String RED = "\u001B[31m";
+
+        String headerFooter = CYAN + "════════════════════════ TICKET DETAILS ════════════════════════" + RESET;
+
+        System.out.println("\n" + headerFooter);
+        System.out.println(YELLOW + "Passenger Name: " + RESET + passenger.getName().toUpperCase());
+        System.out.println(YELLOW + "Booking ID:     " + RESET + bookingId);
+        System.out.println("───────────────────────────────────────────────────────────────");
+        System.out.println(YELLOW + "Age:            " + RESET + passenger.getAge());
+        System.out.println(YELLOW + "Gender:         " + RESET + passenger.getGender());
+        System.out.println(YELLOW + "Contact Number: " + RESET + passenger.getPhone());
+        System.out.println(YELLOW + "Booking D & T:  " + RESET + getFormattedBookingTime());
+        System.out.println(YELLOW + "Journey D & T:  " + RESET + getFormattedJourneyDateTime());
+        System.out.println(YELLOW + "Bus ID:         " + RESET + busId);
+        System.out.println(YELLOW + "Source:         " + RESET + busFrom);
+        System.out.println(YELLOW + "Destination:    " + RESET + busTo);
+        System.out.println(YELLOW + "Seats Booked:   " + RESET + seatCount);
+        System.out.println(YELLOW + "Total Fare:     " + RESET + String.format("₹%.2f", totalFare));
+        System.out.println(YELLOW + "Payment Status: " + RESET + (paid ? GREEN + "PAID" + RESET : RED + "NOT PAID" + RESET));
+        System.out.println(headerFooter);
     }
 
-    public int[] getSeatNumbers() { return seatNumbers; }
 
 }

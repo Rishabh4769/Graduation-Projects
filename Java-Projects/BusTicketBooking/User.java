@@ -20,7 +20,6 @@ public class User extends Person  {
         
     }
 
-    // Bus data will be passed from Admin or Main
     public void viewAvailableBuses(Bus[] buses, int busCount) {
         System.out.println("\n=== Available Buses ===");
         for (int i = 0; i < busCount; i++) {
@@ -96,7 +95,6 @@ public class User extends Person  {
             return;
         }
 
-        // Show seat map and ask user to select specific seats
         chosen.displaySeatMap();
         System.out.println("Enter the seat numbers you want to book separated by spaces (e.g. 1 2 3):");
         String seatLine = sc.nextLine().trim();
@@ -122,7 +120,7 @@ public class User extends Person  {
                 return;
             }
         }
-        // Take passenger details dynamically and update User object fields
+
         System.out.print("Enter your name: ");
         this.name = sc.nextLine();
 
@@ -138,7 +136,6 @@ public class User extends Person  {
         double fare = chosen.calculateFare() * seats;
         String bookingId = "B" + (bookingCount + 1);
 
-        // Reserve chosen seats on the bus
         boolean reserved = chosen.reserveSeats(seatNumbers);
         if (!reserved) {
             System.out.println("Failed to reserve the selected seats. They may have been taken by someone else.");
@@ -149,8 +146,8 @@ public class User extends Person  {
             bookingId,
             this,
             chosen.getBusId(),
-            chosen.getSource(),      // busFrom
-            chosen.getDestination(), // busTo
+            chosen.getSource(),
+            chosen.getDestination(),
             seats,
             fare,
             seatNumbers
@@ -160,7 +157,6 @@ public class User extends Person  {
         System.out.println("✅ Ticket booked! Your booking ID: " + bookingId + ", Total Fare: ₹" + fare);
     }
 
-    // ... (makePayment, cancelTicket, viewMyBookings remain unchanged)
     public void viewMyBookings() {
         System.out.println("\n=== Your Bookings ===");
         for (int i = 0; i < bookingCount; i++) {
@@ -172,26 +168,26 @@ public class User extends Person  {
     }
 
     public void processPayment(Booking booking) {
-        System.out.println("Select payment method:\n1. Cash\n2. UPI\n3. Credit Card \nChoice: ");
-        int choice = sc.nextInt(); sc.nextLine();
-
-        Payment payment;
-
         if (booking == null) {
             System.out.println("No booking provided for payment.");
             return;
         }
-        double amount = booking.getTotalFare();
-
-        if (amount <= 0) {
-            System.out.println("Invalid booking amount (₹" + amount + "). Cannot process payment.");
+        if (booking.isPaid()) {
+            System.out.println("Booking is already paid.");
             return;
         }
+
+        double amount = booking.getTotalFare();
+
+        System.out.println("Select payment method:\n1. Cash\n2. UPI\n3. Credit Card \nChoice: ");
+        int choice = sc.nextInt();
+        sc.nextLine();
 
         boolean success = false;
 
         switch (choice) {
             case 1: // Cash
+                Dashboard.showPaymentAnimation();
                 CashPayment cash = new CashPayment(amount);
                 success = cash.pay();
                 break;
@@ -199,6 +195,7 @@ public class User extends Person  {
             case 2: // UPI
                 System.out.print("Enter UPI ID: ");
                 String upiId = sc.nextLine();
+                Dashboard.showPaymentAnimation();
                 UPIPayment upi = new UPIPayment(amount);
                 success = upi.payWithUPI(upiId);
                 break;
@@ -213,6 +210,7 @@ public class User extends Person  {
                 System.out.print("Enter CVV: ");
                 String cvv = sc.nextLine();
 
+                Dashboard.showPaymentAnimation();
                 CreditCardPayment card = new CreditCardPayment(amount);
                 success = card.payWithCard(cardNumber, expiry, cvv);
                 break;
@@ -224,13 +222,12 @@ public class User extends Person  {
 
         if (success) {
             booking.markPaid();
-            System.out.println("Payment successful!");
+            System.out.println(Dashboard.GREEN + "Payment successful!" + Dashboard.RESET);
         } else {
-            System.out.println("Payment failed.");
+            System.out.println(Dashboard.RED + "Payment failed." + Dashboard.RESET);
         }
     }
 
-    // Convenience method: ask user which of their bookings to pay for
     public void processPayment() {
         if (bookingCount == 0) {
             System.out.println("You have no bookings to pay for.");

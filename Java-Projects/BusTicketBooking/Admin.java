@@ -10,10 +10,9 @@ public class Admin extends Person {
         this.adminId = "A001";
     }
 
-    // ---------- 1️⃣ Add New Bus ----------
     public int addBus(Bus[] buses, int busCount) {
         if (busCount >= buses.length) {
-            System.out.println("❌ Cannot add more buses (array full)!");
+            System.out.println("Cannot add more buses (array full)!");
             return busCount;
         }
 
@@ -27,12 +26,11 @@ public class Admin extends Person {
         double dist = sc.nextDouble();
         System.out.print("Enter Total Seats: ");
         int seats = sc.nextInt();
-        sc.nextLine(); // consume newline
+        sc.nextLine();
 
         System.out.print("Enter Bus Type (AC / NonAC / Sleeper / Express): ");
         String type = sc.nextLine();
 
-        // Create bus based on type
         Bus newBus = null;
         switch (type.toLowerCase()) {
             case "ac":
@@ -54,11 +52,10 @@ public class Admin extends Person {
         }
 
         buses[busCount] = newBus;
-        System.out.println("✅ Bus added successfully with ID: " + id);
+        System.out.println("Bus added successfully with ID: " + id);
         return busCount + 1;
     }
 
-    // ---------- 2️⃣ View All Buses ----------
     public void viewAllBuses(Bus[] buses, int busCount) {
         if (busCount == 0) {
             System.out.println("No buses available!");
@@ -72,7 +69,6 @@ public class Admin extends Person {
         }
     }
 
-    // ---------- 3️⃣ Update Bus ----------
     public void updateBus(Bus[] buses, int busCount) {
         if (busCount == 0) {
             System.out.println("No buses to update!");
@@ -95,7 +91,7 @@ public class Admin extends Person {
 
                 buses[i].totalSeats = newSeats;
                 buses[i].availableSeats = newSeats;
-                System.out.println("✅ Bus details updated successfully!");
+                System.out.println("Bus details updated successfully!");
                 break;
             }
         }
@@ -103,7 +99,6 @@ public class Admin extends Person {
         if (!found) System.out.println("Bus ID not found!");
     }
 
-    // ---------- 4️⃣ Delete Bus ----------
     public int deleteBus(Bus[] buses, int busCount) {
         if (busCount == 0) {
             System.out.println("No buses to delete!");
@@ -122,17 +117,16 @@ public class Admin extends Person {
         }
 
         if (index == -1) {
-            System.out.println("❌ Bus ID not found!");
+            System.out.println("Bus ID not found!");
             return busCount;
         }
 
-        // Shift array elements left to remove the bus
         for (int i = index; i < busCount - 1; i++) {
             buses[i] = buses[i + 1];
         }
 
         buses[busCount - 1] = null;
-        System.out.println("✅ Bus deleted successfully!");
+        System.out.println("Bus deleted successfully!");
         return busCount - 1;
     }
 }

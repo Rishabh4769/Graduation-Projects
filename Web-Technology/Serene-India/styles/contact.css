@@ -1,3 +1,68 @@
+.header {
+  background: var(--color-nav-bg);
+  box-shadow: 0 5px 28px var(--color-shadow);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-radius: 0 0 24px 24px;
+  position: sticky;
+  top: 0;
+  padding: 14px 0;
+  z-index: 12;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.8rem;
+  padding: 0 1.5rem;
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 5px 14px var(--color-shadow);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.14);
+  box-shadow: 0 8px 22px var(--color-accent);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brand .site-title {
+  color: var(--color-title);
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.brand .tagline {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+  transition: color 0.3s ease;
+}
 .contact {
   text-align: center;
   padding: 36px 12px;
@@ -106,3 +171,47 @@
   border-color: #ff4957 !important;
   box-shadow: 0 0 7px #ffb2b2 !important;
 }
+.contact-header {
+  max-width: 700px;
+  margin: 0 auto 34px auto;
+  text-align: center;
+  padding: 38px 10px 0 10px;
+}
+.contact-info-block {
+  background: linear-gradient(120deg,#e1fff7 70%, #ffd9b3 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(33,128,141,0.11);
+  padding: 24px 18px 15px 18px;
+  margin: 22px 0 10px 0;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+}
+
+.contact-info-block h3 {
+  color: #217a91;
+  font-size: 1.16rem;
+  font-weight: 650;
+  margin-bottom: 11px;
+}
+.contact-info-block p {
+  color: #12424a;
+  font-size: 1.07rem;
+  margin-bottom: 11px;
+}
+
+.extra-contact-copy {
+  font-size: 1.045rem;
+  color: #217a91;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.contact-form {
+  margin: 0 auto 30px auto;
+  max-width: 440px;
+  width: 100%;
+}
+
+/* Remove .contact-wrapper flex styles if present */
+.contact-wrapper { display: block; gap: 0; margin-top: 0; }

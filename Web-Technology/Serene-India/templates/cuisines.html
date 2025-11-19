@@ -4,29 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cuisines of India - Serene Indian Journeys</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="/Project/styles/home.css">
-  <link rel="stylesheet" href="/Project/styles/cuisines.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles/home.css">
+  <link rel="stylesheet" href="../styles/cuisines.css">
 </head>
 <body>
   <!-- Header & Navigation -->
   <header class="header" id="header">
     <div class="container d-flex flex-wrap align-items-center justify-content-between py-2">
-      <div class="brand">
-        <h1 class="site-title">Serene Indian Journeys</h1>
-        <p class="tagline">Experience India's beauty</p>
+      <div class="brand d-flex align-items-center gap-3">
+        <img src="../static/images/site.png" alt="Serene Indian Journeys Logo" class="brand-logo" />
+        <div class="brand-text">
+          <h1 class="site-title">Serene Indian Journeys</h1>
+          <p class="tagline">Experience India's beauty</p>
+        </div>
       </div>
-      <nav class="nav">
+      <nav class="nav d-flex align-items-center gap-3">
         <button class="hamburger d-md-none" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
           <span></span><span></span><span></span>
         </button>
         <ul class="nav-menu d-none d-md-flex list-unstyled m-0 gap-3" id="navMenu">
-          <li><a href="/Project/templates/Home.html">Home</a></li>
-          <li><a href="/Project/templates/destinations.html">Destinations</a></li>
-          <li><a href="/Project/templates/cuisines.html" aria-current="page">Cuisines</a></li>
-          <li><a href="/Project/templates/gallery.html">Gallery</a></li>
-          <li><a href="/Project/templates/about.html">About Us</a></li>
-          <li><a href="/Project/templates/contact.html">Contact</a></li>
+          <li><a href="../templates/Home.html">Home</a></li>
+          <li><a href="../templates/destinations.html">Destinations</a></li>
+          <li><a href="../templates/cuisines.html" aria-current="page">Cuisines</a></li>
+          <li><a href="../templates/gallery.html">Gallery</a></li>
+          <li><a href="../templates/about.html">About Us</a></li>
+          <li><a href="../templates/contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -39,7 +42,7 @@
   </section>
 
   <!-- Main Content -->
-  <main>
+  <main class="flex-grow-1">
     <div class="main-frame cuisines">
       <h2>Cuisines of India</h2>
       <p class="intro">
@@ -47,14 +50,14 @@
       </p>
       <section class="cuisine-grid">
         <article class="cuisine-card">
-          <img src="/Project/static/images/north-indian.jpg" alt="North Indian Cuisine">
+          <img src="https://imgs.search.brave.com/B5JbVbCcOo3ipwom_cHO2uj3hwq7Q73yDb7Px_J8eSc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZXMu/Y2xvdWRpbmFyeS5j/b20vaHozZ211cXc2/L2ltYWdlL3VwbG9h/ZC9jX2ZpbGwscV8z/MCx3Xzc1MC9mX2F1/dG8vTm9ydGgtSW5k/aWFuLWZvb2QtcGhw/VVBrVmo1" alt="North Indian Cuisine">
           <h3>North Indian</h3>
           <p>
             Rich, robust, and creamy—explore butter chicken, paneer dishes, naan, and famous street snacks of Punjab and Delhi.
           </p>
         </article>
         <article class="cuisine-card">
-          <img src="/Project/static/images/south-indian.jpg" alt="South Indian Cuisine">
+          <img src="https://imgs.search.brave.com/jrFasjNg1VXy-anEkD4fNb5moeE7qIJEOPJQ0sqv2zg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzE2LzM5LzA2LzA5/LzM2MF9GXzE2Mzkw/NjA5NjFfU1NJNlBj/d0xma3RnZGZQSDgz/OWdEc25XQkdSOG9p/WEMuanBn" alt="South Indian Cuisine">
           <h3>South Indian</h3>
           <p>
             Flavorful and aromatic—taste dosas, idlis, spicy sambar, and coconut-based curries from Tamil Nadu, Kerala, and beyond.
@@ -68,7 +71,7 @@
           </p>
         </article>
         <article class="cuisine-card">
-          <img src="/Project/static/images/west-indian.jpg" alt="West Indian Cuisine">
+          <img src="https://imgs.search.brave.com/wuXzFzTfdOIrov9N60ZlIwJVhF6qcsViwxvgw8oG2gY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZXN0/YXVyYW50aW5kaWEu/czMuYXAtc291dGgt/MS5hbWF6b25hd3Mu/Y29tL3MzZnMtcHVi/bGljLzIwMjUtMDMv/Z3VqYXJhdGklMjBm/b29kLmpwZw" alt="West Indian Cuisine">
           <h3>West Indian</h3>
           <p>
             Colorful, bold, and spicy—try dhokla, pav bhaji, Goan curries, and fusion dishes from Gujarat, Maharashtra, and Goa.
@@ -79,16 +82,19 @@
   </main>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <p class="copyright">&copy; 2025 Serene Indian Journeys. All rights reserved.</p>
-      <div class="social-links">
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="social-link">Facebook</a>
-        <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="social-link">Twitter</a>
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="social-link">Instagram</a>
+  <footer class="footer text-center py-3">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">&copy; 2025 Serene Indian Journeys. All rights reserved.</p>
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="social-link">Facebook</a>
+          <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="social-link">Twitter</a>
+          <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="social-link">Instagram</a>
+          <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="social-link">YouTube</a>
+        </div>
       </div>
     </div>
   </footer>
-  <script src="/Project/scripts/app.js"></script>
+  <script src="../static/js/app.js"></script>
 </body>
 </html>

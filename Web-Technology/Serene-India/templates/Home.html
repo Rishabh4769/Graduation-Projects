@@ -4,35 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Serene Indian Journeys - Discover India</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="../styles/home.css"/>
-
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
   <!-- Header & Navigation -->
-  <header class="header" id="header">
-    <div class="container d-flex flex-wrap align-items-center justify-content-between py-2">
-      <div class="brand">
+<header class="header" id="header">
+  <div class="container d-flex flex-wrap align-items-center justify-content-between py-2">
+    <div class="brand d-flex align-items-center gap-3">
+      <img src="../static/images/site.png" alt="Site Logo" class="brand-logo" />
+      <div class="brand-text">
         <h1 class="site-title">Serene Indian Journeys</h1>
         <p class="tagline">Experience India's beauty</p>
       </div>
-      <nav class="nav">
-        <button class="hamburger d-md-none" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
-          <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-menu d-none d-md-flex list-unstyled m-0 gap-3" id="navMenu">
-          <li><a href="/Project/templates/Home.html" aria-current="page">Home</a></li>
-          <li><a href="/Project/templates/destinations.html">Destinations</a></li>
-          <li><a href="/Project/templates/cuisines.html">Cuisines</a></li>
-          <li><a href="/Project/templates/gallery.html">Gallery</a></li>
-          <li><a href="/Project/templates/about.html">About Us</a></li>
-          <li><a href="/Project/templates/contact.html">Contact</a></li>
-        </ul>
-      </nav>
     </div>
-  </header>
+    <nav class="nav d-flex align-items-center gap-3">
+      <button class="hamburger d-md-none" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu d-none d-md-flex list-unstyled m-0 gap-3" id="navMenu">
+        <li><a href="Home.html" aria-current="page">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="cuisines.html">Cuisines</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-
+<main class="flex-grow-1">
   <!-- Hero Section (Mesmerizing Visuals & CTA) -->
   <section class="hero home-hero">
     <div class="hero-bg"></div>
@@ -41,11 +43,11 @@
       <p class="hero-subtitle">
         Explore breathtaking landscapes, vibrant cultures, and ancient wonders. 
         <br>
-        <a href="/Project/templates/Quiz.html" class="quiz-link">Find Your Destination</a>
+        <a href="../templates/Quiz.html" class="quiz-link">Find Your Destination</a>
       </p>
       <div class="cta-buttons">
-        <a href="/Project/templates/destinations.html" class="btn btn--primary">View Top Destinations</a>
-        <a href="/Project/templates/services.html" class="btn btn--outline">Our Services</a>
+        <a href="../templates/destinations.html" class="btn btn--primary">View Top Destinations</a>
+        <a href="../templates/services.html" class="btn btn--outline">Our Services</a>
       </div>
     </div>
     <div class="hero-scroll-indicator">
@@ -54,22 +56,21 @@
     </div>
   </section>
 
-  <!-- Highlights Section -->
   <section class="section highlights">
     <div class="container">
       <div class="highlights-grid">
         <div class="highlight-card">
-          <img src="/Project/static/images/landscape.jpg" alt="Landscape" />
+          <img src="https://imgs.search.brave.com/WQ8xoDAw-nzhaEiTobLDMf49eCyHQ2CYI3kv5QZ44cM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTYy/NDk2NzUwL3Bob3Rv/L2xhbmRzY2FwZS1v/Zi1sZWgtbGFkYWto/LW5vcnRoLW9mLWlu/ZGlhLmpwZz9zPTYx/Mng2MTImdz0wJms9/MjAmYz1DZ2lTeWx0/Y09sMUtsdWlZam8w/aEhlNE5fWUlNSDZM/bVY1ZUVOaEJqamtr/PQ" alt="Landscape" />
           <h3>Natural Magic</h3>
           <p>From snow-capped peaks to lush backwaters, behold India's jaw-dropping natural wonders.</p>
         </div>
         <div class="highlight-card">
-          <img src="/Project/static/images/culture.jpg" alt="Culture" />
+          <img src="https://images.unsplash.com/photo-1605292356183-a77d0a9c9d1d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW5kaWFuJTIwY3VsdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900" alt="Culture" />
           <h3>Culture & Heritage</h3>
           <p>Experience timeless traditions, majestic palaces, and vibrant festivals across diverse regions.</p>
         </div>
         <div class="highlight-card">
-          <img src="/Project/static/images/food.jpg" alt="Cuisine" />
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1336" alt="Culture" />
           <h3>Cuisine Adventure</h3>
           <p>Taste authentic flavors, regional specialties, and exciting culinary journeys throughout India.</p>
         </div>
@@ -77,7 +78,6 @@
     </div>
   </section>
 
-  <!-- Indian Festivals Section -->
   <section class="section experiences">
     <div class="container">
       <h2 class="section-title">Celebrate Indian Festivals</h2>
@@ -91,24 +91,23 @@
     </div>
   </section>
 
-  <!-- Wellness & Spirituality Section -->
   <section class="section highlights" style="background: #f0f6f7;">
     <div class="container">
       <h2 class="section-title">Wellness & Spiritual Retreats</h2>
       <p>Rejuvenate your body and soul in ancient Ayurvedic healing centers, yoga retreats, and meditation sanctuaries.</p>
       <div class="highlights-grid">
         <div class="highlight-card">
-          <img src="/Project/static/images/yoga.jpg" alt="Yoga" />
+          <img src="https://images.unsplash.com/photo-1562088287-bde35a1ea917?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8eW9nYSUyMHBvc2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900Parmanand Singh Ji" alt="Yoga" />
           <h3>Yoga Retreats</h3>
           <p>Experience authentic yoga practices in serene natural settings to restore balance.</p>
         </div>
         <div class="highlight-card">
-          <img src="/Project/static/images/ayurveda.jpg" alt="Ayurveda" />
+          <img src="https://images.unsplash.com/photo-1668916938366-dd16c56719e8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGF5dXJ2ZWRpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900" alt="Ayurveda" />
           <h3>Ayurvedic Healing</h3>
           <p>Renew health and vitality with traditional herbal therapies and massages.</p>
         </div>
         <div class="highlight-card">
-          <img src="/Project/static/images/meditation.jpg" alt="Meditation" />
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWVkaXRhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900" alt="Meditation" />
           <h3>Meditation Centers</h3>
           <p>Find inner peace with guided meditation and mindfulness programs.</p>
         </div>
@@ -116,7 +115,6 @@
     </div>
   </section>
 
-  <!-- Travel Tips Section -->
   <section class="section experiences">
     <div class="container">
       <h2 class="section-title">Travel Tips & Essentials</h2>
@@ -128,30 +126,9 @@
       </ul>
     </div>
   </section>
-
-  <!-- Customer Testimonials Section -->
-  <section class="section highlights" style="background: #e6f3f7;">
-    <div class="container">
-      <h2 class="section-title">What Our Travelers Say</h2>
-      <div class="highlights-grid">
-        <div class="highlight-card">
-          <p>"Serene Indian Journeys made our trip unforgettable with personalized services and genuine hospitality!"</p>
-          <h4>- Anjali M.</h4>
-        </div>
-        <div class="highlight-card">
-          <p>"A perfect blend of adventure and culture. I fell in love with India’s diverse beauty on this trip."</p>
-          <h4>- Raj P.</h4>
-        </div>
-        <div class="highlight-card">
-          <p>"The wellness retreats helped me disconnect and find peace. Highly recommended for a soul-refresh."</p>
-          <h4>- Sofia L.</h4>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  </main>
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer text-center py-3">
     <div class="container">
       <div class="footer-content">
         <p class="copyright">&copy; 2025 Serene Indian Journeys. All rights reserved.</p>
@@ -177,7 +154,7 @@
     navMenu.classList.toggle('active');
   });
 });
-
   </script>
+
 </body>
 </html>

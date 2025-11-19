@@ -11,3 +11,8 @@ class MaximumSeatsBookingException extends Exceptions {
         super(message);
     }
 }
+class PaymentFailureExceptionRishabh extends Exception {
+    public PaymentFailureExceptionRishabh(String message) {
+        super(message);
+    }
+}

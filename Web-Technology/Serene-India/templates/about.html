@@ -4,29 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Serene Indian Journeys</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="/Project/styles/home.css">
-  <link rel="stylesheet" href="/Project/styles/about.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles/home.css">
+  <link rel="stylesheet" href="../styles/about.css">
 </head>
 <body>
   <!-- Header & Navigation Bar -->
   <header class="header" id="header">
     <div class="container d-flex flex-wrap align-items-center justify-content-between py-2">
-      <div class="brand">
-        <h1 class="site-title">Serene Indian Journeys</h1>
-        <p class="tagline">Experience India's beauty</p>
+      <div class="brand d-flex align-items-center gap-3">
+        <img src="../static/images/site.png" alt="Serene Indian Journeys Logo" class="brand-logo" />
+        <div class="brand-text">
+          <h1 class="site-title">Serene Indian Journeys</h1>
+          <p class="tagline">Experience India's beauty</p>
+        </div>
       </div>
-      <nav class="nav">
+      <nav class="nav d-flex align-items-center gap-3">
         <button class="hamburger d-md-none" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
           <span></span><span></span><span></span>
         </button>
         <ul class="nav-menu d-none d-md-flex list-unstyled m-0 gap-3" id="navMenu">
-          <li><a href="/Project/templates/Home.html">Home</a></li>
-          <li><a href="/Project/templates/destinations.html">Destinations</a></li>
-          <li><a href="/Project/templates/cuisines.html">Cuisines</a></li>
-          <li><a href="/Project/templates/gallery.html">Gallery</a></li>
-          <li><a href="/Project/templates/about.html" aria-current="page">About Us</a></li>
-          <li><a href="/Project/templates/contact.html">Contact</a></li>
+          <li><a href="../templates/Home.html">Home</a></li>
+          <li><a href="../templates/destinations.html">Destinations</a></li>
+          <li><a href="../templates/cuisines.html">Cuisines</a></li>
+          <li><a href="../templates/gallery.html">Gallery</a></li>
+          <li><a href="../templates/about.html" aria-current="page">About Us</a></li>
+          <li><a href="../templates/contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -70,6 +73,27 @@
             the incredible diversity of India.</p>
         </article>
       </section>
+      <section class="about-team" style="max-width: 700px; margin: 2rem auto; text-align: center;">
+        <h2>Meet Our Team</h2>
+        <p>Our dedicated team of experienced travel experts and local guides are passionate about crafting personalized journeys that resonate with your soul. With deep roots and connections across India, we bring the authentic cultural flavors right to your travel itinerary.</p>
+      </section>
+
+      <section class="about-services" style="max-width: 700px; margin: 2rem auto;">
+        <h2>What We Offer</h2>
+        <ul style="list-style-type: disc; padding-left: 20px; font-size: 1.1rem; color: #12424a;">
+          <li>Custom Travel Itineraries tailored to your preferences and schedule.</li>
+          <li>Small-group tours for immersive and intimate experiences.</li>
+          <li>Expert local guides who speak your language and know hidden gems.</li>
+          <li>Responsible travel practices to preserve destinations and empower communities.</li>
+          <li>Cultural workshops, including cooking classes, yoga sessions, and traditional crafts.</li>
+        </ul>
+      </section>
+
+      <section class="about-community" style="max-width: 700px; margin: 3rem auto; text-align: center;">
+        <h2>Giving Back to Communities</h2>
+        <p>We believe travel can be a force for good. That is why a portion of every journey’s proceeds is invested in supporting local artisans, conservation efforts, and education programs in the regions we visit. Your adventure supports sustainable development and meaningful change.</p>
+      </section>
+
     </div>
   </main>
 
@@ -84,6 +108,6 @@
       </div>
     </div>
   </footer>
-  <script src="/Project/scripts/app.js"></script>
+  <script src="../static/js/app.js"></script>
 </body>
 </html>
