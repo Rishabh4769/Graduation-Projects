@@ -500,7 +500,6 @@ class NetworkSnifferApp(tk.Tk):
                 elements.append(Paragraph("No packets captured.", styles['Normal']))
             elements.append(Spacer(1, 0.2*inch))
 
-            # NEW ALERT SUMMARY SECTION: Single row per IP/Alert type
             elements.append(Paragraph("Alert Summary", styles['Heading2']))
             c.execute('SELECT DISTINCT src_ip, alert_type FROM alerts WHERE session_id=?', (self.session_id,))
             alert_rows = c.fetchall()
