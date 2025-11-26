@@ -227,7 +227,7 @@ class NetworkSnifferApp(tk.Tk):
         self.stop_btn = ttk.Button(control_frame, text="⏹ Stop Capture", command=self.stop_capture, state=tk.DISABLED, width=18)
         self.stop_btn.pack(side=tk.LEFT, padx=5)
 
-        ttk.Button(control_frame, text="📄 Export PDF", command=self.export_pdf, width=18).pack(side=tk.LEFT, padx=5)
+        ttk.Button(control_frame, text="⬇︎ Download Report", command=self.export_pdf, width=18).pack(side=tk.LEFT, padx=5)
         ttk.Button(control_frame, text="📊 Show Graph", command=self.show_graph, width=18).pack(side=tk.LEFT, padx=5)
         ttk.Button(control_frame, text="💾 Save Graph", command=self.save_graph, width=18).pack(side=tk.LEFT, padx=5)
         ttk.Button(control_frame, text="🗑 Clear Logs", command=self.clear_logs, width=18).pack(side=tk.LEFT, padx=5)
@@ -477,7 +477,7 @@ class NetworkSnifferApp(tk.Tk):
             conn = sqlite3.connect('network_traffic.db')
             c = conn.cursor()
 
-            elements.append(Paragraph("Captured Packets (This Session)", styles['Heading2']))
+            elements.append(Paragraph("Captured Packets"+f" (Session {self.session_id})", styles['Heading2']))
             c.execute("SELECT timestamp, src_ip, dst_port, length, protocol, flags FROM packets WHERE session_id=? ORDER BY timestamp DESC LIMIT 100", (self.session_id,))
             packets = c.fetchall()
             if packets:
@@ -500,13 +500,15 @@ class NetworkSnifferApp(tk.Tk):
                 elements.append(Paragraph("No packets captured.", styles['Normal']))
             elements.append(Spacer(1, 0.2*inch))
 
-            c.execute('SELECT alert_type, GROUP_CONCAT(DISTINCT src_ip) FROM alerts WHERE session_id=? GROUP BY alert_type', (self.session_id,))
-            alert_groups = c.fetchall()
-            if alert_groups:
-                data = [['Alert Type', 'IPs']]
-                for alert_type, ips in alert_groups:
-                    data.append([alert_type, ips])
-                t = Table(data, colWidths=[2*inch, 4*inch])
+            # NEW ALERT SUMMARY SECTION: Single row per IP/Alert type
+            elements.append(Paragraph("Alert Summary", styles['Heading2']))
+            c.execute('SELECT DISTINCT src_ip, alert_type FROM alerts WHERE session_id=?', (self.session_id,))
+            alert_rows = c.fetchall()
+            if alert_rows:
+                data = [['IP', 'Alert Type']]
+                for ip, alert_type in alert_rows:
+                    data.append([ip, alert_type])
+                t = Table(data, colWidths=[2.5*inch, 3.5*inch])
                 t.setStyle(TableStyle([
                     ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#bf616a')),
                     ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
@@ -517,7 +519,6 @@ class NetworkSnifferApp(tk.Tk):
                     ('GRID', (0,0), (-1,-1), 1, colors.grey),
                     ('FONTSIZE', (0,1), (-1,-1), 8),
                 ]))
-                elements.append(Paragraph("Alert Summary (Unique IPs)", styles['Heading2']))
                 elements.append(t)
             else:
                 elements.append(Paragraph("No alerts in this session.", styles['Normal']))
@@ -552,6 +553,7 @@ class NetworkSnifferApp(tk.Tk):
             self.status_var.set(f"PDF exported: {filename}")
         except Exception as e:
             messagebox.showerror("Export Failed", str(e))
+
 
     def show_graph(self):
         self.get_graph_data()
