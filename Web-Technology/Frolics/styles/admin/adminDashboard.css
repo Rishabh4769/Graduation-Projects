@@ -1,0 +1,256 @@
+/* ============================================ */
+/* FROLICS ADMIN DASHBOARD - COMPLETE CSS */
+/* ============================================ */
+
+/* Import base dashboard styles or copy from user dashboard */
+@import url('/styles/users/userDashboard.css');
+
+.stat-card.primary {
+  border-left: 4px solid var(--accent-color);
+}
+.stat-card.primary .stat-icon {
+  filter: drop-shadow(0 6px 14px rgba(59, 130, 246, 0.35));
+}
+
+.stat-card.success {
+  border-left: 4px solid #10b981;
+}
+.stat-card.success .stat-icon {
+  filter: drop-shadow(0 6px 14px rgba(16, 185, 129, 0.35));
+}
+
+.stat-card.warning {
+  border-left: 4px solid #f59e0b;
+}
+.stat-card.warning .stat-icon {
+  filter: drop-shadow(0 6px 14px rgba(245, 158, 11, 0.35));
+}
+
+.stat-card.danger {
+  border-left: 4px solid #ef4444;
+}
+.stat-card.danger .stat-icon {
+  filter: drop-shadow(0 6px 14px rgba(239, 68, 68, 0.35));
+}
+
+/* Slightly “admin” feel: stronger hover border */
+.stat-card.primary:hover,
+.stat-card.success:hover,
+.stat-card.warning:hover,
+.stat-card.danger:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ---------- Overview Section (cards below stats) ---------- */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.overview-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: var(--spacing-xl);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.overview-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(59, 130, 246, 0.25);
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.overview-card h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: 0.2px;
+}
+
+/* list containers */
+.event-list,
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-height: 240px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* scrollbar (nice but subtle) */
+.event-list::-webkit-scrollbar,
+.user-list::-webkit-scrollbar {
+  width: 8px;
+}
+.event-list::-webkit-scrollbar-thumb,
+.user-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+}
+.event-list::-webkit-scrollbar-track,
+.user-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- Event rows ---------- */
+.event-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.event-item:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.event-info h4 {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 4px;
+}
+
+.event-info p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* status pills */
+.event-status {
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.event-status.active {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.28);
+}
+
+.event-status.upcoming {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.16);
+  border-color: rgba(245, 158, 11, 0.28);
+}
+
+.event-status.closed {
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ---------- User rows ---------- */
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.user-item:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: white;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.25);
+  flex: 0 0 44px;
+}
+
+.user-info h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 4px;
+}
+
+.user-info p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* ---------- "View all" link ---------- */
+.view-all {
+  display: inline-flex;
+  margin-top: var(--spacing-md);
+  text-decoration: none;
+  font-weight: 800;
+  color: rgba(147, 197, 253, 0.95);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.view-all:hover {
+  transform: translateX(6px);
+  color: white;
+}
+
+/* ---------- Extra Admin action button variant ---------- */
+.action-btn.warning {
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.30);
+  color: #f59e0b;
+}
+
+.action-btn.warning:hover {
+  background: #f59e0b;
+  color: white;
+  box-shadow: 0 14px 35px rgba(245, 158, 11, 0.35);
+  transform: translateY(-3px);
+}
+
+/* ---------- Responsive tweaks for admin overview ---------- */
+@media (max-width: 1024px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .overview-card {
+    padding: var(--spacing-lg);
+  }
+
+  .event-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .event-status {
+    align-self: flex-start;
+  }
+}

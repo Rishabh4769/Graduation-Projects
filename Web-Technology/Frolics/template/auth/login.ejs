@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FROLICS | Log In</title>
+    <link rel="stylesheet" href="/styles/auth/login.css">
+</head>
+
+<body>
+    <!-- Falling stars animation container -->
+    <div class="stars-container"></div>
+
+    <div class="background-decoration">
+        <div class="bg-shape-1"></div>
+        <div class="bg-shape-2"></div>
+        <div class="diagonal-line"></div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-circle">F</div>
+            FROLICS
+        </a>
+    </nav>
+
+    <div class="container">
+        <form class="form-section" id="loginForm">
+            <div class="success-message" id="successMessage">
+                Login successful! Redirecting to dashboard...
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                Invalid email or password. Please try again.
+            </div>
+            <div class="form-header">
+                <h1>Welcome back</h1>
+                <div class="login-link">
+                    Don't have an account? <a href="/register">Sign Up</a>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">
+                    Email
+                    <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="email" id="email" name="email" placeholder="your.email@darshan.ac.in" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    Password
+                    <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="form-options">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="#forgot" class="forgot-link">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn-primary" id="loginBtn">Log In</button>
+
+
+        </form>
+    </div>
+
+    <script src="/js/auth/login.js"></script>
+</body>
+
+</html>

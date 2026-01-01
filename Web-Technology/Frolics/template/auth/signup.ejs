@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FROLICS | Sign Up</title>
+    <link rel="stylesheet" href="/styles/auth/signup.css">
+</head>
+<body>
+    <!-- Falling stars animation container -->
+    <div class="stars-container"></div>
+
+    <div class="background-decoration">
+        <div class="bg-shape-1"></div>
+        <div class="bg-shape-2"></div>
+        <div class="diagonal-line"></div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-circle">F</div>
+            FROLICS
+        </a>
+    </nav>
+
+    <div class="container">
+        <form class="form-section" id="signupForm">
+            <div class="success-message" id="successMessage">
+                Account created successfully! Welcome to FROLICS.
+            </div>
+
+            <div class="form-header">
+                <h1>Create new account</h1>
+                <div class="login-link">
+                    Already a Member? <a href="/login">Log In</a>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">
+                        First name
+                        <span style="color: #ef4444;">*</span>
+                    </label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Darshan" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">
+                        Last name
+                        <span style="color: #ef4444;">*</span>
+                    </label>
+                    <input type="text" id="lastName" name="lastName" placeholder="University" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">
+                    Email
+                    <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="email" id="email" name="email" placeholder="darshan.university@darshan.ac.in" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    Password
+                    <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">
+                    I agree to the <a href="#terms">Terms & Conditions</a>
+                </label>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" id="changeMethod">Change method</button>
+                <button type="submit" class="btn-primary" id="createBtn">Create account</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/js/auth/signup.js"></script>
+</body>
+</html>

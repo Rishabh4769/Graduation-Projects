@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Frolics</title>
+    <link rel="stylesheet" href="/styles/profile.css">
+</head>
+<body>
+    <!-- Stars + Background (same as dashboard) -->
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="background-decoration">
+        <div class="bg-shape-1"></div>
+        <div class="bg-shape-2"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="navbar">
+            <div class="nav-container">
+                <a href="/dashboard" class="logo">
+                    <img src="/images/frolics_logo_main.png" alt="Frolics">
+                    FROLICS
+                </a>
+                <ul class="nav-links">
+                    <li class="nav-link"><a href="/user/<%= userdetails.id %>/<%= userdetails.username %>/dashboard">Dashboard</a></li>
+                    <li class="nav-link"><a href="/user/<%= userdetails.id %>/<%= userdetails.username %>/events">Events</a></li>
+                    <li class="nav-link"><a href="/user/<%= userdetails.id %>/<%= userdetails.username %>/profile">Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <h1 class="profile-title">My Profile</h1>
+                <p class="profile-subtitle">Account Information</p>
+            </div>
+
+            <!-- Profile Details -->
+            <div class="profile-details-grid">
+                <!-- Personal Info -->
+                <div class="detail-card">
+                    <h3>Personal Information</h3>
+                    <div class="detail-row">
+                        <span class="detail-label">Full Name:</span>
+                        <span class="detail-value"><%= userdetails.firstName %> <%= userdetails.lastName %></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Username:</span>
+                        <span class="detail-value"><%= userdetails.username %></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value"><%= userdetails.email %></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Phone:</span>
+                        <span class="detail-value"><%= userdetails.phone || 'Not provided' %></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">College:</span>
+                        <span class="detail-value">Darshan University</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Enrollment No:</span>
+                        <span class="detail-value">25010101631</span>
+                    </div>
+                </div>
+
+                <!-- Account Info -->
+                <div class="detail-card">
+                    <h3>Account Information</h3>
+                    <div class="detail-row">
+                        <span class="detail-label">Member Since:</span>
+                        <span class="detail-value"><%= new Date(userdetails.createdAt).toLocaleDateString() %></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Account Status:</span>
+                        <span class="detail-value status-active">Active</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Role:</span>
+                        <span class="detail-value">User</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Total Events:</span>
+                        <span class="detail-value">12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="profile-actions">
+                <a href="/change-password" class="action-btn secondary">
+                    🔐 Change Password
+                </a>
+                <button class="action-btn danger" id="deleteAccount">
+                    🗑️ Delete Account
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/profile.js"></script>
+</body>
+</html>
