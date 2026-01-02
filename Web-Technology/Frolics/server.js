@@ -30,6 +30,12 @@ app.get('/login', (req, res) => {
   res.render('auth/login');
 });
 
+app.get('/logout', (req, res) => {
+  req.session?.destroy?.(() => {});
+  res.redirect('/login');
+});
+
+
 // ============================================
 // USER DASHBOARD - Fixed
 // ============================================

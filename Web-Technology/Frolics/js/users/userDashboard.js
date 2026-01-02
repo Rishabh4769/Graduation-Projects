@@ -113,3 +113,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+document.getElementById('logoutBtn')?.addEventListener('click', function () {
+    // Clear client-side session
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+    localStorage.removeItem('fullName');
+    localStorage.removeItem('email');
+    localStorage.removeItem('signupEmail');
+    localStorage.removeItem('signupPassword');
+
+    // Optional: small feedback
+    this.textContent = 'Logging out...';
+    this.disabled = true;
+
+    setTimeout(() => {
+        window.location.href = '/login';
+    }, 500);
+});

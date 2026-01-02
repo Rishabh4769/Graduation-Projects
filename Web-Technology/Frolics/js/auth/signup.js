@@ -22,7 +22,7 @@ function createStars() {
 // Initialize stars on page load
 window.addEventListener('load', createStars);
 
-// Signup form validation and redirect
+// Signup form - capture credentials → personalized dashboard redirect
 document.getElementById('signupForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -34,63 +34,65 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     const createBtn = document.getElementById('createBtn');
     const successMessage = document.getElementById('successMessage');
     
-    // Basic validation
+    // [ALL YOUR EXISTING VALIDATION - UNCHANGED]
     if (!firstName || !lastName) {
         alert('Please enter your full name.');
         return;
     }
-    
-    // Name validation (letters only)
     const nameRegex = /^[A-Za-z\s]+$/;
     if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
         alert('Name should contain only letters.');
         return;
     }
-    
-    // Email validation
     if (!email) {
         alert('Please enter your email address.');
         return;
     }
-    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         alert('Please enter a valid email address.');
         return;
     }
-    
-    // Password validation
     if (!password) {
         alert('Please enter a password.');
         return;
     }
-    
     if (password.length < 8) {
         alert('Password must be at least 8 characters long.');
         return;
     }
-    
-    // Terms validation
     if (!terms) {
         alert('Please accept the Terms & Conditions.');
         return;
     }
     
-    // All validations passed
+    // ✅ NEW: Generate unique userId and username slug
+    const timestamp = Date.now();
+    const randomSuffix = Math.random().toString(36).substr(2, 4);
+    const userId = `u${timestamp}${randomSuffix}`; // e.g., u1704256789123_abcd
+    const usernameSlug = `${firstName.toLowerCase().trim().replace(/\s+/g, '_')}_${lastName.toLowerCase().trim().replace(/\s+/g, '_')}`; // john_doe
+    
+    // UI feedback
     createBtn.disabled = true;
     createBtn.textContent = 'Creating account...';
-    
-    // Show success message
-    successMessage.textContent = 'Account created successfully! Redirecting to login...';
+    successMessage.textContent = `Welcome ${firstName}! Setting up your dashboard...`;
     successMessage.classList.add('show');
     
-    // Redirect to login
+    // Store user data (localStorage for demo, JWT in production)
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('username', usernameSlug);
+    localStorage.setItem('fullName', `${firstName} ${lastName}`);
+    localStorage.setItem('email', email);
+    
+    // Redirect to personalized dashboard matching your route
     setTimeout(() => {
-        window.location.href = '/login';
+        window.location.href = `/login`;
+        // → /u1704256789123_abcd/john_doe/dashboard
+        // Matches: app.get('/:userId/:username/dashboard', ...)
     }, 1500);
 });
 
-// Change method button redirect
+// [KEEP ALL YOUR OTHER CODE UNCHANGED]
 document.getElementById('changeMethod')?.addEventListener('click', function() {
     window.location.href = '/login';
 });

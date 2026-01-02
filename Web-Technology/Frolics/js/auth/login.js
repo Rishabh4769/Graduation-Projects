@@ -22,12 +22,12 @@ function createStars() {
 // Initialize stars on page load
 window.addEventListener('load', createStars);
 
-// Login form validation and redirect
+// Login form - auto-login from signup data or manual
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
     const errorMessage = document.getElementById('errorMessage');
     const successMessage = document.getElementById('successMessage');
     const loginBtn = document.getElementById('loginBtn');
@@ -35,6 +35,9 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     // Hide previous messages
     errorMessage.classList.remove('show');
     successMessage.classList.remove('show');
+    
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
     
     // Basic validation
     if (!email || !password) {
@@ -51,77 +54,70 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         return;
     }
     
-    // Password minimum length
     if (password.length < 6) {
         errorMessage.textContent = 'Password must be at least 6 characters.';
         errorMessage.classList.add('show');
         return;
     }
     
-    // Start the cool multi-step process
+    // ✅ NEW: Check for signup session data first
+    const storedEmail = localStorage.getItem('signupEmail');
+    const storedPassword = localStorage.getItem('signupPassword');
+    const userId = localStorage.getItem('userId');
+    const username = localStorage.getItem('username');
+    
     loginBtn.disabled = true;
     
-    // Step 1: Validating credentials
+    // Step 1: Validating...
     loginBtn.textContent = 'Validating...';
     
     setTimeout(() => {
-        // Step 2: Processing
-        loginBtn.textContent = 'Processing...';
-        
-        setTimeout(() => {
-            // Step 3: Success
-            loginBtn.textContent = '✓ Authenticated';
+        // AUTO-LOGIN: Match signup credentials
+        if (storedEmail === email && storedPassword === password && userId && username) {
+            loginBtn.textContent = '✓ Auto-login successful!';
             loginBtn.style.backgroundColor = '#10b981';
             
-            // Show success message
-            successMessage.textContent = '✓ Login successful! Welcome back!';
+            successMessage.textContent = 'Welcome back! Redirecting to dashboard...';
             successMessage.classList.add('show');
             
-            // Step 4: Redirect
             setTimeout(() => {
-                successMessage.textContent = ' Redirecting to dashboard...';
-                
-                setTimeout(() => {
-                    window.location.href = '/dashboard';
-                }, 500);
-            }, 800);
-        }, 600);
-    }, 600);
-});
-
-// Google login redirect with animation
-document.getElementById('googleLogin')?.addEventListener('click', function() {
-    const successMessage = document.getElementById('successMessage');
-    
-    this.textContent = 'Connecting...';
-    this.disabled = true;
-    
-    setTimeout(() => {
-        successMessage.textContent = '✓ Google authentication successful!';
-        successMessage.classList.add('show');
+                window.location.href = `/${userId}/${username}/dashboard`;
+            }, 1000);
+            return;
+        }
         
-        setTimeout(() => {
-            window.location.href = '/dashboard';
-        }, 1000);
+        // MANUAL LOGIN: Demo static creds
+        const demoCreds = {
+            'demo@frolic.com': 'demo123',
+            'admin@frolic.com': 'admin123'
+        };
+        
+        if (demoCreds[email] === password) {
+            // Demo login - generate temp userId/username
+            const tempId = `demo_${Date.now()}`;
+            const tempName = email.split('@')[0];
+            
+            loginBtn.textContent = '✓ Login successful!';
+            loginBtn.style.backgroundColor = '#10b981';
+            
+            successMessage.textContent = 'Welcome! Redirecting to dashboard...';
+            successMessage.classList.add('show');
+            
+            setTimeout(() => {
+                window.location.href = `/${tempId}/${tempName}/dashboard`;
+            }, 1000);
+        } else {
+            // Invalid login
+            loginBtn.textContent = 'Login';
+            loginBtn.disabled = false;
+            loginBtn.style.backgroundColor = '';
+            
+            errorMessage.textContent = 'Invalid email or password.';
+            errorMessage.classList.add('show');
+        }
     }, 800);
 });
 
-// GitHub login redirect with animation
-document.getElementById('githubLogin')?.addEventListener('click', function() {
-    const successMessage = document.getElementById('successMessage');
-    
-    this.textContent = 'Connecting...';
-    this.disabled = true;
-    
-    setTimeout(() => {
-        successMessage.textContent = '✓ GitHub authentication successful!';
-        successMessage.classList.add('show');
-        
-        setTimeout(() => {
-            window.location.href = '/dashboard';
-        }, 1000);
-    }, 800);
-});
 
 // Input focus animation
 document.querySelectorAll('input').forEach(input => {
