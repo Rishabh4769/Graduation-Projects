@@ -1,15 +1,17 @@
 const express = require('express');
-const apiRouter = require('./routes/api');
-const path = require('path');
-const app = express();
-const port = 3000;
+const router = express.Router();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use('/api', apiRouter);
-app.use(express.static(path.join(__dirname, 'templates')));
-
-
-app.get('/', (req, res) => {
-  res.send('');
+// Simple routes that render templates
+router.get('/home', (req, res) => {
+  res.render('index');
 });
+
+router.get('/signup', (req, res) => {
+  res.render('auth/signup');
+});
+
+router.get('/dashboard', (req, res) => {
+  res.render('users/userDashboard');
+});
+
+module.exports = router;
