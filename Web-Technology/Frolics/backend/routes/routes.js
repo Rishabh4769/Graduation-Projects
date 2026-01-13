@@ -8,10 +8,16 @@ router.get('/home', (req, res) => {
 
 router.get('/signup', (req, res) => {
   res.render('auth/signup');
+  next();
+});
+
+router.get('/login', (req, res) => {
+  res.render('auth/login');
 });
 
 router.get('/dashboard', (req, res) => {
   res.render('users/userDashboard');
 });
+
 
 module.exports = router;
