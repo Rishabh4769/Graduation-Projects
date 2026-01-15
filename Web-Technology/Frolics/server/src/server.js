@@ -16,5 +16,5 @@ app.set('views', path.join(__dirname, '../../client/views'));
 app.use('/', require('./routes/views'));
 
 app.listen(port, () => {
-  console.log(`Frolics server running at http://localhost:${port}`);
+  console.log(`Frolics server running at http://localhost:${port}/home`);
 });

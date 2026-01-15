@@ -28,7 +28,8 @@
 /* === BASE STYLES === */
 body {
     font-family: var(--primary-font);
-    background: url('/images/frolics-main-bg.jpg') no-repeat center/cover fixed;
+    /* background: url('/images/frolics-main-bg.jpg') no-repeat center/cover fixed; */
+    background-color: black;
     min-height: 100vh;
     color: white;
     overflow-x: hidden;

@@ -9,6 +9,14 @@ router.get('/home', (req, res) => {
     });
 });
 
+router.get('/register',(req,res) => {
+    res.render('auth/signup')
+});
+
+router.get('/login',(req,res) => {
+    res.render('auth/login')
+});
+
 // User Dashboard
 router.get('/users/dashboard', (req, res) => {
     res.render('users/dashboard', { 
@@ -33,20 +41,44 @@ router.get('/users/events/list', (req, res) => {
 });
 
 router.get('/users/events/upcoming', (req, res) => {
-    res.render('users/events/upcoming', { title: 'Upcoming Events' });
+    res.render('users/events/upcoming', { title: 'Upcoming Events', subtitle:null });
 });
 router.get('/users/events/past', (req, res) => {
-    res.render('users/events/past', { title: 'Past Events' });
+    res.render('users/events/past', { title: 'Past Events', subtitle:null });
 });
 router.get('/users/groups/mine', (req, res) => {
-    res.render('users/groups/mine', { title: 'My Groups' });
+    res.render('users/groups/mine', { title: 'My Groups', subtitle:null });
 });
 router.get('/users/groups/create', (req, res) => {
-    res.render('users/groups/create', { title: 'Create Group' });
+    res.render('users/groups/create', { title: 'Create Group', subtitle:null });
 });
 router.get('/users/groups/join', (req, res) => {
-    res.render('users/groups/join', { title: 'Join Group' });
+    res.render('users/groups/join', { title: 'Join Group', subtitle:null });
 });
+router.get('/users/profile', (req, res) => {
+    // Mock user data (replace with req.user later)
+    const userdetails = {
+        id: 1,
+        username: 'rishabh',
+        firstName: 'Rishabh',
+        lastName: 'Patel',
+        email: 'rishabh@frolics.com',
+        phone: '+91 9876543210',
+        createdAt: new Date(),
+        role: 'user'
+    };
+
+    res.render('users/profile', { 
+        title: 'Profile | Frolics',
+        // Profile page data
+        userdetails: userdetails,
+        // NAVBAR data (these were missing!)
+        userInitials: userdetails.firstName.charAt(0).toUpperCase() + userdetails.lastName.charAt(0).toUpperCase(),
+        userName: `${userdetails.firstName} ${userdetails.lastName}`,
+        userEmail: userdetails.email
+    });
+});
+
 
 
 module.exports = router;

@@ -15,21 +15,7 @@
     </div>
 
     <!-- Header -->
-    <header class="header">
-        <div class="navbar">
-            <div class="nav-container">
-                <a href="/dashboard" class="logo">
-                    <img src="/images/frolics_logo_main.png" alt="Frolics">
-                    FROLICS
-                </a>
-                <ul class="nav-links">
-                    <li class="nav-link"><a href="/user/<%= userdetails.id %>/<%= userdetails.username %>/dashboard">Dashboard</a></li>
-                    <li class="nav-link"><a href="/user/<%= userdetails.id %>/<%= userdetails.username %>/events">Events</a></li>
-                    <li class="nav-link"><a href="/user/<%= userdetails.id %>/<%= userdetails.username %>/profile">Profile</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+    <%- include('partials/nav') %>
 
     <!-- Main Content -->
     <main class="main">
