@@ -1,4 +1,3 @@
-/* Your existing stars CSS + Event Cards */
 .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -22,6 +21,14 @@
     border-color: var(--accent-color);
 }
 
+.event-card .read-more {
+    color: green;
+}
+
+.event-card .read-more:hover{
+    color: rgb(108, 180, 1);
+}
+
 .status-badge {
     padding: 0.25rem 0.75rem;
     border-radius: 50px;
@@ -29,11 +36,11 @@
     font-weight: 600;
 }
 
-.status-badge.upcoming { background: rgba(16, 185, 129, 0.2); color: #10b981; }
-.status-badge.ongoing { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
-.status-badge.registrations { background: rgba(251, 191, 36, 0.2); color: #f59e0b; }
-.status-badge.completed { background: rgba(107, 114, 128, 0.2); color: #6b7280; }
-.status-badge.closed { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+.status-badge.upcoming { background: rgba(0, 0, 0); color: #10b981; }
+.status-badge.ongoing { background: rgba(0, 0, 0); color: #3b82f6; }
+.status-badge.registrations { background: rgba(0, 0, 0); color: #f59e0b; }
+.status-badge.completed { background: rgb(0, 0, 0); color: #ffffff; }
+.status-badge.closed { background: rgba(0, 0, 0); color: #ef4444; }
 
 .btn-register {
     background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));

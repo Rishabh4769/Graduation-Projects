@@ -13,8 +13,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../../client/views'));
 
 // ROUTES - CLEAN!
-app.use('/', require('./routes/views'));
+app.use('/', require('./routes/routes'));
 
 app.listen(port, () => {
-  console.log(`Frolics server running at http://localhost:${port}/home`);
+  console.log(`Frolics server running at http://localhost:${port}/dashboard`);
 });

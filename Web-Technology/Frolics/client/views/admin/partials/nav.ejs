@@ -1,0 +1,86 @@
+<!-- Bootstrap 5 CSS (in main page) -->
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold fs-3" href="/admin/dashboard">
+                <img src="/images/frolics_logo_main.png" alt="Frolics Admin" width="40" height="40" class="me-2 rounded-3">
+                ADMIN PANEL
+            </a>
+
+            <!-- Toggle button for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbarNav" 
+                    aria-controls="adminNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="adminNavbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    
+                    <!-- Dashboard -->
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2" href="/admin/dashboard">Dashboard</a>
+                    </li>
+
+                    <!-- Institutes -->
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2" href="/admin/institutes">Institutes</a>
+                    </li>
+
+                    <!-- Events -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link px-3 py-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Events
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end bg-white/90 backdrop-blur-xl border-white shadow-lg border rounded-3 mt-1">
+                            <li><a class="dropdown-item px-4 py-2 fw-medium" href="/admin/events/manage">Manage Events</a></li>
+                            <li><a class="dropdown-item px-4 py-2 fw-medium" href="/admin/events/create">➕ Create Event</a></li>
+                            <li><hr class="dropdown-divider mx-3 my-1 opacity-50"></li>
+                            <li><a class="dropdown-item px-4 py-2 fw-medium text-danger" href="/admin/events/pending">Pending Reviews</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Users -->
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2" href="/admin/users">Users</a>
+                    </li>
+
+                    <!-- Departments -->
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2" href="/admin/departments">Departments</a>
+                    </li>
+
+                    <!-- Admin Profile Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle px-3 py-2 d-flex align-items-center gap-2" href="#" 
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avatar bg-gradient rounded-circle d-flex align-items-center justify-content-center text-white fw-bold fs-6" 
+                                 style="width: 32px; height: 32px;">
+                                <%= adminData?.adminInitials || 'A' %>
+                            </div>
+                            <span class="d-none d-md-inline"><%= adminData?.adminName || 'Admin' %></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end bg-white/95 backdrop-blur-xl shadow-2xl border-white border rounded-3 mt-1 w-auto min-w-0">
+                            <li class="px-4 py-3 border-bottom">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="avatar bg-gradient rounded-circle text-white fw-bold fs-6" 
+                                         style="width: 40px; height: 40px;">
+                                        <%= adminData?.adminInitials || 'A' %>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0 fw-semibold"><%= adminData?.adminName || 'Admin' %></h6>
+                                        <small class="text-muted"><%= adminData?.adminEmail || 'admin@frolics.com' %></small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a class="dropdown-item px-4 py-3 fw-medium" href="/admin/profile">Admin Profile</a></li>
+                            <li><hr class="dropdown-divider mx-3 opacity-50"></li>
+                            <li><a class="dropdown-item px-4 py-3 fw-medium text-danger" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

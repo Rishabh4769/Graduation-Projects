@@ -28,8 +28,8 @@
 /* === BASE STYLES === */
 body {
     font-family: var(--primary-font);
-    /* background: url('/images/frolics-main-bg.jpg') no-repeat center/cover fixed; */
-    background-color: black;
+    background: url('/images/frolics-main-bg.jpg') no-repeat center/cover fixed;
+    /* background-color: black; */
     min-height: 100vh;
     color: white;
     overflow-x: hidden;
@@ -144,7 +144,7 @@ body::before {
 .navbar {
     max-width: 1400px;
     margin: 0 auto;
-    padding: var(--spacing-lg) var(--spacing-xl);
+    padding: var(--spacing-sm) var(--spacing-sm);
 }
 
 .nav-container {
@@ -378,19 +378,6 @@ body::before {
     margin: 0;
     color: white;
 }
-
-.status-badge {
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-.status-badge.upcoming { background: rgba(16, 185, 129, 0.3); color: #10b981; }
-.status-badge.ongoing { background: rgba(59, 130, 246, 0.3); color: #3b82f6; }
-.status-badge.registrations { background: rgba(251, 191, 36, 0.3); color: #f59e0b; }
-.status-badge.completed { background: rgba(107, 114, 128, 0.3); color: #6b7280; }
-.status-badge.closed { background: rgba(239, 68, 68, 0.3); color: #ef4444; }
 
 .event-meta {
     display: flex;

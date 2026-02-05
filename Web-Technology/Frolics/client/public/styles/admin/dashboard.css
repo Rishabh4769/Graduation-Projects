@@ -3,7 +3,7 @@
 /* ============================================ */
 
 /* Import base dashboard styles or copy from user dashboard */
-@import url('/styles/users/userDashboard.css');
+@import url('/styles/users/dashboard.css');
 
 .stat-card.primary {
   border-left: 4px solid var(--accent-color);

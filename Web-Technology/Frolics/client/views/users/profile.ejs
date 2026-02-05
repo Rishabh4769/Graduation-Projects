@@ -33,19 +33,19 @@
                     <h3>Personal Information</h3>
                     <div class="detail-row">
                         <span class="detail-label">Full Name:</span>
-                        <span class="detail-value"><%= userdetails.firstName %> <%= userdetails.lastName %></span>
+                        <span class="detail-value"><%= userData.firstName %> <%= userData.lastName %></span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Username:</span>
-                        <span class="detail-value"><%= userdetails.username %></span>
+                        <span class="detail-value"><%= userData.username %></span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Email:</span>
-                        <span class="detail-value"><%= userdetails.email %></span>
+                        <span class="detail-value"><%= userData.email %></span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Phone:</span>
-                        <span class="detail-value"><%= userdetails.phone || 'Not provided' %></span>
+                        <span class="detail-value"><%= userData.phone || 'Not provided' %></span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">College:</span>
@@ -62,7 +62,7 @@
                     <h3>Account Information</h3>
                     <div class="detail-row">
                         <span class="detail-label">Member Since:</span>
-                        <span class="detail-value"><%= new Date(userdetails.createdAt).toLocaleDateString() %></span>
+                        <span class="detail-value"><%= new Date(userData.createdAt).toLocaleDateString() %></span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Account Status:</span>
