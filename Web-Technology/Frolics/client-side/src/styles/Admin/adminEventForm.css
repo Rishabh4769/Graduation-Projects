@@ -1,0 +1,4 @@
+/* Minimal styles for admin event form */
+.event-card { padding: 20px; border-radius: 8px; background: var(--surface, #0b1020); color: var(--text, #fff); }
+.form-label { font-weight: 600; margin-bottom: 6px; display: block; }
+.btn-primary { background: #0d6efd; border-color: #0d6efd; }

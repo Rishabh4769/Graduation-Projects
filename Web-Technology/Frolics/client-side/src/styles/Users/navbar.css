@@ -1,0 +1,244 @@
+/* client-side/src/styles/Users/navbar.css
+   Polished, responsive navbar styles for `UserNavbar.jsx`.
+   Designed to match the server-side `public/styles/users/partials/navbar.css`
+   while fitting the React app design system.
+*/
+
+.user-header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: var(--nav-bg);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--nav-text);
+}
+
+.user-header .user-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg, 1.25rem) var(--spacing-xl, 2.5rem);
+  box-sizing: border-box;
+}
+
+/* ensure inner container aligns content */
+.user-header .user-navbar > .container-fluid {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.user-header .user-navbar .user-navbar-collapse {
+  display: flex;
+  align-items: center;
+}
+
+.user-header .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--nav-text);
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-decoration: none;
+}
+
+.user-header .navbar-brand img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 8px 30px rgba(59,130,246,0.16);
+}
+
+/* Nav links */
+.user-header .navbar-nav {
+  display: flex;
+  gap: var(--spacing-lg, 1rem);
+  align-items: center;
+  margin-left: auto; /* push nav items to the right */
+}
+
+/* hamburger icon (no Bootstrap JS/CSS required) */
+.user-header .navbar-toggler-icon {
+  display: inline-block;
+  width: 22px;
+  height: 14px;
+  position: relative;
+}
+.user-header .navbar-toggler-icon::before,
+.user-header .navbar-toggler-icon::after,
+.user-header .navbar-toggler-icon span {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 2px;
+  transform-origin: center;
+}
+.user-header .navbar-toggler-icon::before { top: 0; }
+.user-header .navbar-toggler-icon span { top: 6px; }
+.user-header .navbar-toggler-icon::after { bottom: 0; }
+
+.user-header .nav-link {
+  color: var(--nav-text) !important;
+  padding: 0.45rem 0.75rem;
+  border-radius: 10px;
+  transition: all 180ms ease;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-header .nav-link:hover {
+  color: #ffffff !important;
+  background: rgba(255,255,255,0.03);
+  transform: translateY(-1px);
+}
+
+.user-header .nav-link.active,
+.user-header .nav-link.active:hover {
+  color: var(--accent-color, #3b82f6) !important;
+  background: rgba(59,130,246,0.06) !important;
+}
+
+/* Avatar */
+.user-header .avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #6366F1 0%, #3B82F6 100%);
+  box-shadow: 0 10px 30px rgba(59,130,246,0.18);
+  font-size: 0.9rem;
+}
+
+.user-header .dropdown-menu .avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 0.95rem;
+}
+
+/* Dropdown styling — dark translucent to blend with theme, slight accent on hover */
+.user-header .dropdown-menu {
+  min-width: 240px;
+  background: linear-gradient(180deg, rgba(6,8,20,0.62), rgba(12,14,30,0.54));
+  color: rgba(255,255,255,0.94);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+  padding: 0.35rem;
+}
+
+.user-header .dropdown-item {
+  color: rgba(255,255,255,0.92) !important;
+  padding: 0.6rem 0.95rem;
+  border-radius: 8px;
+  transition: background 180ms cubic-bezier(.2,.8,.2,1), color 180ms;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-header .dropdown-item:hover {
+  background: linear-gradient(90deg, rgba(59,130,246,0.10), rgba(139,92,246,0.04));
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.user-header .dropdown-item:active,
+.user-header .dropdown-item.active {
+  background: linear-gradient(90deg, rgba(59,130,246,0.14), rgba(59,130,246,0.06));
+  color: #eaf2ff !important;
+  border-left: 3px solid rgba(59,130,246,0.9);
+  padding-left: 0.7rem; /* visual offset for the accent bar */
+}
+
+/* Navbar toggler (mobile) */
+.user-header .navbar-toggler {
+  /* hidden on larger screens; shown via media query for small screens */
+  display: none;
+  border: none;
+  background: rgba(255,255,255,0.03);
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.user-header .navbar-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 0 6px rgba(59,130,246,0.10);
+}
+
+/* small visual helpers */
+.user-header .dropdown-divider { margin: 0.45rem 0; opacity: 0.6; }
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .user-header .user-navbar { padding-left: 1rem; padding-right: 1rem; }
+
+  /* hide desktop horizontal nav and show the toggler */
+  .user-header .navbar-nav { gap: 0.5rem; display: none; }
+  .user-header .navbar-toggler { display: flex; }
+  .user-header .nav-link .d-none.d-md-inline { display: none !important; }
+
+  /* collapse container shown when Bootstrap adds `.show` */
+  .user-header .user-navbar-collapse.collapse { display: none; width: 100%; }
+  .user-header .user-navbar-collapse.collapse.show {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    width: 100%;
+  }
+
+  .user-header .user-navbar-collapse.collapse.show .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* dropdowns inside mobile menu should expand in-flow */
+  .user-header .user-navbar-collapse.collapse.show .dropdown-menu {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    /* keep transparent container but ensure items are readable */
+    background: transparent;
+    border: none;
+    padding: 0.25rem 0;
+  }
+
+  /* Mobile: dropdown items still use theme-aware styles */
+  .user-header .user-navbar-collapse.collapse.show .dropdown-item {
+    color: rgba(255,255,255,0.92) !important;
+    padding: 0.65rem 0.75rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-header .navbar-brand { font-size: 1rem; }
+  .avatar { width: 30px; height: 30px; font-size: 0.85rem; }
+}

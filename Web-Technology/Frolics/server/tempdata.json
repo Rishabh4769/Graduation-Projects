@@ -1,0 +1,75 @@
+[
+{
+  "departmentName": "Computer Science",
+  "departmentImage": "https://example.com/cs-dept.jpg",
+  "departmentDescription": "Department of Computer Science and Engineering offers undergraduate and postgraduate programs focusing on software development, AI, and cybersecurity.",
+  "instituteId": "507f1f77bcf86cd799439011",
+  "departmentCoordinatorId": "507f191e810c19729de860ea",
+  "createdBy": "507f191e810c19729de860ea",
+  "modifiedBy": "507f191e810c19729de860eb"
+},
+{
+  "eventName": "CodeFest Hackathon 2026",
+  "eventTagline": "24 Hours to Build Tomorrow's Solutions",
+  "eventImage": "https://example.com/codefest-hackathon.jpg",
+  "eventDescription": "A 24-hour coding competition where teams of 3-5 students develop innovative software solutions to real-world problems. Focus areas include AI, web development, mobile apps, and cybersecurity challenges.",
+  "groupMinParticipants": 3,
+  "groupMaxParticipants": 5,
+  "eventFees": 200,
+  "eventFirstPrize": "₹50,000 + Internship Opportunities",
+  "eventSecondPrize": "₹25,000 + Swags & Certificates",
+  "eventThirdPrize": "₹10,000 + Goodies & Mentorship",
+  "departmentId": "507f1f77bcf86cd799439011",
+  "eventCoordinatorId": "507f191e810c19729de860ea",
+  "eventMainStudentCoordinatorName": "Rahul Sharma",
+  "eventMainStudentCoordinatorPhone": "+91-9876543210",
+  "eventMainStudentCoordinatorEmail": "rahul.sharma@college.edu",
+  "eventLocation": "Main Auditorium, Block A",
+  "maxGroupsAllowed": 20,
+  "createdBy": "507f191e810c19729de860ea",
+  "modifiedBy": "507f191e810c19729de860ea"
+},
+{
+  "groupName": "ByteBlazers Team A",
+  "eventId": "507f1f77bcf86cd799439011",
+  "isPaymentDone": false,
+  "isPresent": false,
+  "createdBy": "507f191e810c19729de860ea",
+  "modifiedBy": "507f191e810c19729de860ea"
+},
+{
+  "instituteName": "Gujarat Technological University",
+  "instituteImage": "https://example.com/gtu-campus.jpg",
+  "instituteDescription": "GTU is a state-wide affiliating university established in 2007 with over 500 affiliated colleges offering undergraduate and postgraduate programs in engineering, pharmacy, management, and architecture across Gujarat.",
+  "instituteCoordinatorId": "507f191e810c19729de860ea",
+  "createdBy": "507f191e810c19729de860ea",
+  "modifiedBy": "507f191e810c19729de860ea"
+},
+{
+  "participantName": "Rahul Sharma",
+  "participantEnrollmentNumber": "190120107019",
+  "participantInstituteName": "Gujarat Technological University",
+  "participantCity": "Rajkot",
+  "participantMobile": "+91-9876543210",
+  "participantEmail": "rahul.sharma@gtu.ac.in",
+  "isGroupLeader": true,
+  "groupId": "507f1f77bcf86cd799439012",
+  "createdBy": "507f191e810c19729de860ea",
+  "modifiedBy": "507f191e810c19729de860ea"
+},
+{
+  "userName": "Rahul Sharma",
+  "emailAddress": "rahul.sharma@gtu.ac.in",
+  "phoneNumber": "+91-9876543210",
+  "userPassword": "securePass123",
+  "role": "student",
+  "isActive": true
+},
+{
+  "eventId": "507f1f77bcf86cd799439011",
+  "groupId": "507f1f77bcf86cd799439012",
+  "sequence": 1,
+  "createdBy": "507f191e810c19729de860ea",
+  "modifiedBy": "507f191e810c19729de860ea"
+}
+]

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Frolics badge: compact circular icon suitable for favicon and small placements -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-labelledby="title desc">
+  <title id="title">Frolics badge</title>
+  <desc id="desc">Compact emblem with mortarboard and F monogram for badges and favicons.</desc>
+  <defs>
+    <linearGradient id="gA" x1="0" x2="1">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="160" height="160" rx="26" fill="url(#gA)" />
+
+  <!-- simple mortarboard shape -->
+  <g transform="translate(24,28)">
+    <polygon points="8,50 68,20 128,50 68,80" fill="#0b1220" opacity="0.95" />
+    <rect x="58" y="48" width="20" height="14" rx="3" fill="#0b1220" />
+    <path d="M88 40 L102 54" stroke="#ffd166" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- F monogram center -->
+  <g transform="translate(38,60)">
+    <path d="M8 58 L8 26 L26 26 L26 34 L18 34 L18 40 L26 40 L26 48 L18 48 L18 58 Z" fill="#fff" />
+  </g>
+</svg>

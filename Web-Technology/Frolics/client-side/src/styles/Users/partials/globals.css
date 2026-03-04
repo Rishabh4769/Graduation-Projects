@@ -1,0 +1,37 @@
+/* Global variables and base reset copied from legacy styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* FROLICS Color Scheme */
+    --primary-color: #f8fafc;
+    --secondary-color: #1e293b;
+    --accent-color: #3b82f6;
+    --accent-secondary: #8b5cf6;
+    --primary-font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --primary-font-color: #1e293b;
+    --secondary-font-color: #64748b;
+
+    /* Spacing & Shadows */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+body {
+    font-family: var(--primary-font);
+    /* Use project image from src/static/images so webpack can resolve it */
+        background: url('../../../static/images/frolics-main-bg.jpg') no-repeat center/cover fixed;
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+}
