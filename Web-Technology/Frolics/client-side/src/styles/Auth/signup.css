@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--spacing-4);
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background: transparent;
   position: relative;
 }
 
@@ -312,35 +312,24 @@
 /* ==================== SIGNUP CONTAINER ==================== */
 
 .signup-container {
-  display: grid;
-  flex-direction: column;
-  gap: 2rem;
-  max-width: 1200px;
-  width: 600px;
-  align-items: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  animation: slideUp 0.6s ease-out;
 }
 
 /* ==================== FORM SECTION ==================== */
 
 .signup-form-section {
-  padding: 3rem;
-  background: rgba(30, 41, 59, 0.9);
-  border: 1px solid var(--border-color);
+  padding: 2.6rem 2.4rem 2.8rem;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.4);
   border-radius: 1.25rem;
   backdrop-filter: blur(10px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-  animation: slideInLeft 0.6s ease-out;
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.75);
+  animation: slideUp 0.6s ease-out;
 }
 
 /* ==================== LOGO ==================== */
@@ -377,21 +366,21 @@
 /* ==================== FORM HEADER ==================== */
 
 .form-header {
-  margin-bottom: 2rem;
-  text-align: center;
+  margin-bottom: 1.8rem;
+  text-align: left;
 }
 
 .form-title {
   margin: 0 0 0.5rem 0;
-  font-size: 1.75rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  color: var(--text);
+  color: #e5e7eb;
   letter-spacing: -0.5px;
 }
 
 .form-subtitle {
   margin: 0;
-  color: var(--text-muted);
+  color: #9ca3af;
   font-size: 0.95rem;
 }
 
@@ -404,7 +393,7 @@
 }
 
 .form-label {
-  color: var(--text);
+  color: #e5e7eb;
   font-weight: 600;
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
@@ -424,14 +413,14 @@
 .input-group .form-control,
 .input-group .input-group-text,
 .input-group .btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-color);
-  color: var(--text);
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  color: #e5e7eb;
   transition: all 0.3s ease;
 }
 
 .input-group .form-control::placeholder {
-  color: var(--text-muted);
+  color: #6b7280;
   opacity: 0.7;
 }
 
@@ -482,18 +471,21 @@
 }
 
 .form-check-input {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
   margin-top: 0.25rem;
-  border: 2px solid var(--border-color);
-  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(148, 163, 184, 0.9);
+  border-radius: 0.2rem;
+  background: transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  accent-color: #60a5fa;
 }
 
 .form-check-input:checked {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: #60a5fa;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.65);
 }
 
 .form-check-input:focus {
@@ -506,7 +498,7 @@
 }
 
 .form-check-label {
-  color: var(--text);
+  color: #e5e7eb;
   font-size: 0.95rem;
   cursor: pointer;
   user-select: none;
@@ -522,6 +514,23 @@
 .form-check-label a:hover {
   color: var(--primary);
   text-decoration: underline;
+}
+
+/* Refine layout for privacy policy checkbox */
+.signup-form-section .form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding-left: 0;
+  margin-bottom: 1.25rem;
+}
+
+.signup-form-section .form-check-input {
+  margin-top: 0.15rem;
+}
+
+.signup-form-section .form-check-label {
+  line-height: 1.5;
 }
 
 /* ==================== BUTTONS ==================== */
@@ -554,8 +563,17 @@
   cursor: not-allowed;
 }
 
+/* Center the Create Account button content */
+.signup-form .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
 .btn-outline-secondary {
-  color: var(--text-muted);
+  color: #d1d5db;
   border: 1px solid var(--border-color);
   background: transparent;
 }
@@ -610,6 +628,12 @@
   color: #fca5a5;
   font-size: 0.85rem;
   margin-top: 0.35rem;
+}
+
+/* Stronger selector so auth field labels are bright on dark background */
+.signup-form-section label,
+.signup-form-section .form-label {
+  color: #f9fafb !important;
 }
 
 /* ==================== SUCCESS CONTAINER ==================== */

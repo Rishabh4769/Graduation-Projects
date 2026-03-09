@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../../../styles/Users/partials/globals.css';
 import '../../../styles/Users/partials/layout.css';
 import '../../../styles/Users/eventTypes.css';
 import EventTypeCard from '../../../components/Users/EventTypeCard';
-import { fetchJson } from '../../../utils/api';
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
@@ -11,7 +11,7 @@ const EventList = () => {
   useEffect(() => {
     async function load() {
       try {
-        const data = await fetchJson('/events');
+        const data = await axios.get('/events');
         setEvents(data || []);
       } catch (e) {
         setEvents([]);

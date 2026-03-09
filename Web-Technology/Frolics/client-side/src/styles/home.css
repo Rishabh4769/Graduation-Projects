@@ -2,7 +2,6 @@
 
 .home-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   position: relative;
   overflow-x: hidden;
 }
@@ -32,7 +31,6 @@ html {
 
 body {
     font-family: var(--primary-font);
-    background: var(--page-bg);
     min-height: 100vh;
     color: var(--text-color);
     overflow-x: hidden;
@@ -249,21 +247,22 @@ div[data-router-view], div[class*="outlet"], div[class*="Outlet"] {
 .hero-section {
     display: flex !important;
     align-items: center !important;
-    min-height: 85vh !important;
+    min-height: 75vh !important;
     text-align: center !important;
-    padding-bottom: var(--spacing-xl) !important;
+    padding: var(--spacing-lg) 0 var(--spacing-xl) !important;
     width: 100% !important;
 }
 
 .hero-content { 
-    width: 100% !important; 
-    padding: 0 !important; 
+    width: 100% !important;
+    max-width: 1040px !important;
+    margin: 0 auto !important;
     /* subtle card to improve contrast against page overlay */
     background: rgba(255,255,255,0.03) !important;
     backdrop-filter: blur(6px) !important;
     -webkit-backdrop-filter: blur(6px) !important;
     border-radius: 16px !important;
-    padding: 2rem !important;
+    padding: 1.75rem 1.75rem 2rem !important;
     box-shadow: 0 12px 36px rgba(2,6,23,0.45) !important;
     z-index: 11 !important;
 }
@@ -285,7 +284,7 @@ div[data-router-view], div[class*="outlet"], div[class*="Outlet"] {
 }
 
 .hero-title {
-    font-size: clamp(3rem, 8vw, 5rem) !important;
+    font-size: clamp(2.8rem, 6vw, 4.2rem) !important;
     font-weight: 900 !important;
     background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, #a5b4fc 40%, #3b82f6 70%, #8b5cf6 100%) !important;
     -webkit-background-clip: text !important;
@@ -306,8 +305,8 @@ div[data-router-view], div[class*="outlet"], div[class*="Outlet"] {
 }
 
 .hero-description {
-    font-size: 1.3rem !important; 
-    color: rgba(255,255,255,0.88) !important;
+    font-size: 1.15rem !important; 
+    color: rgba(255,255,255,0.96) !important;
     max-width: 650px !important; 
     margin: 0 auto 2.5rem !important; 
     line-height: 1.65 !important;
@@ -379,7 +378,7 @@ div[data-router-view], div[class*="outlet"], div[class*="Outlet"] {
 .stats {
     display: flex !important; 
     justify-content: center !important; 
-    gap: 4rem !important; 
+    gap: 2.5rem !important; 
     flex-wrap: wrap !important;
     padding-top: 2rem !important; 
     width: 100% !important;
@@ -405,11 +404,11 @@ div[data-router-view], div[class*="outlet"], div[class*="Outlet"] {
 
 /* FEATURES SECTION */
 .features-section {
-    padding: 5rem 0 !important; 
+    padding: 4rem 0 4.5rem !important; 
     background: rgba(255,255,255,0.02) !important;
     backdrop-filter: blur(20px) !important; 
     border-top: 1px solid rgba(255,255,255,0.08) !important;
-    min-height: 100vh !important; 
+    min-height: auto !important; 
     width: 100% !important;
 }
 
@@ -424,9 +423,8 @@ div[data-router-view], div[class*="outlet"], div[class*="Outlet"] {
     font-size: clamp(2rem, 4vw, 2.75rem) !important; 
     font-weight: 800 !important; 
     text-align: center !important;
-    background: linear-gradient(135deg, rgba(255,255,255,0.95), #3b82f6) !important;
-    -webkit-background-clip: text !important; 
-    background-clip: text !important;
+    color: rgba(255,255,255,0.98) !important;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.7) !important;
     margin-bottom: var(--spacing-xl) !important;
 }
 
@@ -442,9 +440,9 @@ div[data-router-view], div[class*="outlet"], div[class*="Outlet"] {
     backdrop-filter: blur(20px) !important;
     border: 1px solid rgba(255,255,255,0.12) !important; 
     border-radius: 24px !important;
-    padding: var(--spacing-xl) !important; 
+    padding: var(--spacing-lg) !important; 
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    min-height: 200px !important;
+    min-height: 220px !important;
 }
 
 .feature-card:hover {
@@ -463,6 +461,19 @@ div[data-router-view], div[class*="outlet"], div[class*="Outlet"] {
     justify-content: center !important;
     font-size: 2rem !important; 
     box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
+}
+
+/* Ensure feature text is bright and readable on dark glass background */
+.feature-card h3 {
+    color: rgba(255,255,255,0.98) !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 0.6rem !important;
+}
+
+.feature-card p {
+    color: rgba(255,255,255,0.9) !important;
+    font-size: 0.98rem !important;
+    line-height: 1.6 !important;
 }
 
 /* RESPONSIVE */

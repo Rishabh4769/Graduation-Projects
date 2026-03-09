@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../../../styles/Users/partials/globals.css';
 import '../../../styles/Users/partials/layout.css';
-import { fetchJson } from '../../../utils/api';
 
 const CreateGroup = () => {
   const navigate = useNavigate();
@@ -14,7 +14,11 @@ const CreateGroup = () => {
   useEffect(() => {
     async function loadEvents() {
       try {
-        const data = await fetchJson('/events');
+        const data = await axios.get('/events',{
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
         setEvents(data);
       } catch (err) {
         setEvents([]);
@@ -34,7 +38,11 @@ const CreateGroup = () => {
       const userRaw = localStorage.getItem('user');
       const user = userRaw ? JSON.parse(userRaw) : null;
       const payload = { ...form, createdBy: user?.id };
-      const saved = await fetchJson('/groups', { method: 'POST', body: JSON.stringify(payload) });
+      const saved = await axios.post('/groups',payload,{
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       navigate('/app/groups');
     } catch (err) {
       setError(err.message || 'Failed to create group');

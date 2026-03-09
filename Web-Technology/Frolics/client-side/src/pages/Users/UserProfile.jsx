@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../../styles/Users/partials/globals.css';
 import '../../styles/Users/partials/layout.css';
-import { fetchJson } from '../../utils/api';
 
 const UserProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -20,9 +20,9 @@ const UserProfile = () => {
         let data = null;
 
         if (stored?.id) {
-          data = await fetchJson(`/users/${stored.id}`);
+          data = await axios.get(`/users/${stored.id}`);
         } else if (stored?.email) {
-          data = await fetchJson(`/users/email/${encodeURIComponent(stored.email)}`);
+          data = await axios.get(`/users/email/${encodeURIComponent(stored.email)}`);
         } else {
           // no stored user — nothing to fetch
           setProfile(null);
@@ -64,7 +64,7 @@ const UserProfile = () => {
     setSaving(true);
     try {
       const payload = { userName: form.userName, emailAddress: form.emailAddress };
-      const updated = await fetchJson(`/users/${profile._id || profile.id}`, { method: 'PUT', body: JSON.stringify(payload) });
+      const updated = await axios.put(`/users/${profile._id || profile.id}`, payload );
       setProfile(updated);
       // update localStorage user if present
       try {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../../../styles/Users/partials/globals.css';
 import '../../../styles/Users/partials/layout.css';
-import { fetchJson } from '../../../utils/api';
 
 const JoinGroup = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const JoinGroup = () => {
   useEffect(() => {
     async function loadGroups() {
       try {
-        const data = await fetchJson('/groups');
+        const data = await axios.get('/groups');
         setGroups(data);
       } catch (err) {
         setGroups([]);
@@ -39,7 +39,11 @@ const JoinGroup = () => {
         createdBy: user?.id,
         isGroupLeader: false,
       };
-      await fetchJson('/participants', { method: 'POST', body: JSON.stringify(payload) });
+      await axios.post('/participants', payload, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       navigate('/app/dashboard');
     } catch (err) {
       setError(err.message || 'Failed to join group');

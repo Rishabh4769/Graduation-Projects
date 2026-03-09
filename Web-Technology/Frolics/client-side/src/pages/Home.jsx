@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/home.css';
+import '../styles/Users/partials/globals.css';
+import '../styles/Users/partials/layout.css';
 import logoBadge from '../static/images/frolics_logo_badge.svg';
 
 const Home = () => {

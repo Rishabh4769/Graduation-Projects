@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../../../styles/Users/partials/globals.css';
 import '../../../styles/Users/partials/layout.css';
-import { fetchJson } from '../../../utils/api';
 
 const MyGroups = () => {
   const [groups, setGroups] = useState([]);
@@ -11,7 +11,7 @@ const MyGroups = () => {
   useEffect(() => {
     async function load() {
       try {
-        const all = await fetchJson('/groups');
+        const all = await axios.get('/groups');
         const raw = localStorage.getItem('user');
         const me = raw ? JSON.parse(raw) : null;
         const mine = all.filter(g => (g.createdBy && (g.createdBy === me?.id || g.createdBy === me?._id)));

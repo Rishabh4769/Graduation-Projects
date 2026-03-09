@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../../styles/Admin/adminEventForm.css';
-import { fetchJson } from '../../utils/api';
 
 const CreateEvent = () => {
   const navigate = useNavigate();
+
   const [form, setForm] = useState({
     eventName: '',
     eventTagline: '',
@@ -19,20 +20,31 @@ const CreateEvent = () => {
     eventLocation: '',
     maxGroupsAllowed: 50,
   });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
     try {
-      await fetchJson('/events', { method: 'POST', body: JSON.stringify(form) });
+      await axios.post('/events', form);
+
       navigate('/app/admin/dashboard');
     } catch (err) {
-      setError(err.message || 'Failed to create event');
+      const errorMessage = err.response?.data?.message 
+        || err.response?.data?.error 
+        || err.message 
+        || 'Failed to create event';
+
+      setError(errorMessage);
+      console.error('Event creation failed:', err);
     } finally {
       setLoading(false);
     }
@@ -46,59 +58,130 @@ const CreateEvent = () => {
           <div className="row">
             <div className="col-md-6 mb-3">
               <label className="form-label">Event name</label>
-              <input name="eventName" className="form-control" value={form.eventName} onChange={handleChange} required />
+              <input
+                name="eventName"
+                className="form-control"
+                value={form.eventName}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className="col-md-6 mb-3">
               <label className="form-label">Tagline</label>
-              <input name="eventTagline" className="form-control" value={form.eventTagline} onChange={handleChange} />
+              <input
+                name="eventTagline"
+                className="form-control"
+                value={form.eventTagline}
+                onChange={handleChange}
+              />
             </div>
           </div>
 
           <div className="mb-3">
             <label className="form-label">Description</label>
-            <textarea name="eventDescription" className="form-control" rows={4} value={form.eventDescription} onChange={handleChange} />
+            <textarea
+              name="eventDescription"
+              className="form-control"
+              rows={4}
+              value={form.eventDescription}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="row">
             <div className="col-md-4 mb-3">
-              <label className="form-label">Min participants</label>
-              <input type="number" name="groupMinParticipants" className="form-control" value={form.groupMinParticipants} onChange={handleChange} />
+              <label className="form-label">Min participants per group</label>
+              <input
+                type="number"
+                name="groupMinParticipants"
+                className="form-control"
+                value={form.groupMinParticipants}
+                onChange={handleChange}
+                min="1"
+              />
             </div>
             <div className="col-md-4 mb-3">
-              <label className="form-label">Max participants</label>
-              <input type="number" name="groupMaxParticipants" className="form-control" value={form.groupMaxParticipants} onChange={handleChange} />
+              <label className="form-label">Max participants per group</label>
+              <input
+                type="number"
+                name="groupMaxParticipants"
+                className="form-control"
+                value={form.groupMaxParticipants}
+                onChange={handleChange}
+                min="1"
+              />
             </div>
             <div className="col-md-4 mb-3">
-              <label className="form-label">Fees</label>
-              <input type="number" name="eventFees" className="form-control" value={form.eventFees} onChange={handleChange} />
+              <label className="form-label">Fees (₹)</label>
+              <input
+                type="number"
+                name="eventFees"
+                className="form-control"
+                value={form.eventFees}
+                onChange={handleChange}
+                min="0"
+                step="1"
+              />
             </div>
           </div>
 
           <div className="row">
             <div className="col-md-4 mb-3">
               <label className="form-label">First prize</label>
-              <input name="eventFirstPrize" className="form-control" value={form.eventFirstPrize} onChange={handleChange} />
+              <input
+                name="eventFirstPrize"
+                className="form-control"
+                value={form.eventFirstPrize}
+                onChange={handleChange}
+              />
             </div>
             <div className="col-md-4 mb-3">
               <label className="form-label">Second prize</label>
-              <input name="eventSecondPrize" className="form-control" value={form.eventSecondPrize} onChange={handleChange} />
+              <input
+                name="eventSecondPrize"
+                className="form-control"
+                value={form.eventSecondPrize}
+                onChange={handleChange}
+              />
             </div>
             <div className="col-md-4 mb-3">
               <label className="form-label">Third prize</label>
-              <input name="eventThirdPrize" className="form-control" value={form.eventThirdPrize} onChange={handleChange} />
+              <input
+                name="eventThirdPrize"
+                className="form-control"
+                value={form.eventThirdPrize}
+                onChange={handleChange}
+              />
             </div>
           </div>
 
           <div className="mb-3">
             <label className="form-label">Location</label>
-            <input name="eventLocation" className="form-control" value={form.eventLocation} onChange={handleChange} />
+            <input
+              name="eventLocation"
+              className="form-control"
+              value={form.eventLocation}
+              onChange={handleChange}
+            />
           </div>
 
           {error && <div className="alert alert-danger">{error}</div>}
 
           <div className="d-flex gap-2">
-            <button className="btn btn-primary" type="submit" disabled={loading}>{loading ? 'Saving…' : 'Create Event'}</button>
-            <button className="btn btn-outline-secondary" type="button" onClick={() => navigate(-1)}>Cancel</button>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? 'Saving…' : 'Create Event'}
+            </button>
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              onClick={() => navigate(-1)}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>

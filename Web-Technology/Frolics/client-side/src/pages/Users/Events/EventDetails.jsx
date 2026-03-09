@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
 import '../../../styles/Users/partials/globals.css';
 import '../../../styles/Users/partials/layout.css';
-import { fetchJson } from '../../../utils/api';
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -11,7 +11,7 @@ const EventDetails = () => {
   useEffect(() => {
     async function load() {
       try {
-        const data = await fetchJson(`/events/${id}`);
+        const data = await axios.get(`/events/${id}`);
         setEvent(data);
       } catch (e) {
         setEvent(null);
