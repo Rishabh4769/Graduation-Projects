@@ -10,8 +10,14 @@ const ProtectedRoute = () => {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
-  if (location.pathname.startsWith('/app/admin') && !isAdminUser()) {
+  const inAdmin = location.pathname.startsWith('/app/admin');
+
+  if (inAdmin && !isAdminUser()) {
     return <Navigate to="/app" replace />;
+  }
+
+  if (!inAdmin && isAdminUser()) {
+    return <Navigate to="/app/admin/dashboard" replace />;
   }
 
   return <Outlet />;

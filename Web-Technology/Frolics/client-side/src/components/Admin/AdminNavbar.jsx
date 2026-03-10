@@ -45,7 +45,7 @@ const AdminNavbar = ({ userData }) => {
                 height="40"
                 className="me-2 rounded-3"
               />
-              FROLICS Admin
+              FROLICS
             </Link>
 
             <button
@@ -193,6 +193,8 @@ const AdminNavbar = ({ userData }) => {
                     </li>
                   </ul>
                 </li>
+
+                {/* Attendance nav removed (access via Dashboard widget) */}
               </ul>
             </div>
           </div>

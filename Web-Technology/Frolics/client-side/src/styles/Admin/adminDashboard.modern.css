@@ -119,6 +119,43 @@
   color: var(--error);
 }
 
+/* ==================== MINI CARDS ==================== */
+
+.mini-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-5);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.mini-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+}
+
+.mini-card-label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.mini-card-value {
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  font-weight: var(--font-semibold);
+}
+
 /* ==================== SECTION HEADER ==================== */
 
 .section-header {

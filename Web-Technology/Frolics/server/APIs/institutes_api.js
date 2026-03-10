@@ -23,8 +23,8 @@ router.post('/', async (req,res)=>{
     const Institute = new institutes({
         instituteName: req.body.instituteName,
         instituteImage: req.body.instituteImage,
-        institituteDescription: req.body.institituteDescription,
-        instituteCoordinatorId: req.body.instituteCoordinatorId,
+        instituteDescription: req.body.instituteDescription || req.body.institituteDescription,
+        instituteCoordinatorId: req.body.instituteCoordinatorId || undefined,
         createdBy: req.body.createdBy,
         modifiedBy: req.body.modifiedBy,
     })
@@ -38,10 +38,22 @@ router.post('/', async (req,res)=>{
 
 router.put('/:id', async (req,res)=>{
     try {
+        const payload = { ...req.body };
+        if (!payload.instituteCoordinatorId) {
+            delete payload.instituteCoordinatorId;
+        }
+        if (!payload.instituteImage) {
+            delete payload.instituteImage;
+        }
+        if (!payload.instituteDescription && payload.institituteDescription) {
+            payload.instituteDescription = payload.institituteDescription;
+        }
+        delete payload.institituteDescription;
+
         const updatedInstitute = await institutes.findByIdAndUpdate(
             req.params.id,
             {
-                $set: req.body,
+                $set: payload,
             },
             { new: true }
         );

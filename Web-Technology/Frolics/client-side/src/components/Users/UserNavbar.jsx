@@ -109,8 +109,14 @@ const Nav = ({ userData }) => {
                 <ul className="dropdown-menu dropdown-menu-end bg-white/90 backdrop-blur-xl border-white shadow-lg border rounded-3 mt-1">
                   <li><Link className="dropdown-item px-4 py-2 fw-medium d-flex align-items-center gap-2" to="/app/others/rules"><FiFileText size={16} aria-hidden="true" /> Rules & Regulations</Link></li>
                   <li><Link className="dropdown-item px-4 py-2 fw-medium d-flex align-items-center gap-2" to="/app/others/hostel"><FiLink size={16} aria-hidden="true" /> Hostel Facilities</Link></li>
-                  <li><Link className="dropdown-item px-4 py-2 fw-medium d-flex align-items-center gap-2" to="/app/others/winners"><FiBarChart2 size={16} aria-hidden="true" /> Winners</Link></li>
                 </ul>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link px-3 py-2 d-flex align-items-center gap-2" to="/app/others/winners">
+                  <FiBarChart2 size={18} aria-hidden="true" />
+                  <span>Winners</span>
+                </Link>
               </li>
 
               {/* User Profile Dropdown */}

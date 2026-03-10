@@ -28,8 +28,8 @@
 
 body {
     font-family: var(--primary-font);
-    /* Use project image from src/static/images so webpack can resolve it */
-        background: url('../../../static/images/frolics-main-bg.jpg') no-repeat center/cover fixed;
+    background-image: url("../../../static/images/frolics-main-bg-4.jpg");
+    background-size: cover;
     min-height: 100vh;
     color: white;
     overflow-x: hidden;

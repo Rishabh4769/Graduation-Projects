@@ -21,6 +21,7 @@ import AdminEventsOverview from './pages/Admin/AdminEventsOverview';
 import AdminDepartments from './pages/Admin/AdminDepartments';
 import AdminInstitutes from './pages/Admin/AdminInstitutes';
 import AdminWinners from './pages/Admin/AdminWinners';
+import AdminAttendance from './pages/Admin/AdminAttendance';
 import CreateEvent from './pages/Admin/CreateEvent';
 import MainLayout from './components/layout/MainLayout';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -82,6 +83,7 @@ function App() {
               <Route path="admin/manage-users" element={<AdminManageUsers />} />
               <Route path="admin/events" element={<AdminEventsOverview />} />
               <Route path="admin/events/:id/edit" element={<CreateEvent />} />
+              <Route path="admin/attendance" element={<AdminAttendance />} />
               <Route path="admin/departments" element={<AdminDepartments />} />
               <Route path="admin/institutes" element={<AdminInstitutes />} />
               <Route path="admin/winners" element={<AdminWinners />} />
