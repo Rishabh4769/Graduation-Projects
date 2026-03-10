@@ -4,6 +4,7 @@ import { FiMail, FiLock } from 'react-icons/fi';
 import axios from 'axios';
 import './../../styles/Auth/login.css';
 import logoBadge from '../../static/images/frolics_logo_badge.svg';
+import { getDefaultRouteForUser, TOKEN_STORAGE_KEY, USER_STORAGE_KEY } from '../../utils/auth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        '/api/login',
+        '/login',
         { email, password},
         { withCredentials: true }
       );
@@ -32,12 +33,12 @@ const Login = () => {
       const user = result.user || { email: email };
 
       if (token) {
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem(TOKEN_STORAGE_KEY, token);
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
 
         setSuccessMessage('Login successful! Redirecting to dashboard...');
         setTimeout(() => {
-          window.location.href = '/app';
+          window.location.href = user?.role === 'admin' ? '/app/admin/dashboard' : getDefaultRouteForUser();
         }, 800);
       } else {
         setErrorMessage(result.message || 'Invalid email or password. Please try again.');

@@ -14,12 +14,12 @@ const CreateGroup = () => {
   useEffect(() => {
     async function loadEvents() {
       try {
-        const data = await axios.get('/events',{
+        const response = await axios.get('/events',{
           headers: {
             'Content-Type': 'application/json',
           },
         });
-        setEvents(data);
+        setEvents(Array.isArray(response.data) ? response.data : []);
       } catch (err) {
         setEvents([]);
       }
@@ -38,7 +38,7 @@ const CreateGroup = () => {
       const userRaw = localStorage.getItem('user');
       const user = userRaw ? JSON.parse(userRaw) : null;
       const payload = { ...form, createdBy: user?.id };
-      const saved = await axios.post('/groups',payload,{
+      await axios.post('/groups',payload,{
         headers: {
           'Content-Type': 'application/json',
         },

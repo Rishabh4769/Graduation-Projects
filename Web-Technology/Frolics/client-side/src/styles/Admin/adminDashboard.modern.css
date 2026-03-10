@@ -152,6 +152,12 @@
   margin-bottom: var(--spacing-8);
 }
 
+.table-scroll-wrap {
+  max-height: 430px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -160,6 +166,9 @@
 .table thead {
   background: var(--bg-secondary);
   border-bottom: 2px solid var(--bg-tertiary);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .table th {

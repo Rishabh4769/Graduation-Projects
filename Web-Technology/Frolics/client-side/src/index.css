@@ -97,28 +97,14 @@
   --z-modal: 1050;
   --z-popover: 1060;
   --z-tooltip: 1070;
-}
-
-[data-theme="dark"] {
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
   --bg-tertiary: #334155;
-  /* text colors adjusted for dark background image */
   --text-primary: #ffffff;
   --text-secondary: #e5e7eb;
   --text-tertiary: #9ca3af;
+  --text-main: #cbd5e1;
 }
-
-[data-theme="light"],
-:root:not([data-theme="dark"]) {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #e2e8f0;
-  /* slightly lighter text for a airier feel */
-  --text-primary: #1f2937;
-  --text-secondary: #64748b;
-  --text-tertiary: #475569;  /* a slightly lighter color for primary content items */
-  --text-main: #6b7280;}
 
 /* ==================== BASE STYLES ==================== */
 * {
@@ -138,25 +124,22 @@ body {
   font-family: var(--font-sans);
   font-size: var(--text-base);
   line-height: 1.6;
-  color: var(--text-main); /* use lighter main color by default */
+  color: var(--text-main);
   background: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* paragraph and subtitle adjustments for better contrast */
 p, .subtitle {
   color: var(--text-secondary);
 }
 
-/* primary page title (h1) should be slightly lighter for sections like events/groups */
 h1 {
   color: var(--text-secondary);
   font-weight: var(--font-semibold);
   letter-spacing: 0.5px;
 }
 
-/* additional specificity for titles within main content area */
 .main h1,
 .page-title {
   color: var(--text-tertiary);
@@ -167,13 +150,10 @@ h2, h3, h4, h5, h6 {
   letter-spacing: 0.5px;
 }
 
-/* optional utility for main page items needing a lighter hue */
 .main-item,
 .title-primary {
   color: var(--text-secondary) !important;
 }
-
-
 
 code {
   font-family: var(--font-mono);
@@ -209,6 +189,46 @@ a {
 
 a:hover {
   color: var(--primary-light);
+}
+
+.card,
+.event-card,
+.list-group-item,
+.table,
+.table th,
+.table td,
+.form-control,
+.form-select,
+.input-group-text,
+.dropdown-menu,
+.modal-content {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.table {
+  --bs-table-bg: var(--bg-secondary);
+  --bs-table-color: var(--text-primary);
+  --bs-table-border-color: rgba(148, 163, 184, 0.2);
+  --bs-table-striped-bg: rgba(255, 255, 255, 0.03);
+  --bs-table-striped-color: var(--text-primary);
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.06);
+  --bs-table-hover-color: var(--text-primary);
+}
+
+.form-control::placeholder,
+.form-select,
+.input-group-text,
+.text-muted,
+small.text-muted {
+  color: var(--text-tertiary) !important;
+}
+
+.btn-outline-secondary,
+.btn-outline-primary,
+.btn-outline-danger {
+  color: var(--text-primary);
 }
 
 /* ==================== FORM ELEMENTS ==================== */

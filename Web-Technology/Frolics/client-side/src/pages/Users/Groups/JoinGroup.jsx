@@ -6,23 +6,45 @@ import '../../../styles/Users/partials/layout.css';
 
 const JoinGroup = () => {
   const navigate = useNavigate();
+  const [events, setEvents] = useState([]);
   const [groups, setGroups] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState('');
   const [selected, setSelected] = useState('');
   const [form, setForm] = useState({ participantName: '', participantInstituteName: '', participantEmail: '', participantMobile: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    async function loadEvents() {
+      try {
+        const response = await axios.get('/events');
+        const eventList = Array.isArray(response.data) ? response.data : [];
+        setEvents(eventList);
+        setSelectedEvent(eventList[0]?._id || '');
+      } catch (err) {
+        setEvents([]);
+      }
+    }
+    loadEvents();
+  }, []);
+
+  useEffect(() => {
     async function loadGroups() {
       try {
-        const data = await axios.get('/groups');
-        setGroups(data);
+        const response = await axios.get('/groups', {
+          params: selectedEvent ? { eventId: selectedEvent } : {},
+        });
+        setGroups(Array.isArray(response.data) ? response.data : []);
       } catch (err) {
         setGroups([]);
       }
     }
     loadGroups();
-  }, []);
+  }, [selectedEvent]);
+
+  const eventNameById = new Map(
+    events.map((event) => [String(event._id || event.id), event.eventName || event.title || event.name || 'Unnamed Event'])
+  );
 
   const handleJoin = async (e) => {
     e.preventDefault();
@@ -57,11 +79,32 @@ const JoinGroup = () => {
       <h1>Join Group</h1>
       <div className="event-card" style={{ maxWidth: 900 }}>
         <div className="mb-3">
+          <label className="form-label">Filter by event</label>
+          <select
+            className="form-select"
+            value={selectedEvent}
+            onChange={(e) => {
+              setSelectedEvent(e.target.value);
+              setSelected('');
+            }}
+          >
+            <option value="">All events</option>
+            {events.map((event) => (
+              <option key={event._id || event.id} value={event._id || event.id}>
+                {event.eventName || event.title || event.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-3">
           <label className="form-label">Available groups</label>
           <select className="form-select" value={selected} onChange={(e) => setSelected(e.target.value)}>
             <option value="">Select a group</option>
             {groups.map(g => (
-              <option key={g._id || g.id} value={g._id || g.id}>{g.groupName} — {g.eventId ? `Event ${g.eventId}` : 'No event'}</option>
+              <option key={g._id || g.id} value={g._id || g.id}>
+                {g.groupName} — {eventNameById.get(String(g.eventId)) || 'Unknown Event'}
+              </option>
             ))}
           </select>
         </div>

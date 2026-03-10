@@ -20,6 +20,14 @@ const eventSchema = new mongoose.Schema(
       type: String,
       maxlength: 1000,
     },
+    eventDate: {
+      type: Date,
+    },
+    eventStatus: {
+      type: String,
+      enum: ["upcoming", "ongoing", "completed"],
+      default: "upcoming",
+    },
     groupMinParticipants: {
       type: Number,
       required: true,

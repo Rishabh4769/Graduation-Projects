@@ -26,6 +26,8 @@ router.post('/', async (req,res)=>{
         eventTagline: req.body.eventTagline,
         eventImage: req.body.eventImage,
         eventDescription: req.body.eventDescription,
+        eventDate: req.body.eventDate,
+        eventStatus: req.body.eventStatus,
         groupMinParticipants: req.body.groupMinParticipants,
         groupMaxParticipants: req.body.groupMaxParticipants,
         eventFees: req.body.eventFees,
@@ -52,9 +54,13 @@ router.put('/:id', async (req,res)=>{
         const updatedEvent = await event.findByIdAndUpdate(
             req.params.id,
             {
-                $set: req.body,
+                $set: {
+                    ...req.body,
+                    eventDate: req.body.eventDate,
+                    eventStatus: req.body.eventStatus,
+                },
             },
-            { new: true }
+            { new: true, runValidators: true }
         );
         res.status(200).json(updatedEvent);
     } catch (err) {

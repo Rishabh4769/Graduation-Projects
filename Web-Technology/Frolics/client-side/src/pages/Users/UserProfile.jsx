@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../styles/Users/partials/globals.css';
 import '../../styles/Users/partials/layout.css';

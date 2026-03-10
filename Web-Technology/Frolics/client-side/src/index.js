@@ -8,8 +8,12 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { configureApiClient } from './utils/api';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+configureApiClient();
+document.documentElement.setAttribute('data-theme', 'dark');
 
 // Show server status message
 console.log('🌟 Frontend running at http://localhost:3000');

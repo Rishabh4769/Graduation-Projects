@@ -6,7 +6,6 @@ import '../../styles/Auth/signup.css';
 import logoBadge from '../../static/images/frolics_logo_badge.svg';
 
 const SignUp = () => {
-  const API_URL ='http://localhost:3030/api';
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -91,7 +90,7 @@ const SignUp = () => {
         phoneNumber: cleanPhone, // Send clean number
       };
 
-      const response = await axios.post(`${API_URL}/register`, payload, {
+      const response = await axios.post('/register', payload, {
         headers: {
           'Content-Type': 'application/json',
         },

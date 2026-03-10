@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FiZap, FiBarChart2, FiUsers, FiPlus, FiLink, FiCalendar, FiUser, FiFileText, FiLogOut } from 'react-icons/fi';
 import '../../styles/Users/navbar.css';
 import logo from '../../static/images/frolics_logo_badge.svg';
+import { logoutAndRedirect } from '../../utils/auth';
 
 const Nav = ({ userData }) => {
   // load persisted user (login stores `user` in localStorage)
@@ -108,6 +109,7 @@ const Nav = ({ userData }) => {
                 <ul className="dropdown-menu dropdown-menu-end bg-white/90 backdrop-blur-xl border-white shadow-lg border rounded-3 mt-1">
                   <li><Link className="dropdown-item px-4 py-2 fw-medium d-flex align-items-center gap-2" to="/app/others/rules"><FiFileText size={16} aria-hidden="true" /> Rules & Regulations</Link></li>
                   <li><Link className="dropdown-item px-4 py-2 fw-medium d-flex align-items-center gap-2" to="/app/others/hostel"><FiLink size={16} aria-hidden="true" /> Hostel Facilities</Link></li>
+                  <li><Link className="dropdown-item px-4 py-2 fw-medium d-flex align-items-center gap-2" to="/app/others/winners"><FiBarChart2 size={16} aria-hidden="true" /> Winners</Link></li>
                 </ul>
               </li>
 
@@ -148,7 +150,7 @@ const Nav = ({ userData }) => {
                   <li>
                     <button
                       className="dropdown-item px-4 py-3 fw-medium d-flex align-items-center gap-2"
-                      onClick={() => { localStorage.removeItem('token'); localStorage.removeItem('user'); window.location.href = '/login'; }}
+                      onClick={logoutAndRedirect}
                     >
                       <FiLogOut size={16} aria-hidden="true" /> Logout
                     </button>

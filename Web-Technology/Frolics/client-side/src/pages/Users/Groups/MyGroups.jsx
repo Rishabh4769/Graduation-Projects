@@ -11,7 +11,8 @@ const MyGroups = () => {
   useEffect(() => {
     async function load() {
       try {
-        const all = await axios.get('/groups');
+        const response = await axios.get('/groups');
+        const all = Array.isArray(response.data) ? response.data : [];
         const raw = localStorage.getItem('user');
         const me = raw ? JSON.parse(raw) : null;
         const mine = all.filter(g => (g.createdBy && (g.createdBy === me?.id || g.createdBy === me?._id)));

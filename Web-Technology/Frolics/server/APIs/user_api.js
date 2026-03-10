@@ -38,7 +38,8 @@ router.post("/",async (req,res)=>{
             userName: req.body.userName || req.body.name,
             emailAddress: req.body.emailAddress || req.body.email,
             userPassword: hashed || req.body.userPassword || req.body.password,
-            role: req.body.role
+            role: req.body.role,
+            phoneNumber: req.body.phoneNumber
         });
 
         const savedUser = await newUser.save();
@@ -51,10 +52,14 @@ router.post("/",async (req,res)=>{
 
 router.put("/:id",async (req,res)=>{
     try{
-        const updatedUser = await User.findByIdAndUpdate(req.params.id,req.body);
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        );
         res.json(updatedUser);
     }catch(err){
-        res.json({message:err});
+        res.status(400).json({message:err.message});
     }
 })
 

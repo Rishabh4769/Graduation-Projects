@@ -8,6 +8,7 @@ const SERVER_PORT = process.env.SERVER_PORT || 3030;
 const CLIENT_PORT = process.env.CLIENT_PORT || 4040;
 
 const connectDB = require('./config/database');
+const authenticateToken = require('./middleware/auth');
 
 // Connect to MongoDB
 connectDB();
@@ -45,6 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', require('./routes/routes'));
 app.use('/api/login',    require('./APIs/auth/login_api'));
 app.use('/api/register', require('./APIs/auth/register_api'));
+app.use('/api', authenticateToken);
 app.use('/api/users',    require('./APIs/user_api'));
 app.use('/api/events',   require('./APIs/event_api'));
 app.use('/api/departments', require('./APIs/department_api'));

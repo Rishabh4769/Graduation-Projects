@@ -11,8 +11,8 @@ const EventList = () => {
   useEffect(() => {
     async function load() {
       try {
-        const data = await axios.get('/events');
-        setEvents(data || []);
+        const response = await axios.get('/events');
+        setEvents(Array.isArray(response.data) ? response.data : []);
       } catch (e) {
         setEvents([]);
       }
@@ -36,17 +36,17 @@ const EventList = () => {
       <div className="row events-grid">
         {events.length === 0 && <p>No events yet</p>}
         {events.map((ev) => (
-          <div key={ev._id} className="col-md-4">
+          <div key={ev._id || ev.id} className="col-md-4">
             <article className="event-card">
               <div className="event-header">
-                <h3 className="event-name">{ev.title}</h3>
-                <span className={`status-badge ${ev.status || 'upcoming'}`}>{ev.status || 'upcoming'}</span>
+                <h3 className="event-name">{ev.eventName || 'Untitled Event'}</h3>
+                <span className={`status-badge ${ev.eventStatus || 'upcoming'}`}>{ev.eventStatus || 'upcoming'}</span>
               </div>
               <div className="event-meta">
-                <div className="meta-item"><span>Date:</span><span>{ev.date}</span></div>
-                <div className="meta-item"><span>Venue:</span><span>{ev.venue}</span></div>
+                <div className="meta-item"><span>Date:</span><span>{ev.eventDate ? new Date(ev.eventDate).toLocaleDateString() : 'TBD'}</span></div>
+                <div className="meta-item"><span>Venue:</span><span>{ev.eventLocation || 'TBD'}</span></div>
               </div>
-              <a className="read-more" href={`/events/${ev._id}`}>View details →</a>
+              <a className="read-more" href={`/app/events/${ev._id || ev.id}`}>View details →</a>
             </article>
           </div>
         ))}
