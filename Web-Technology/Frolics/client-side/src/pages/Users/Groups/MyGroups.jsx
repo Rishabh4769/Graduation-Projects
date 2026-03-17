@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../../../styles/Users/partials/globals.css';
 import '../../../styles/Users/partials/layout.css';
+import { getStoredUser } from '../../../utils/auth';
 
 const MyGroups = () => {
   const [groups, setGroups] = useState([]);
@@ -13,8 +14,7 @@ const MyGroups = () => {
       try {
         const response = await axios.get('/groups');
         const all = Array.isArray(response.data) ? response.data : [];
-        const raw = localStorage.getItem('user');
-        const me = raw ? JSON.parse(raw) : null;
+        const me = getStoredUser();
         const mine = all.filter(g => (g.createdBy && (g.createdBy === me?.id || g.createdBy === me?._id)));
         setGroups(mine);
       } catch (err) {

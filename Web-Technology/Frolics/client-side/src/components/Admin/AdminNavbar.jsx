@@ -13,17 +13,15 @@ import {
 } from 'react-icons/fi';
 import '../../styles/Users/navbar.css';
 import logo from '../../static/images/frolics_logo_badge.svg';
-import { logoutAndRedirect } from '../../utils/auth';
+import { getStoredUser, logoutAndRedirect } from '../../utils/auth';
 
 const AdminNavbar = ({ userData }) => {
   const [localUser, setLocalUser] = useState(null);
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('user');
-      if (raw) {
-        setLocalUser(JSON.parse(raw));
-      }
+      const stored = getStoredUser();
+      if (stored) setLocalUser(stored);
     } catch (error) {
       // ignore malformed local storage
     }

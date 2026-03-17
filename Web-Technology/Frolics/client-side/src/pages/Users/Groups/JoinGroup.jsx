@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../../styles/Users/partials/globals.css';
 import '../../../styles/Users/partials/layout.css';
+import { getStoredUser } from '../../../utils/auth';
 
 const JoinGroup = () => {
   const navigate = useNavigate();
@@ -53,8 +54,7 @@ const JoinGroup = () => {
     if (!form.participantName) return setError('Enter your name');
     setLoading(true);
     try {
-      const userRaw = localStorage.getItem('user');
-      const user = userRaw ? JSON.parse(userRaw) : null;
+      const user = getStoredUser();
       const payload = {
         ...form,
         groupId: selected,

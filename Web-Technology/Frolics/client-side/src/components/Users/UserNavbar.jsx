@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FiZap, FiBarChart2, FiUsers, FiPlus, FiLink, FiCalendar, FiUser, FiFileText, FiLogOut } from 'react-icons/fi';
 import '../../styles/Users/navbar.css';
 import logo from '../../static/images/frolics_logo_badge.svg';
-import { logoutAndRedirect } from '../../utils/auth';
+import { getStoredUser, logoutAndRedirect } from '../../utils/auth';
 
 const Nav = ({ userData }) => {
   // load persisted user (login stores `user` in localStorage)
@@ -12,8 +12,8 @@ const Nav = ({ userData }) => {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('user');
-      if (raw) setLocalUser(JSON.parse(raw));
+      const stored = getStoredUser();
+      if (stored) setLocalUser(stored);
     } catch (e) { /* ignore */ }
   }, []);
 

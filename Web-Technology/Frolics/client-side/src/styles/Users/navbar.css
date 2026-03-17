@@ -4,15 +4,43 @@
    while fitting the React app design system.
 */
 
+:root {
+  --app-navbar-height: 88px;
+}
+
 .user-header {
-  position: sticky;
+  /* Keep the navbar pinned to the viewport on scroll (user + admin) */
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 9999;
+  width: 100%;
+  min-height: var(--app-navbar-height);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   background: var(--nav-bg);
   border-bottom: 1px solid rgba(255,255,255,0.04);
   color: var(--nav-text);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  animation: navbar-drop 220ms ease-out;
+}
+
+@keyframes navbar-drop {
+  from {
+    transform: translateY(-14px);
+    opacity: 0.85;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .user-header {
+    animation: none;
+  }
 }
 
 .user-header .user-navbar {
@@ -98,12 +126,33 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
 }
 
 .user-header .nav-link:hover {
   color: #ffffff !important;
-  background: rgba(255,255,255,0.03);
+  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
   transform: translateY(-1px);
+}
+
+.user-header .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 0.25rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-color, #3b82f6), var(--accent-secondary, #8b5cf6));
+  border-radius: 999px;
+  transform: scaleX(0);
+  opacity: 0;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.user-header .nav-link:hover::after,
+.user-header .nav-link:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
 }
 
 .user-header .nav-link.active,

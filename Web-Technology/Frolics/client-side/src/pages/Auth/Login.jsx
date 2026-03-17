@@ -4,7 +4,7 @@ import { FiMail, FiLock } from 'react-icons/fi';
 import axios from 'axios';
 import './../../styles/Auth/login.css';
 import logoBadge from '../../static/images/frolics_logo_badge.svg';
-import { getDefaultRouteForUser, TOKEN_STORAGE_KEY, USER_STORAGE_KEY } from '../../utils/auth';
+import { getDefaultRouteForUser, persistSessionAuth } from '../../utils/auth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -33,8 +33,7 @@ const Login = () => {
       const user = result.user || { email: email };
 
       if (token) {
-        localStorage.setItem(TOKEN_STORAGE_KEY, token);
-        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+        persistSessionAuth(token, user);
 
         setSuccessMessage('Login successful! Redirecting to dashboard...');
         setTimeout(() => {

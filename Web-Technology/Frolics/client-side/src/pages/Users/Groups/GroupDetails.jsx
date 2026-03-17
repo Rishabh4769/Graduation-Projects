@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { FiArrowLeft, FiCalendar, FiCreditCard, FiMapPin, FiUser, FiUsers } from 'react-icons/fi';
 import axios from 'axios';
+import { getStoredUser } from '../../../utils/auth';
 import '../../../styles/Users/userDashboardPro.css';
 
 const GroupDetails = () => {
@@ -9,6 +10,7 @@ const GroupDetails = () => {
   const [group, setGroup] = useState(null);
   const [event, setEvent] = useState(null);
   const [participants, setParticipants] = useState([]);
+  const [institutes, setInstitutes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [savingParticipant, setSavingParticipant] = useState(false);
@@ -31,17 +33,19 @@ const GroupDetails = () => {
       const groupData = groupResponse.data;
       setGroup(groupData);
 
-      const requests = [axios.get('/participants')];
+      const requests = [axios.get('/participants'), axios.get('/institutes')];
       if (groupData?.eventId) {
         requests.push(axios.get(`/events/${groupData.eventId}`));
       }
 
-      const [participantsResponse, eventResponse] = await Promise.all(requests);
+      const [participantsResponse, institutesResponse, eventResponse] = await Promise.all(requests);
       const allParticipants = Array.isArray(participantsResponse.data) ? participantsResponse.data : [];
+      const instituteList = Array.isArray(institutesResponse?.data) ? institutesResponse.data : [];
 
       setParticipants(
         allParticipants.filter((participant) => String(participant.groupId) === String(groupData?._id || groupData?.id))
       );
+      setInstitutes(instituteList);
       setEvent(eventResponse?.data || null);
     } catch (err) {
       setError(err.response?.data?.message || err.message || 'Failed to load group details');
@@ -60,8 +64,7 @@ const GroupDetails = () => {
     setError('');
 
     try {
-      const rawUser = localStorage.getItem('user');
-      const currentUser = rawUser ? JSON.parse(rawUser) : null;
+      const currentUser = getStoredUser();
 
       await axios.post('/participants', {
         ...participantForm,
@@ -220,11 +223,18 @@ const GroupDetails = () => {
             </div>
             <div className="col-md-4 mb-3">
               <label className="form-label">Institute</label>
-              <input
-                className="form-control"
+              <select
+                className="form-select"
                 value={participantForm.participantInstituteName}
                 onChange={(eventObject) => setParticipantForm({ ...participantForm, participantInstituteName: eventObject.target.value })}
-              />
+              >
+                <option value="">Select institute</option>
+                {institutes.map((inst) => (
+                  <option key={inst._id || inst.id} value={inst.instituteName}>
+                    {inst.instituteName}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../../styles/Users/partials/globals.css';
 import '../../../styles/Users/partials/layout.css';
+import { getStoredUser } from '../../../utils/auth';
 
 const CreateGroup = () => {
   const navigate = useNavigate();
@@ -35,8 +36,7 @@ const CreateGroup = () => {
     if (!form.groupName || !form.eventId) return setError('Please provide group name and event');
     setLoading(true);
     try {
-      const userRaw = localStorage.getItem('user');
-      const user = userRaw ? JSON.parse(userRaw) : null;
+      const user = getStoredUser();
       const payload = { ...form, createdBy: user?.id };
       await axios.post('/groups',payload,{
         headers: {
@@ -45,7 +45,8 @@ const CreateGroup = () => {
       });
       navigate('/app/groups');
     } catch (err) {
-      setError(err.message || 'Failed to create group');
+      const serverMessage = err.response?.data?.message;
+      setError(serverMessage || err.message || 'Failed to create group');
     } finally {
       setLoading(false);
     }

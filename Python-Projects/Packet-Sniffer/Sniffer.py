@@ -151,7 +151,7 @@ class NetworkSnifferApp(tk.Tk):
         super().__init__()
 
         self.title("Network Packet Sniffer with Alert System")
-        self.geometry("1200x800")
+        self.geometry("1200x820")
         self.configure(bg='#2e3440')
         self.resizable(True, True)
 
@@ -185,6 +185,11 @@ class NetworkSnifferApp(tk.Tk):
         self.packet_queue = Queue()
         self.alert_queue = Queue()
 
+        self.packet_total = 0
+        self.alert_total = 0
+        self._packet_row_toggle = False
+        self._alert_row_toggle = False
+
         init_db()
         self.sniffer = PacketSniffer(self.packet_queue, self.alert_queue, self.session_id)
 
@@ -192,8 +197,11 @@ class NetworkSnifferApp(tk.Tk):
         self.last_graph_y_packet = []
         self.last_graph_y_alert = []
 
+        self.protocol("WM_DELETE_WINDOW", self.on_close)
+
         self.create_menu()
         self.create_widgets()
+        self.set_controls_state(capturing=False)
         self.after(100, self.update_ui)
 
     def create_menu(self):
@@ -218,7 +226,7 @@ class NetworkSnifferApp(tk.Tk):
                              bg='#2e3440', fg='#88c0d0')
         title_lbl.pack()
 
-        control_frame = ttk.Frame(self)
+        control_frame = ttk.LabelFrame(self, text="Capture Controls", padding=10)
         control_frame.pack(fill=tk.X, padx=20, pady=10)
 
         self.start_btn = ttk.Button(control_frame, text="▶ Start Capture", command=self.start_capture, width=18)
@@ -232,32 +240,43 @@ class NetworkSnifferApp(tk.Tk):
         ttk.Button(control_frame, text="💾 Save Graph", command=self.save_graph, width=18).pack(side=tk.LEFT, padx=5)
         ttk.Button(control_frame, text="🗑 Clear Logs", command=self.clear_logs, width=18).pack(side=tk.LEFT, padx=5)
 
-        settings_frame = ttk.Frame(self)
+        settings_frame = ttk.LabelFrame(self, text="Detection Settings", padding=10)
         settings_frame.pack(fill=tk.X, padx=20, pady=(5, 10))
 
         ttk.Label(settings_frame, text="BPF Filter:", background='#2e3440', foreground='#d8dee9').pack(side=tk.LEFT, padx=(0,6))
         self.filter_entry = ttk.Entry(settings_frame, width=30)
+        self.filter_entry.insert(0, "tcp")
         self.filter_entry.pack(side=tk.LEFT, padx=(0,10))
 
         ttk.Label(settings_frame, text="Time Window(s):", background='#2e3440', foreground='#d8dee9').pack(side=tk.LEFT, padx=(6,6))
-        self.time_window_spin = tk.Spinbox(settings_frame, from_=1, to=3600, width=6)
+        self.time_window_spin = tk.Spinbox(settings_frame, from_=1, to=3600, width=6, validate='key')
         self.time_window_spin.delete(0, 'end')
         self.time_window_spin.insert(0, '10')
         self.time_window_spin.pack(side=tk.LEFT, padx=(0,10))
 
         ttk.Label(settings_frame, text="Max Ports Scanned:", background='#2e3440', foreground='#d8dee9').pack(side=tk.LEFT, padx=(6,6))
-        self.max_ports_spin = tk.Spinbox(settings_frame, from_=1, to=65535, width=6)
+        self.max_ports_spin = tk.Spinbox(settings_frame, from_=1, to=65535, width=6, validate='key')
         self.max_ports_spin.delete(0, 'end')
         self.max_ports_spin.insert(0, '5')
         self.max_ports_spin.pack(side=tk.LEFT, padx=(0,10))
 
         ttk.Label(settings_frame, text="Max Packets Flood:", background='#2e3440', foreground='#d8dee9').pack(side=tk.LEFT, padx=(6,6))
-        self.max_flood_spin = tk.Spinbox(settings_frame, from_=1, to=1000000, width=6)
+        self.max_flood_spin = tk.Spinbox(settings_frame, from_=1, to=1000000, width=6, validate='key')
         self.max_flood_spin.delete(0, 'end')
         self.max_flood_spin.insert(0, '30')
         self.max_flood_spin.pack(side=tk.LEFT, padx=(0,10))
 
-        ttk.Button(settings_frame, text="Apply", command=self.apply_settings, width=10).pack(side=tk.LEFT, padx=6)
+        self.apply_btn = ttk.Button(settings_frame, text="Apply", command=self.apply_settings, width=10)
+        self.apply_btn.pack(side=tk.LEFT, padx=6)
+
+        summary_frame = ttk.Frame(self)
+        summary_frame.pack(fill=tk.X, padx=20, pady=(0, 6))
+        self.packet_count_var = tk.StringVar(value="Packets: 0")
+        self.alert_count_var = tk.StringVar(value="Alerts: 0")
+        self.session_var = tk.StringVar(value=f"Session: {self.session_id}")
+        ttk.Label(summary_frame, textvariable=self.packet_count_var, font=('Segoe UI', 11, 'bold')).pack(side=tk.LEFT, padx=(0,15))
+        ttk.Label(summary_frame, textvariable=self.alert_count_var, font=('Segoe UI', 11, 'bold')).pack(side=tk.LEFT, padx=(0,15))
+        ttk.Label(summary_frame, textvariable=self.session_var, font=('Segoe UI', 10)).pack(side=tk.LEFT)
 
         tab_control = ttk.Notebook(self)
         tab_control.pack(expand=1, fill='both', padx=10, pady=10)
@@ -278,6 +297,8 @@ class NetworkSnifferApp(tk.Tk):
         self.packet_tree.column('Length', width=80)
         self.packet_tree.column('Protocol', width=80)
         self.packet_tree.column('Flags', width=100)
+        self.packet_tree.tag_configure('odd', background='#343d4f')
+        self.packet_tree.tag_configure('even', background='#3b4252')
 
         scrollbar = ttk.Scrollbar(packet_tab, orient=tk.VERTICAL, command=self.packet_tree.yview)
         self.packet_tree.configure(yscroll=scrollbar.set)
@@ -296,6 +317,8 @@ class NetworkSnifferApp(tk.Tk):
         self.alert_tree.column('Source IP', width=120)
         self.alert_tree.column('Alert Type', width=100)
         self.alert_tree.column('Description', width=400)
+        self.alert_tree.tag_configure('odd', background='#343d4f')
+        self.alert_tree.tag_configure('even', background='#3b4252')
 
         alert_scrollbar = ttk.Scrollbar(alert_tab, orient=tk.VERTICAL, command=self.alert_tree.yview)
         self.alert_tree.configure(yscroll=alert_scrollbar.set)
@@ -311,6 +334,16 @@ class NetworkSnifferApp(tk.Tk):
     def start_capture(self):
         filter_val = self.filter_entry.get().strip()
         filter_val = filter_val if filter_val else None
+
+        self.session_id = time.strftime('%Y%m%d_%H%M%S')
+        self.session_var.set(f"Session: {self.session_id}")
+
+        self.packet_total = 0
+        self.alert_total = 0
+        self.packet_count_var.set("Packets: 0")
+        self.alert_count_var.set("Alerts: 0")
+        self._packet_row_toggle = False
+        self._alert_row_toggle = False
 
         try:
             if hasattr(self, 'sniffer') and self.sniffer.running:
@@ -335,31 +368,39 @@ class NetworkSnifferApp(tk.Tk):
 
         self.sniffer.start()
         self.status_var.set(f"Status: Capturing packets... | Session: {self.session_id}")
-        self.start_btn.config(state=tk.DISABLED)
-        self.stop_btn.config(state=tk.NORMAL)
+        self.set_controls_state(capturing=True)
 
     def stop_capture(self):
         self.sniffer.stop()
         self.status_var.set(f"Status: Capture stopped | Session: {self.session_id}")
-        self.start_btn.config(state=tk.NORMAL)
-        self.stop_btn.config(state=tk.DISABLED)
+        self.set_controls_state(capturing=False)
 
     def apply_settings(self):
         filter_val = self.filter_entry.get().strip()
         filter_val = filter_val if filter_val else None
         if hasattr(self, 'sniffer'):
             try:
+                time_window = int(self.time_window_spin.get())
+                max_ports = int(self.max_ports_spin.get())
+                max_flood = int(self.max_flood_spin.get())
+                if time_window <= 0 or max_ports <= 0 or max_flood <= 0:
+                    raise ValueError("Values must be positive")
                 self.sniffer.filter = filter_val
-                self.sniffer.time_window = int(self.time_window_spin.get())
-                self.sniffer.max_ports_scanned = int(self.max_ports_spin.get())
-                self.sniffer.max_packets_flood = int(self.max_flood_spin.get())
+                self.sniffer.time_window = time_window
+                self.sniffer.max_ports_scanned = max_ports
+                self.sniffer.max_packets_flood = max_flood
                 self.status_var.set("Settings applied")
             except Exception as e:
-                self.status_var.set(f"Failed to apply settings: {e}")
+                messagebox.showerror("Invalid Settings", f"Unable to apply settings: {e}")
+                self.status_var.set("Settings unchanged")
 
     def clear_logs(self):
         self.packet_tree.delete(*self.packet_tree.get_children())
         self.alert_tree.delete(*self.alert_tree.get_children())
+        self.packet_total = 0
+        self.alert_total = 0
+        self.packet_count_var.set("Packets: 0")
+        self.alert_count_var.set("Alerts: 0")
         self.status_var.set("Logs cleared")
 
     def update_ui(self):
@@ -371,9 +412,12 @@ class NetworkSnifferApp(tk.Tk):
             try:
                 pkt = self.packet_queue.get_nowait()
                 timestamp, src_ip, dst_port, length, protocol, flags, session_id = pkt
-                self.packet_tree.insert('', tk.END, values=(timestamp, src_ip, dst_port, length, protocol, flags))
+                tag = 'odd' if self._packet_row_toggle else 'even'
+                self._packet_row_toggle = not self._packet_row_toggle
+                self.packet_tree.insert('', tk.END, values=(timestamp, src_ip, dst_port, length, protocol, flags), tags=(tag,))
                 self.packet_tree.yview_moveto(1)
                 log_packet_db(pkt)
+                self.packet_total += 1
                 processed_packets += 1
             except Empty:
                 break
@@ -383,17 +427,30 @@ class NetworkSnifferApp(tk.Tk):
             try:
                 alert = self.alert_queue.get_nowait()
                 timestamp, src_ip, alert_type, description, session_id = alert
-                self.alert_tree.insert('', tk.END, values=(timestamp, src_ip, alert_type, description))
+                tag = 'odd' if self._alert_row_toggle else 'even'
+                self._alert_row_toggle = not self._alert_row_toggle
+                self.alert_tree.insert('', tk.END, values=(timestamp, src_ip, alert_type, description), tags=(tag,))
                 self.alert_tree.yview_moveto(1)
                 log_alert_db(alert)
+                self.alert_total += 1
                 processed_alerts += 1
             except Empty:
                 break
 
         if processed_packets:
             self.status_var.set(f"Captured {processed_packets} packets at {time.strftime('%H:%M:%S')} | Session: {self.session_id}")
+            self.packet_count_var.set(f"Packets: {self.packet_total}")
+        if processed_alerts:
+            self.alert_count_var.set(f"Alerts: {self.alert_total}")
 
         self.after(500, self.update_ui)
+
+    def set_controls_state(self, capturing: bool):
+        self.start_btn.config(state=tk.DISABLED if capturing else tk.NORMAL)
+        self.stop_btn.config(state=tk.NORMAL if capturing else tk.DISABLED)
+        state = tk.DISABLED if capturing else tk.NORMAL
+        for widget in (self.filter_entry, self.time_window_spin, self.max_ports_spin, self.max_flood_spin, self.apply_btn):
+            widget.config(state=state)
 
     def get_graph_data(self):
         conn = sqlite3.connect('network_traffic.db')
@@ -621,6 +678,15 @@ class NetworkSnifferApp(tk.Tk):
         plt.close()
 
         messagebox.showinfo("Saved", f"Graph saved as {os.path.basename(file_path)}")
+
+
+    def on_close(self):
+        try:
+            if hasattr(self, 'sniffer') and self.sniffer.running:
+                self.sniffer.stop()
+        except Exception:
+            pass
+        self.destroy()
 
 
 if __name__ == "__main__":
