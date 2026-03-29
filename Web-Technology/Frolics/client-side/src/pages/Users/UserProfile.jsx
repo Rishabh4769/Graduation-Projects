@@ -68,7 +68,6 @@ const UserProfile = () => {
       const payload = { userName: form.userName, phoneNumber: form.phoneNumber };
       const { data: updated } = await axios.put(`/users/${profile._id || profile.id}`, payload );
       setProfile(updated);
-      // update localStorage user if present
       try {
         const existing = getStoredUser();
         if (existing) {
@@ -80,7 +79,7 @@ const UserProfile = () => {
           };
           window.sessionStorage.setItem('user', JSON.stringify(nextUser));
         }
-      } catch (e) { /* ignore */ }
+      } catch (e) {}
       setEditing(false);
     } catch (err) {
       setError(err.message || 'Failed to save profile');

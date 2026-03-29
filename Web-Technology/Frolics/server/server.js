@@ -17,8 +17,7 @@ connectDB();
 app.use((req, res, next) => {
   const allowedOrigins = [
     'http://localhost:4040', 
-    'http://localhost:3000',
-    'https://your-frontend-domain.com'
+    'http://localhost:3000'
   ];
 
   const origin = req.headers.origin;
@@ -31,7 +30,6 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
-  // Handle preflight OPTIONS requests
   if (req.method === 'OPTIONS') {
     return res.sendStatus(204);
   }
@@ -55,18 +53,22 @@ app.use('/api/groups',   require('./APIs/group_api'));
 app.use('/api/winners',  require('./APIs/winner_api'));
 app.use('/api/institutes', require('./APIs/institutes_api'));
 
-// Serve React build in production only
-if (process.env.NODE_ENV === 'production') {
-  const buildPath = path.join(__dirname, '../../client-side/build');
-  app.use(express.static(buildPath));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(buildPath, 'index.html'));
-  });
-}
 
-// Start server
+
+// Start express backend server
 app.listen(SERVER_PORT, () => {
   console.log(`Frolics Backend API running at http://localhost:${SERVER_PORT}`);
   console.log(`(Frontend expected at http://localhost:${CLIENT_PORT})`);
   console.log(`Test API: http://localhost:${SERVER_PORT}/api/events`);
 });
+
+
+
+// Serve React build in production only
+// if (process.env.NODE_ENV === 'production') {
+//   const buildPath = path.join(__dirname, '../../client-side/build');
+//   app.use(express.static(buildPath));
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(buildPath, 'index.html'));
+//   });
+// }

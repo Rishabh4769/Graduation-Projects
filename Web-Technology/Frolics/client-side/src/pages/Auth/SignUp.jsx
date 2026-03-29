@@ -35,7 +35,6 @@ const SignUp = () => {
       newErrors.email = 'Please enter a valid email';
     }
 
-    // FIX: Allow spaces in phone input, but validate digits only
     const cleanPhone = formData.phoneNumber.replace(/\s+/g, '');
     if (!cleanPhone) {
       newErrors.phoneNumber = 'Phone number is required';
@@ -80,14 +79,13 @@ const SignUp = () => {
     setErrors({});
 
     try {
-      // FIX: Ensure clean phone number is sent to backend
       const cleanPhone = formData.phoneNumber.replace(/\s+/g, '');
 
       const payload = {
         userName: `${formData.firstName} ${formData.lastName}`.trim(),
         emailAddress: formData.email,
         userPassword: formData.password,
-        phoneNumber: cleanPhone, // Send clean number
+        phoneNumber: cleanPhone,
       };
 
       const response = await axios.post('/register', payload, {
@@ -106,7 +104,6 @@ const SignUp = () => {
       let errorMessage = 'Registration failed. Please try again.';
 
       if (err.response) {
-        // Server responded with a status other than 2xx
         const data = err.response.data;
         console.error("Backend Error Response:", data);
         if (typeof data === 'string') errorMessage = data;
@@ -115,11 +112,9 @@ const SignUp = () => {
         else if (Array.isArray(data?.errors)) errorMessage = data.errors.join(' • ');
         else errorMessage = `Server error (${err.response.status})`;
       } else if (err.request) {
-        // Request made but no response
         console.error("No Response Received (Check CORS or Backend Running):", err.request);
         errorMessage = 'Cannot reach the server. Is the backend running?';
       } else {
-        // Something else happened
         console.error("Error:", err.message);
         errorMessage = err.message || 'An unexpected error occurred';
       }

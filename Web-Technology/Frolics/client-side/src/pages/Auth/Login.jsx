@@ -9,7 +9,6 @@ import { getDefaultRouteForUser, persistSessionAuth } from '../../utils/auth';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -129,25 +128,6 @@ const Login = () => {
                 />
               </div>
             </div>
-
-            {/* <div className="auth-form-meta">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="remember"
-                  name="remember"
-                  checked={remember}
-                  onChange={(e) => setRemember(e.target.checked)}
-                />
-                <label className="form-check-label" htmlFor="remember">
-                  Remember me
-                </label>
-              </div>
-              <button type="button" className="forgot-link">
-                Forgot password?
-              </button>
-            </div> */}
 
             <button
               type="submit"

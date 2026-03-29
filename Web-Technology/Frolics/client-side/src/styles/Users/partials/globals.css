@@ -1,4 +1,3 @@
-/* Global variables and base reset copied from legacy styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +5,6 @@
 }
 
 :root {
-    /* FROLICS Color Scheme */
     --primary-color: #f8fafc;
     --secondary-color: #1e293b;
     --accent-color: #3b82f6;
@@ -15,7 +13,6 @@
     --primary-font-color: #1e293b;
     --secondary-font-color: #64748b;
 
-    /* Spacing & Shadows */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
@@ -28,7 +25,9 @@
 
 body {
     font-family: var(--primary-font);
-    background-image: url("../../../static/images/frolics-main-bg-4.jpg");
+    /* background-image: url("../../../static/images/frolics-main-bg-6.jpg"); */
+    background-color: black;
+    background-position: center;
     background-size: cover;
     min-height: 100vh;
     color: white;

@@ -24,7 +24,6 @@ const EventList = () => {
     <main className="main container">
       <h1>Events</h1>
 
-      {/* Event types — prominent, large cards */}
       <section className="event-types-section">
         <div className="event-types-grid">
           <EventTypeCard title="Technical" subtitle="Coding, Robotics, Hackathons" icon="🛠️" color="#3b82f6" />

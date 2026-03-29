@@ -1,14 +1,53 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FiUserPlus, FiCalendar, FiUsers, FiBell, FiShield, FiBarChart2 } from 'react-icons/fi';
 import '../styles/home.css';
 import '../styles/Users/partials/globals.css';
 import '../styles/Users/partials/layout.css';
 import logoBadge from '../static/images/frolics_logo_badge.svg';
 
 const Home = () => {
+  const features = [
+    {
+      title: 'Easy Registration',
+      description: 'Join events in seconds with streamlined forms and instant confirmation.',
+      icon: <FiUserPlus />,
+      gradient: 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)',
+    },
+    {
+      title: 'Smart Scheduling',
+      description: 'Personalized timelines, reminders, and conflict-free scheduling for your events.',
+      icon: <FiCalendar />,
+      gradient: 'linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%)',
+    },
+    {
+      title: 'Team & Participant Management',
+      description: 'Manage groups, leaders, and attendance in one place with real-time sync.',
+      icon: <FiUsers />,
+      gradient: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+    },
+    {
+      title: 'Live Updates',
+      description: 'Instant notifications for schedule changes, room shifts, and results.',
+      icon: <FiBell />,
+      gradient: 'linear-gradient(135deg, #f59e0b 0%, #fcd34d 100%)',
+    },
+    {
+      title: 'Secure Payments',
+      description: 'Trusted payments with receipts and status tracking for paid events.',
+      icon: <FiShield />,
+      gradient: 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)',
+    },
+    {
+      title: 'Insights & Reports',
+      description: 'Dashboards for participation, leaderboards, and event performance.',
+      icon: <FiBarChart2 />,
+      gradient: 'linear-gradient(135deg, #6366f1 0%, #22d3ee 100%)',
+    },
+  ];
+
   return (
     <div className="home-page">
-      {/* Home-only navigation (from legacy index.ejs) */}
       <nav className="navbar" aria-label="Main navigation" role="navigation">
         <div className="nav-container">
           <Link to="/" className="logo" aria-label="Frolics home">
@@ -21,10 +60,8 @@ const Home = () => {
           </div>
         </div>
       </nav>
-        {/* Main layout wrapper to match other pages */}
         <div className="main">
           <div className="container">
-          {/* Hero Section */}
           <main className="hero-section" role="main">
             <div className="hero-content">
               <div className="badge">
@@ -66,41 +103,23 @@ const Home = () => {
           </div>
         </div>
 
-      {/* Features Section */}
       <section className="features-section" id="features">
         <div className="features-container">
           <h2 className="section-title">Why Choose FROLICS?</h2>
           <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon"></div>
-              <h3>Easy Registration</h3>
-              <p>Register for events in a few clicks with clear steps and confirmations.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon"></div>
-              <h3>Smart Scheduling</h3>
-              <p>View event schedules, reminders and manage your calendar seamlessly.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon"></div>
-              <h3>Participant Management</h3>
-              <p>Organizers can manage participants, attendance and team allocations easily.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon"></div>
-              <h3>Real-time Updates</h3>
-              <p>Get live notifications for schedule changes, results and announcements.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon"></div>
-              <h3>Secure Payments</h3>
-              <p>Integrated payment support for paid events with secure transaction handling.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon"></div>
-              <h3>Insights & Reports</h3>
-              <p>Analytics for participation, popular events and organizer performance.</p>
-            </div>
+            {features.map((feature) => (
+              <div className="feature-card" key={feature.title}>
+                <div
+                  className="feature-icon"
+                  style={{ background: feature.gradient, color: '#ffffff' }}
+                  aria-hidden="true"
+                >
+                  {feature.icon}
+                </div>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

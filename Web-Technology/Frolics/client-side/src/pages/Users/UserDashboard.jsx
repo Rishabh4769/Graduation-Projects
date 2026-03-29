@@ -25,7 +25,6 @@ const UserDashboard = () => {
 
   return (
     <main className="user-dashboard">
-      {/* Welcome Header */}
       <div className="dashboard-header">
         <div className="header-content">
           <h1>Welcome Back!</h1>
@@ -34,7 +33,6 @@ const UserDashboard = () => {
         <Link to="/app/events" className="btn-primary-header">Explore Events</Link>
       </div>
 
-      {/* Stats Grid */}
       <section className="stats-section">
         <div className="stat-card gradient-blue">
           <div className="stat-header">
@@ -73,9 +71,7 @@ const UserDashboard = () => {
         </div>
       </section>
 
-      {/* Main Content Grid */}
       <div className="dashboard-grid">
-        {/* Recent Events */}
         <section className="dashboard-card">
           <div className="card-header">
             <h2>Recent Events</h2>
@@ -97,7 +93,6 @@ const UserDashboard = () => {
           </div>
         </section>
 
-        {/* My Groups */}
         <section className="dashboard-card">
           <div className="card-header">
             <h2>My Teams</h2>
@@ -117,7 +112,6 @@ const UserDashboard = () => {
         </section>
       </div>
 
-      {/* Quick Actions */}
       <section className="dashboard-card full-width">
         <div className="card-header">
           <h2>Quick Actions</h2>

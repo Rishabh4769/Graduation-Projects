@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frolics Theme Template</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://unpkg.com/feather-icons" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="nav">
+      <div class="logo">
+        <div class="logo-mark">FR</div>
+        <span>FROLICS</span>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#features">Features</a>
+        <a class="btn btn-primary" href="/login">Login</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="badge">Darshan University • Fest OS</div>
+      <h1 class="title">
+        Welcome to Frolics <span class="gradient-text">Campus Life</span>
+      </h1>
+      <p>
+        A modern workspace for hosting, discovering, and managing technical & cultural events with real-time updates, payments, and team tools.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/register">Get Registered</a>
+        <a class="btn btn-ghost" href="#features">See why teams love it</a>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">500+</div>
+          <div class="label">Events hosted</div>
+        </div>
+        <div class="stat">
+          <div class="num">10K+</div>
+          <div class="label">Students onboarded</div>
+        </div>
+        <div class="stat">
+          <div class="num">50+</div>
+          <div class="label">Colleges connected</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <h2>Why choose Frolics?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);" data-feather="user-plus"></div>
+          <h3>Easy Registration</h3>
+          <p>Join events in seconds with streamlined forms and instant confirmation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #8b5cf6, #c084fc);" data-feather="calendar"></div>
+          <h3>Smart Scheduling</h3>
+          <p>Personalized timelines, reminders, and conflict-free scheduling for your events.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #34d399);" data-feather="users"></div>
+          <h3>Team Management</h3>
+          <p>Manage groups, leaders, and attendance in one place with real-time sync.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #fcd34d);" data-feather="bell"></div>
+          <h3>Live Updates</h3>
+          <p>Instant notifications for schedule changes, room shifts, and results.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #ef4444, #f87171);" data-feather="shield"></div>
+          <h3>Secure Payments</h3>
+          <p>Trusted payments with receipts and status tracking for paid events.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #6366f1, #22d3ee);" data-feather="bar-chart-2"></div>
+          <h3>Insights & Reports</h3>
+          <p>Dashboards for participation, leaderboards, and event performance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="concepts">
+      <div class="concepts-header">
+        <h2>Design Concepts to Reuse</h2>
+        <p class="muted">Mix and match these blocks to prototype event pages, dashboards, or announcement drops.</p>
+      </div>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="chip chip-blue">Hero Stack</div>
+          <h3>Gradient Hero + Glass CTA</h3>
+          <p>Layer a gradient badge, bold headline, and dual CTA buttons on a glass card to drive first clicks.</p>
+        </div>
+        <div class="concept-card">
+          <div class="chip chip-purple">Stats</div>
+          <h3>Floating Stats Ribbon</h3>
+          <p>Use compact stat tiles with soft borders and subtle drop to showcase traction at a glance.</p>
+        </div>
+        <div class="concept-card">
+          <div class="chip chip-amber">Highlights</div>
+          <h3>Iconic Feature Grid</h3>
+          <p>Square icon blocks with tailored gradients keep feature lists scannable and on-brand.</p>
+        </div>
+        <div class="concept-card">
+          <div class="chip chip-teal">CTA</div>
+          <h3>Sticky Call-to-Action</h3>
+          <p>A footer CTA with a contrasting gradient bar invites signups after scrolling the page.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-ribbon">
+      <div>
+        <h3>Ready to ship your next fest?</h3>
+        <p>Clone this template, swap the palette, and plug in your event data in minutes.</p>
+      </div>
+      <a class="btn btn-primary" href="/register">Start now</a>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.feather) {
+        window.feather.replace();
+      }
+    });
+  </script>
+</body>
+</html>
