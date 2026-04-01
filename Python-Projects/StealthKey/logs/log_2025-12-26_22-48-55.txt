@@ -1,0 +1,12 @@
+yeah on same network
+ cmdKey  cmdKey 
+[CLIPBOARD] python main.py
+Starting StealthKey with daily log creation...
+Created log file: logs/log_2025-12-26_22-48-55.txt
+Next log rotation in 4264 seconds (at midnight)
+Log folder created at: logs
+Current log file: logs/log_2025-12-26_22-48-55.txt
+StealthKey started. Press ESC to stop.
+This process is not trusted! Input event monitoring will not be possible until it is added to accessibility clients.
+
+c cmdKey vbut the problem is the reciever is not receiving anything do u have any sou backspaceKey lution to send file via internet safely even from distance ctrlKey+ 
