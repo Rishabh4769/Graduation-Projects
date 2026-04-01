@@ -1,6 +1,6 @@
-# Packet Sniffer
+# NetScope
 
-Packet Sniffer is a Python desktop application for capturing network traffic, storing packet metadata in SQLite, detecting simple anomalies, and exporting session reports and graphs.
+NetScope is a Python desktop application for capturing network traffic, storing packet metadata in SQLite, detecting simple anomalies, and exporting session reports and graphs.
 
 ## Features
 
@@ -21,7 +21,7 @@ pip install -r requirements.txt
 ## Run
 
 ```bash
-python packet_sniffer.py
+python netscope.py
 ```
 
 ## Notes

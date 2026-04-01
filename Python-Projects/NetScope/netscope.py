@@ -55,7 +55,7 @@ def log_alert_db(alert_data):
         c.execute('INSERT INTO alerts VALUES (?, ?, ?, ?, ?)', alert_data)
         conn.commit()
 
-# ========= Packet Sniffer with anomaly detection ========= #
+# ========= NetScope with anomaly detection ========= #
 class PacketSniffer:
     def __init__(self, packet_queue, alert_queue, session_id, filter_exp=None):
         self.packet_queue = packet_queue
@@ -91,7 +91,7 @@ class PacketSniffer:
             else:
                 sniff(prn=self.packet_callback, store=0, stop_filter=lambda x: not self.running)
         except Exception as e:
-            print(f"[ERROR] Packet Sniffer error: {e}")
+            print(f"[ERROR] NetScope error: {e}")
 
 
     def packet_callback(self, pkt):
@@ -146,11 +146,11 @@ class PacketSniffer:
                 print(f"[ALERT] {alert_msg}")
 
 # ======================= GUI App =========================== #
-class NetworkSnifferApp(tk.Tk):
+class NetScopeApp(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("Packet Sniffer with Alert System")
+        self.title("NetScope")
         self.geometry("1200x820")
         self.configure(bg='#2e3440')
         self.resizable(True, True)
@@ -222,7 +222,7 @@ class NetworkSnifferApp(tk.Tk):
         title_frame = ttk.Frame(self)
         title_frame.pack(fill=tk.X, padx=20, pady=(10, 5))
 
-        title_lbl = tk.Label(title_frame, text="Packet Sniffer", font=('Segoe UI', 24, 'bold'),
+        title_lbl = tk.Label(title_frame, text="NetScope", font=('Segoe UI', 24, 'bold'),
                              bg='#2e3440', fg='#88c0d0')
         title_lbl.pack()
 
@@ -690,5 +690,5 @@ class NetworkSnifferApp(tk.Tk):
 
 
 if __name__ == "__main__":
-    app = NetworkSnifferApp()
+    app = NetScopeApp()
     app.mainloop()
