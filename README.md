@@ -1,52 +1,59 @@
-# 🎓 Undergraduate B.Tech Projects
+<!-- Special profile README: repo name must be exactly your GitHub username -->
 
-A showcase of projects I built during my **B.Tech in Computer Science & Engineering**.  
-Each project reflects my learning journey across multiple programming languages and technologies.
+<h1 align="center">Graduation Projects</h1>
+<h3 align="center">B.Tech Computer Science & Engineering | Academic Projects Showcase</h3>
 
----
-
-## 💻 Languages & Technologies
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=c,java,python,html,css,js,php" />
+  <img src="https://img.shields.io/badge/Focus-Information%20Security-0ea5e9?style=for-the-badge" alt="Focus" />
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge" alt="Status" />
 </p>
 
 ---
 
-## 🧠 What’s Inside
-| Language / Tech | Purpose |
-|------------------|----------|
-| **C** | Low-level programming, algorithms, and data structures |
-| **Java** | Object-oriented and GUI-based applications |
-| **Python** | Scripting, data analysis, and automation |
-| **HTML/CSS** | Structuring and styling web pages |
-| **JavaScript** | Client-side interactivity and dynamic behavior |
-| **PHP** | Server-side scripting and database interaction |
+## About This Repository
+
+This repository serves as a comprehensive collection of projects developed during my **B.Tech in Computer Science and Engineering**. It demonstrates my growth in software development, with a strong emphasis on secure coding practices, full-stack development, and practical problem-solving.
+
+Projects are categorized by technology stack and domain, covering web technologies, backend systems, scripting, and security tools.
 
 ---
 
-## ⚙️ Setup Instructions
+## Languages Used
+
+<p align="center">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+</p>
+
+---
+
+## Project Structure
+
+| Folder                | Description                                              | Primary Technologies                  |
+|-----------------------|----------------------------------------------------------|---------------------------------------|
+| **Java-Projects**     | Object-oriented programming and GUI-based applications   | Java                                  |
+| **Python-Projects**   | Automation, data processing, networking & security tools | Python                                |
+| **Web-Technology**    | Full-Stack Web Applications including MERN Stack projects | HTML, CSS, JavaScript, MERN Stack     |
+
+---
+
+## Featured Project
+
+**Network Packet Sniffer**  
+A real-time network monitoring and analysis tool developed in Python for packet capture, deep inspection, and security anomaly detection.
+
+[View Python Projects →](https://github.com/Rishabh4769/Graduation-Projects/tree/main/Python-Projects)
+
+---
+
+## Setup Instructions
+
 ```bash
-# Clone this repository
+# Clone the repository
 git clone https://github.com/Rishabh4769/Graduation-Projects.git
+
+# Navigate into the repository
 cd Graduation-Projects
-```
-Then open any project folder and follow its README or run instructions.
-
----
-
-## 🚀 Tools & Environment
-- C Compiler: GCC
-- Java: JDK 17+
-- Python: 3.x
-- Web: XAMPP / Localhost Server
-- Editor: VS Code / IntelliJ / PyCharm
-
----
-
-## 📜 License
-This repository is licensed under the MIT License.
-Feel free to explore, fork, and learn from these projects.
-
----
-
-<p align="center"> Made with ❤️ by <b>Rishabh</b> <br> <sub>“Learning, building, and improving — one project at a time.”</sub> </p>
