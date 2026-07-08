@@ -1,0 +1,141 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* ── Split pane ──────────────────────────────────────────────────────── */
+.tablePane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Table header ────────────────────────────────────────────────────── */
+.tableHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  background: var(--bg-elevated);
+}
+.tableTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.tableCount {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+.liveBtn {
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-family: var(--font-sans);
+  transition: all 0.12s;
+}
+.liveBtn:hover { background: var(--accent); color: var(--text-inverse); }
+
+/* ── Scroll area ─────────────────────────────────────────────────────── */
+.scrollArea {
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Table ───────────────────────────────────────────────────────────── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  table-layout: fixed;
+}
+
+.table thead tr {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.table th {
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.row {
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.08s;
+}
+.row:last-child { border-bottom: none; }
+.row:hover { background: var(--bg-hover); }
+
+.rowSelected {
+  background: var(--row-selected-bg) !important;
+  border-left: 2px solid var(--row-selected-border);
+}
+
+.table td {
+  padding: 5px 10px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-secondary);
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px 0;
+  font-size: 13px;
+}
+
+/* ── Protocol row tinting (subtle left border only) ─────────────────── */
+.protoTcp  { border-left: 2px solid rgba(47, 129, 247, 0.45); }
+.protoUdp  { border-left: 2px solid rgba(35, 134, 54,  0.45); }
+.protoIcmp { border-left: 2px solid rgba(158, 106, 3,  0.55); }
+.protoIp   { border-left: 2px solid transparent; }
+
+/* ── Protocol badge ─────────────────────────────────────────────────── */
+.protoTag {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 99px;
+  font-size: 10.5px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+.protoTag.protoTcp  { background: var(--proto-tcp);  color: var(--proto-tcp-text);  }
+.protoTag.protoUdp  { background: var(--proto-udp);  color: var(--proto-udp-text);  }
+.protoTag.protoIcmp { background: var(--proto-icmp); color: var(--proto-icmp-text); }
+.protoTag.protoIp   { background: var(--proto-ip);   color: var(--proto-ip-text);   }

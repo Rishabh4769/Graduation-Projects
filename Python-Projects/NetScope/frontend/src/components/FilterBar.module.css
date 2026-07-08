@@ -1,0 +1,160 @@
+.bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Protocol chips ──────────────────────────────────────────────────── */
+.protoChips {
+  display: flex;
+  gap: 4px;
+}
+
+.protoChip {
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  transition: all 0.12s;
+}
+.protoChip:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* Per-protocol active colors */
+.protoChipActive.proto_all   { background: var(--bg-hover);         color: var(--text-primary); border-color: var(--border-strong); }
+.protoChipActive.proto_tcp   { background: var(--proto-tcp);        color: var(--proto-tcp-text);  border-color: var(--accent-border); }
+.protoChipActive.proto_udp   { background: var(--proto-udp);        color: var(--proto-udp-text);  border-color: var(--success-border); }
+.protoChipActive.proto_icmp  { background: var(--proto-icmp);       color: var(--proto-icmp-text); border-color: var(--warning-border); }
+.protoChipActive.proto_ip    { background: var(--proto-ip);         color: var(--proto-ip-text);   border-color: var(--border-strong); }
+
+/* ── Divider ─────────────────────────────────────────────────────────── */
+.divider {
+  width: 1px;
+  height: 22px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Field row ───────────────────────────────────────────────────────── */
+.fields {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.fieldWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fieldLabel {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  line-height: 1;
+  padding-left: 1px;
+}
+
+.fieldInput {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 4px 7px;
+  width: 100%;
+  transition: border-color 0.12s;
+}
+.fieldInput:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+.fieldInput::placeholder { color: var(--text-muted); }
+
+/* ── TCP Flag chips ──────────────────────────────────────────────────── */
+.flagChips {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.flagLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-right: 2px;
+}
+
+.flagChip {
+  padding: 2px 8px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  transition: all 0.12s;
+}
+.flagChip:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.flagChipActive {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
+/* ── Actions ─────────────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.clearBtn {
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11.5px;
+  font-family: var(--font-sans);
+  transition: all 0.12s;
+}
+.clearBtn:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: var(--danger-border);
+}
+
+.searchBtn {
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11.5px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  transition: all 0.12s;
+}
+.searchBtn:hover {
+  background: var(--accent);
+  color: var(--text-inverse);
+}

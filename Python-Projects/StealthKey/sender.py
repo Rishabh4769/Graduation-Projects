@@ -1,8 +1,16 @@
+"""
+Automated log transmission module. 
+Monitors the local logs directory and securely uploads completed log files 
+to a remote Flask receiver using authenticated HTTP POST requests. 
+Includes logic to ensure files aren't uploaded while still being written.
+"""
+
 import os
 import time
 import requests
 import threading
 from datetime import datetime
+from typing import Set, List
 
 # --- Configuration ---
 # This must be the public IP address or domain name of your receiver.
@@ -16,15 +24,31 @@ API_SECRET_KEY = "YOUR_SUPER_SECRET_KEY"
 LOGS_FOLDER = "logs"
 
 class LogSender:
-    def __init__(self, receiver_url, api_key, logs_folder="logs"):
+    def __init__(self, receiver_url: str, api_key: str, logs_folder: str = "logs"):
+        """
+        Initializes the LogSender with server details and monitoring targets.
+        
+        Args:
+            receiver_url (str): The destination URL for log uploads.
+            api_key (str): The secret key used for server-side authentication.
+            logs_folder (str): Local path to the directory containing logs.
+        """
         self.receiver_url = receiver_url
         self.api_key = api_key
         self.logs_folder = logs_folder
-        self.sent_files = set()
+        self.sent_files: Set[str] = set()
         self.running = False
 
-    def send_file(self, file_path):
-        """Send a single log file to the receiver via HTTP POST."""
+    def send_file(self, file_path: str):
+        """
+        Reads a log file and transmits it to the receiver. 
+        Marks the file as sent upon a successful 200 OK response.
+        
+        Args:
+            file_path (str): The full path to the file to be sent.
+        Returns:
+            bool: True if the file was sent successfully, False otherwise.
+        """
         if not os.path.exists(file_path):
             print(f"File not found: {file_path}")
             return False
@@ -50,13 +74,19 @@ class LogSender:
         except requests.exceptions.RequestException as e:
             print(f"Error sending {os.path.basename(file_path)}: {e}")
             return False
-
-    def get_pending_files(self):
-        """Get a list of log files that haven't been sent yet."""
+            
+    def get_pending_files(self) -> List[str]:
+        """
+        Identifies log files in the directory that have not been successfully 
+        transmitted in the current session.
+        
+        Returns:
+            list: A list of paths to pending log files.
+        """
         if not os.path.exists(self.logs_folder):
             return []
         
-        pending = []
+        pending: List[str] = []
         for filename in sorted(os.listdir(self.logs_folder)):
             if filename.startswith("log_") and filename.endswith(".txt"):
                 file_path = os.path.join(self.logs_folder, filename)
@@ -65,8 +95,14 @@ class LogSender:
         
         return pending
 
-    def monitor_and_send(self, check_interval=60):
-        """Monitor logs folder and send new/pending files periodically."""
+    def monitor_and_send(self, check_interval : int = 60):
+        """
+        Execution loop for the sender. Scans for files and attempts to 
+        upload them if their file size has stabilized (indicating completion).
+        
+        Args:
+            check_interval (int): Seconds to wait between folder scans.
+        """
         self.running = True
         print("--- Log Sender ---")
         print(f"Monitoring folder: {self.logs_folder}")
@@ -102,12 +138,22 @@ class LogSender:
                 time.sleep(check_interval)
 
     def stop(self):
-        """Stop the sender."""
+        """
+        Signals the monitoring loop to stop gracefully.
+        """
         self.running = False
         print("Sender stopped.")
 
-def start_sender(check_interval=60):
-    """Start the log sender in a background thread."""
+def start_sender(check_interval : int = 60):
+    """
+    Helper function to instantiate the LogSender and run its monitoring 
+    loop in a background daemon thread.
+    
+    Args:
+        check_interval (int): How frequently to check for new logs.
+    Returns:
+        LogSender: The instance of the sender currently running.
+    """
     sender = LogSender(RECEIVER_URL, API_SECRET_KEY, LOGS_FOLDER)
     
     sender_thread = threading.Thread(

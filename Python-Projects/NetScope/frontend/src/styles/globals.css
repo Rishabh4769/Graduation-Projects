@@ -1,0 +1,179 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NetScope — Global Design Tokens
+   Two complete themes: dark (default) and light.
+   Applied via data-theme attribute on <html>.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Dark Theme ─────────────────────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg-base:          #0D1117;
+  --bg-surface:       #161C26;
+  --bg-elevated:      #1C2333;
+  --bg-hover:         #232D40;
+  --bg-selected:      #1E3A5F;
+
+  --border:           #2A3347;
+  --border-strong:    #374460;
+
+  --text-primary:     #E6EDF3;
+  --text-secondary:   #8B949E;
+  --text-muted:       #484F58;
+  --text-inverse:     #0D1117;
+
+  --accent:           #2F81F7;
+  --accent-hover:     #1F6FEB;
+  --accent-active:    #388BFD;
+  --accent-soft:      rgba(47, 129, 247, 0.15);
+  --accent-border:    rgba(47, 129, 247, 0.4);
+
+  --danger:           #DA3633;
+  --danger-hover:     #C93B3B;
+  --danger-soft:      rgba(218, 54, 51, 0.15);
+  --danger-border:    rgba(218, 54, 51, 0.4);
+
+  --success:          #238636;
+  --success-soft:     rgba(35, 134, 54, 0.15);
+  --success-border:   rgba(35, 134, 54, 0.4);
+
+  --warning:          #9E6A03;
+  --warning-soft:     rgba(158, 106, 3, 0.2);
+  --warning-border:   rgba(158, 106, 3, 0.4);
+
+  --proto-tcp:        rgba(47, 129, 247, 0.15);
+  --proto-tcp-text:   #79C0FF;
+  --proto-udp:        rgba(63, 185, 80, 0.15);
+  --proto-udp-text:   #7EE787;
+  --proto-icmp:       rgba(210, 153, 34, 0.15);
+  --proto-icmp-text:  #E3B341;
+  --proto-ip:         rgba(139, 148, 158, 0.15);
+  --proto-ip-text:    #8B949E;
+
+  --row-selected-bg:  rgba(47, 129, 247, 0.12);
+  --row-selected-border: #2F81F7;
+
+  --scrollbar-thumb:  #30363D;
+  --scrollbar-hover:  #484F58;
+  --code-bg:          #161C26;
+
+  --shadow-sm:   0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg:   0 8px 24px rgba(0,0,0,0.6);
+}
+
+/* ── Light Theme ────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base:          #F6F8FA;
+  --bg-surface:       #FFFFFF;
+  --bg-elevated:      #F0F2F5;
+  --bg-hover:         #E9ECF0;
+  --bg-selected:      #DDE8F8;
+
+  --border:           #D0D7DE;
+  --border-strong:    #B3BAC1;
+
+  --text-primary:     #1F2328;
+  --text-secondary:   #57606A;
+  --text-muted:       #9EA7B3;
+  --text-inverse:     #FFFFFF;
+
+  --accent:           #0969DA;
+  --accent-hover:     #0860CA;
+  --accent-active:    #0550AE;
+  --accent-soft:      rgba(9, 105, 218, 0.1);
+  --accent-border:    rgba(9, 105, 218, 0.35);
+
+  --danger:           #CF222E;
+  --danger-hover:     #A40E26;
+  --danger-soft:      rgba(207, 34, 46, 0.1);
+  --danger-border:    rgba(207, 34, 46, 0.35);
+
+  --success:          #1A7F37;
+  --success-soft:     rgba(26, 127, 55, 0.1);
+  --success-border:   rgba(26, 127, 55, 0.35);
+
+  --warning:          #7D4E00;
+  --warning-soft:     rgba(125, 78, 0, 0.1);
+  --warning-border:   rgba(125, 78, 0, 0.35);
+
+  --proto-tcp:        rgba(9, 105, 218, 0.1);
+  --proto-tcp-text:   #0550AE;
+  --proto-udp:        rgba(26, 127, 55, 0.1);
+  --proto-udp-text:   #1A7F37;
+  --proto-icmp:       rgba(125, 78, 0, 0.12);
+  --proto-icmp-text:  #7D4E00;
+  --proto-ip:         rgba(87, 96, 106, 0.1);
+  --proto-ip:         #57606A;
+  --proto-ip-text:    #57606A;
+
+  --row-selected-bg:     rgba(9, 105, 218, 0.08);
+  --row-selected-border: #0969DA;
+
+  --scrollbar-thumb:  #C8CFD6;
+  --scrollbar-hover:  #A6ADB5;
+  --code-bg:          #F0F2F5;
+
+  --shadow-sm:   0 1px 2px rgba(0,0,0,0.08);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg:   0 8px 24px rgba(0,0,0,0.14);
+}
+
+/* ── Shared tokens (same in both themes) ────────────────────────────── */
+:root {
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+  --radius-xs:  3px;
+  --radius-sm:  5px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --sidebar-w:  228px;
+  --topbar-h:   52px;
+}
+
+/* ── Reset ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  color-scheme: dark;
+}
+[data-theme="light"] html,
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar            { width: 7px; height: 7px; }
+::-webkit-scrollbar-track      { background: transparent; }
+::-webkit-scrollbar-thumb      { background: var(--scrollbar-thumb); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover{ background: var(--scrollbar-hover); }
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button { cursor: pointer; }
+input, select, textarea { font-family: inherit; }

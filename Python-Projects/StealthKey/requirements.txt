@@ -1,3 +1,6 @@
+click==8.3.2
+joblib==1.5.3
+nltk==3.9.4
 pynput==1.8.1
 pyobjc-core==12.1
 pyobjc-framework-ApplicationServices==12.1
@@ -5,6 +8,6 @@ pyobjc-framework-Cocoa==12.1
 pyobjc-framework-CoreText==12.1
 pyobjc-framework-Quartz==12.1
 pyperclip==1.11.0
+regex==2026.4.4
 six==1.17.0
-Flask
-requests
+tqdm==4.67.3

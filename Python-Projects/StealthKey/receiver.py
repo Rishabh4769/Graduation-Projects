@@ -1,30 +1,47 @@
+"""
+Log Receiver Server.
+A lightweight Flask application designed to receive log files from the 
+LogSender. It enforces security through API key validation and ensures 
+file system safety by preventing directory traversal and verifying upload paths.
+"""
+
 import os
-from flask import Flask, request, abort
+from flask import Flask, request, abort, Response
 from datetime import datetime
+from typing import Tuple, Union
 
 # --- Configuration ---
 # IMPORTANT: Use a strong, randomly generated secret key in a real environment
 # This key must match the one used by the sender.
-API_SECRET_KEY = "YOUR_SUPER_SECRET_KEY"
-RECEIVE_FOLDER = "received_logs"
-HOST = "0.0.0.0"  # Listen on all network interfaces
-PORT = 5000
+API_SECRET_KEY: str = "YOUR_SUPER_SECRET_KEY"
+RECEIVE_FOLDER: str = "received_logs"
+HOST: str = "0.0.0.0"  # Listen on all network interfaces
+PORT: int = 5000
 
 # --- Flask App ---
-app = Flask(__name__)
+app: Flask = Flask(__name__)
 
 @app.before_request
-def check_secret_key():
-    """Authenticate requests using a secret key header."""
+def check_secret_key() -> None:
+    """
+    Middleware to authenticate incoming requests. Rejects any request to 
+    the /upload endpoint that lacks a valid X-API-KEY header.
+    """
     if request.path == '/upload':
         auth_header = request.headers.get("X-API-KEY")
         if not auth_header or auth_header != API_SECRET_KEY:
             print(f"Authentication failed for IP: {request.remote_addr}")
             abort(401, description="Invalid or missing API Key.")
 
-@app.route("/upload", methods=["POST"])
-def upload_file():
-    """Handle incoming log file uploads."""
+@app.route("/upload", methods=["POST"]) # type: ignore
+def upload_file() -> Union[Tuple[str, int], Response]:
+    """
+    API Endpoint to receive log files. Validates the file part, checks 
+    for filename safety, and saves the file to the receive folder.
+    
+    Returns:
+        tuple: Status message and HTTP status code.
+    """
     # Ensure the receive folder exists
     if not os.path.exists(RECEIVE_FOLDER):
         os.makedirs(RECEIVE_FOLDER)
@@ -36,16 +53,16 @@ def upload_file():
 
     file = request.files['log_file']
 
-    if file.filename == '':
+    if not file.filename or file.filename == '':
         print("Upload request has no selected file.")
         return "No selected file", 400
 
     if file:
-        filename = file.filename
+        filename: str = file.filename
         save_path = os.path.join(RECEIVE_FOLDER, os.path.basename(filename))
         
         # Avoid directory traversal attacks
-        if os.path.dirname(save_path) != RECEIVE_FOLDER:
+        if os.path.abspath(os.path.dirname(save_path)) != os.path.abspath(RECEIVE_FOLDER):
             return "Invalid filename", 400
 
         try:
@@ -59,8 +76,11 @@ def upload_file():
 
     return "An unknown error occurred", 500
 
-def start_receiver():
-    """Start the Flask log receiver."""
+def start_receiver() -> None:
+    """
+    Initializes and starts the Flask development server to listen for 
+    incoming log transmissions.
+    """
     print("--- Log Receiver Server ---")
     print(f"Starting server at http://{HOST}:{PORT}")
     print(f"Receive folder: {RECEIVE_FOLDER}")
