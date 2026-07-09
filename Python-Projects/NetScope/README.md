@@ -41,25 +41,20 @@ NetScope/
 
 ## Setup & Run
 
-### Backend
-
 ```bash
-./start_backend.sh
+./NetScope.sh
 ```
 
-This creates a `.venv`, installs Python dependencies, and starts the API on `http://127.0.0.1:8000`.
+That's it. The script will:
+1. Create a Python `.venv` and install backend dependencies if needed
+2. Install npm packages if `node_modules` is missing
+3. Start the FastAPI backend on `http://127.0.0.1:8000` (with `sudo` for raw packet capture)
+4. Wait until the backend is ready, then start the React frontend on `http://localhost:5173`
+5. Open `http://localhost:5173` in your browser
 
-> On macOS/Linux, Scapy needs root for raw capture. The script handles this automatically.
+Press **Ctrl+C** to stop both servers cleanly.
 
-### Frontend
-
-In a second terminal:
-
-```bash
-./start_frontend.sh
-```
-
-Opens the React app at `http://localhost:5173`.
+> The old `start_backend.sh` and `start_frontend.sh` scripts still exist if you need to run them separately.
 
 ## API Reference
 

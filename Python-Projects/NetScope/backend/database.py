@@ -56,8 +56,24 @@ def init_db() -> None:
                 last_login   TEXT
             )
         """)
+        c.execute("""
+            CREATE TABLE IF NOT EXISTS app_logs (
+                id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp  TEXT    NOT NULL DEFAULT (datetime('now')),
+                source     TEXT    NOT NULL,
+                level      TEXT    NOT NULL DEFAULT 'INFO',
+                category   TEXT    NOT NULL DEFAULT 'general',
+                message    TEXT    NOT NULL,
+                detail     TEXT    NOT NULL DEFAULT '',
+                session_id TEXT    NOT NULL DEFAULT '',
+                username   TEXT    NOT NULL DEFAULT ''
+            )
+        """)
         # Indexes for common query patterns
         c.execute("CREATE INDEX IF NOT EXISTS idx_packets_session ON packets(session_id)")
+        c.execute("CREATE INDEX IF NOT EXISTS idx_logs_source    ON app_logs(source)")
+        c.execute("CREATE INDEX IF NOT EXISTS idx_logs_level     ON app_logs(level)")
+        c.execute("CREATE INDEX IF NOT EXISTS idx_logs_ts        ON app_logs(timestamp)")
         c.execute("CREATE INDEX IF NOT EXISTS idx_alerts_session  ON alerts(session_id)")
         conn.commit()
 
@@ -302,3 +318,82 @@ def list_users() -> list[dict]:
 def user_count() -> int:
     with get_connection() as conn:
         return conn.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+
+
+# ── App log functions ─────────────────────────────────────────────────── #
+
+def write_log(
+    source: str,
+    level: str,
+    category: str,
+    message: str,
+    detail: str = "",
+    session_id: str = "",
+    username: str = "",
+) -> None:
+    """
+    Persist a log entry to app_logs.
+    source   : 'backend' | 'frontend'
+    level    : 'INFO' | 'WARNING' | 'ERROR' | 'DEBUG'
+    category : 'auth' | 'capture' | 'sniffer' | 'api' | 'ui' | 'general'
+    """
+    with get_connection() as conn:
+        conn.execute(
+            "INSERT INTO app_logs (source, level, category, message, detail, session_id, username) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (source, level.upper(), category, message, detail, session_id, username),
+        )
+        conn.commit()
+
+
+def get_logs(
+    source: str | None = None,
+    level: str | None = None,
+    category: str | None = None,
+    session_id: str | None = None,
+    limit: int = 200,
+    offset: int = 0,
+) -> list[dict]:
+    clauses = []
+    params: list = []
+
+    if source:
+        clauses.append("source = ?")
+        params.append(source.lower())
+    if level:
+        clauses.append("UPPER(level) = UPPER(?)")
+        params.append(level)
+    if category:
+        clauses.append("category = ?")
+        params.append(category.lower())
+    if session_id:
+        clauses.append("session_id = ?")
+        params.append(session_id)
+
+    where = ("WHERE " + " AND ".join(clauses)) if clauses else ""
+    sql = (
+        f"SELECT id, timestamp, source, level, category, message, detail, session_id, username "
+        f"FROM app_logs {where} ORDER BY id DESC LIMIT ? OFFSET ?"
+    )
+    params += [limit, offset]
+
+    with get_connection() as conn:
+        rows = conn.execute(sql, params).fetchall()
+    return [dict(r) for r in rows]
+
+
+def get_log_stats() -> dict:
+    """Return counts grouped by source and level for the summary cards."""
+    with get_connection() as conn:
+        by_source = conn.execute(
+            "SELECT source, COUNT(*) AS cnt FROM app_logs GROUP BY source"
+        ).fetchall()
+        by_level = conn.execute(
+            "SELECT level, COUNT(*) AS cnt FROM app_logs GROUP BY level"
+        ).fetchall()
+        total = conn.execute("SELECT COUNT(*) FROM app_logs").fetchone()[0]
+    return {
+        "total": total,
+        "by_source": {r["source"]: r["cnt"] for r in by_source},
+        "by_level":  {r["level"]:  r["cnt"] for r in by_level},
+    }

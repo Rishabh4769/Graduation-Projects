@@ -25,6 +25,8 @@ from backend.auth import login, register_first_user, revoke_token, validate_toke
 from backend.database import (
     get_alerts,
     get_graph_data,
+    get_logs,
+    get_log_stats,
     get_packets,
     get_port_usage,
     get_session_summary,
@@ -35,8 +37,10 @@ from backend.database import (
     log_packet,
     search_packets,
     user_count,
+    write_log,
 )
 from backend.interfaces import get_interfaces, is_valid_interface
+from backend.logger import log as applog
 from backend.report import generate_pdf
 from backend.sniffer import VALID_BPF_FILTERS, PacketSniffer
 
@@ -219,7 +223,9 @@ async def auth_status():
 async def auth_setup(body: SetupRequest):
     ok, msg = register_first_user(body.username, body.password)
     if not ok:
+        applog.warning("auth", f"Setup failed: {msg}", username=body.username)
         raise HTTPException(status_code=400, detail=msg)
+    applog.info("auth", "First admin account created", username=body.username)
     return {"message": msg}
 
 
@@ -227,7 +233,9 @@ async def auth_setup(body: SetupRequest):
 async def auth_login(body: LoginRequest):
     ok, result = login(body.username, body.password)
     if not ok:
+        applog.warning("auth", "Failed login attempt", username=body.username, detail=result)
         raise HTTPException(status_code=401, detail=result)
+    applog.info("auth", "User logged in", username=body.username)
     return {"token": result, "username": body.username}
 
 
@@ -240,6 +248,7 @@ async def auth_logout(
     x_token: str = Header(..., alias="X-Auth-Token"),
     _username: str = Depends(require_auth),
 ):
+    applog.info("auth", "User logged out", username=_username)
     revoke_token(x_token)
     return {"message": "Logged out"}
 
@@ -302,6 +311,8 @@ async def start_capture(
         max_packets_flood = body.max_packets_flood,
     )
     state.sniffer.start()
+    applog.info("capture", f"Capture started on interface '{state.iface}'",
+                session_id=session_id, username=_)
     await _broadcast({"type": "status", "capturing": True, "session_id": session_id,
                       "iface": state.iface, "packet_total": 0, "alert_total": 0})
     return {"status": "started", "session_id": session_id, "iface": state.iface}
@@ -313,6 +324,8 @@ async def stop_capture(_: str = Depends(require_auth)):
         raise HTTPException(status_code=409, detail="No capture is running")
     state.sniffer.stop()
     state.capturing = False
+    applog.info("capture", f"Capture stopped — {state.packet_total} packets, {state.alert_total} alerts",
+                session_id=state.session_id, username=_)
     await _broadcast({"type": "status", "capturing": False,
                       "session_id": state.session_id,
                       "packet_total": state.packet_total,
@@ -350,6 +363,64 @@ async def capture_status(_: str = Depends(require_auth)):
 @app.get("/api/interfaces")
 async def list_interfaces(_: str = Depends(require_auth)):
     return get_interfaces()
+
+
+# ── Logs endpoints ────────────────────────────────────────────────────── #
+
+class FrontendLogEntry(BaseModel):
+    level:      str = Field("INFO", pattern="^(DEBUG|INFO|WARNING|ERROR)$")
+    category:   str = Field("ui",   max_length=32)
+    message:    str = Field(...,    max_length=512)
+    detail:     str = Field("",     max_length=1024)
+    session_id: str = Field("",     max_length=64)
+
+    @field_validator("category", "level")
+    @classmethod
+    def _strip(cls, v: str) -> str:
+        return v.strip().lower() if v else v
+
+
+@app.post("/api/logs")
+async def ingest_frontend_log(
+    body: FrontendLogEntry,
+    username: str = Depends(require_auth),
+):
+    """Receive a log entry from the React frontend and persist it."""
+    write_log(
+        source     = "frontend",
+        level      = body.level.upper(),
+        category   = body.category,
+        message    = body.message,
+        detail     = body.detail,
+        session_id = body.session_id,
+        username   = username,
+    )
+    return {"status": "logged"}
+
+
+@app.get("/api/logs")
+async def query_logs(
+    source:     Optional[str] = None,
+    level:      Optional[str] = None,
+    category:   Optional[str] = None,
+    session_id: Optional[str] = None,
+    limit:      int = 200,
+    offset:     int = 0,
+    _: str = Depends(require_auth),
+):
+    return get_logs(
+        source     = source,
+        level      = level,
+        category   = category,
+        session_id = session_id,
+        limit      = min(limit, 1000),
+        offset     = offset,
+    )
+
+
+@app.get("/api/logs/stats")
+async def logs_stats(_: str = Depends(require_auth)):
+    return get_log_stats()
 
 
 # ── Sessions ──────────────────────────────────────────────────────────── #
