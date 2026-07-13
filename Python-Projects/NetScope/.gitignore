@@ -4,3 +4,6 @@ node_modules/
 network_traffic.db
 .vscode/
 __pycache__/
+.DS_Store
+#  adding folders
+*.egg-info/
