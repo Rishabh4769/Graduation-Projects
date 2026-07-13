@@ -1,0 +1,6 @@
+#  adding files
+.venv/
+node_modules/
+network_traffic.db
+.vscode/
+__pycache__/
